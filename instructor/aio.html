@@ -360,7 +360,7 @@
         
 <section id="aio-00-introduction"><p>Content from <a href="00-introduction.html">Introduction</a></p>
 <hr>
-<p>Last updated on 2025-08-19 |
+<p>Last updated on 2025-08-25 |
 
         <a href="https://github.com/KUBDatalab/R-textmining_new/edit/main/episodes/00-introduction.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 0 minutes</p>
@@ -496,7 +496,7 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-01-getting-ready"><p>Content from <a href="01-getting-ready.html">Loading data</a></p>
 <hr>
-<p>Last updated on 2025-08-19 |
+<p>Last updated on 2025-08-25 |
 
         <a href="https://github.com/KUBDatalab/R-textmining_new/edit/main/episodes/01-getting-ready.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 0 minutes</p>
@@ -635,7 +635,7 @@ do.</p>
   How to show the first / last rows
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb4">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -686,7 +686,7 @@ do.</p>
   How to show information about the columns
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb8">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -716,7 +716,7 @@ $ pillar_name          &lt;chr&gt; "News", "Opinion", "News", "News", "News", "N
   Get the names of the variables / columns
   </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb10">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -741,7 +741,7 @@ $ pillar_name          &lt;chr&gt; "News", "Opinion", "News", "News", "News", "N
   Get the dimension of the dataset (number of rows and coloumns)
   </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb12">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -779,7 +779,7 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-02-preparing-data"><p>Content from <a href="02-preparing-data.html">Tokenisation and stopwords</a></p>
 <hr>
-<p>Last updated on 2025-08-19 |
+<p>Last updated on 2025-08-25 |
 
         <a href="https://github.com/KUBDatalab/R-textmining_new/edit/main/episodes/02-preparing-data.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 0 minutes</p>
@@ -899,7 +899,7 @@ the stopwords list.</p>
   Add stopwords
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>First, create a tibble with the word you wish to add to the stop
 words list</p>
@@ -952,7 +952,7 @@ the new words added.</p>
   Remove stopword
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>First, create a vector with the word(s) you wish to remove from the
 stopwords list.</p>
@@ -1007,7 +1007,8 @@ orginal dataset. This is illustrated in the figure below. The only part
 left after anti-joining is the dark grey area to the left.</p>
 <p>These words are saved as the object
 <code>articles_anti_join</code>.</p>
-<figure><img src=".././fig/anti_join.jpg" alt="Anti-join examples" class="figure mx-auto d-block"><div class="figcaption">Anti-join examples</div>
+<figure><img src=".././fig/anti_join.jpg" alt="This is an illustration of anti_join. After running anti_join, only the dark grey part is left." class="figure mx-auto d-block"><div class="figcaption">This is an illustration of anti_join. After
+running anti_join, only the dark grey part is left.</div>
 </figure><div id="join-and-anti_join" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
@@ -1042,7 +1043,7 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-03-frequency-analysis"><p>Content from <a href="03-frequency-analysis.html">Word frequency analysis</a></p>
 <hr>
-<p>Last updated on 2025-08-19 |
+<p>Last updated on 2025-08-25 |
 
         <a href="https://github.com/KUBDatalab/R-textmining_new/edit/main/episodes/03-frequency-analysis.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 0 minutes</p>
@@ -1280,7 +1281,7 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-04-sentiment"><p>Content from <a href="04-sentiment.html">Sentiment analysis</a></p>
 <hr>
-<p>Last updated on 2025-08-19 |
+<p>Last updated on 2025-08-25 |
 
         <a href="https://github.com/KUBDatalab/R-textmining_new/edit/main/episodes/04-sentiment.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 0 minutes</p>
@@ -1479,7 +1480,7 @@ These packages will be installed into "~/work/R-textmining_new/R-textmining_new/
 
 # Installing packages --------------------------------------------------------
 - Installing textdata ...                       OK [linked from cache]
-Successfully installed 1 package in 5.7 milliseconds.</code></pre>
+Successfully installed 1 package in 5.5 milliseconds.</code></pre>
 </div>
 <div class="codewrapper sourceCode" id="cb14">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1638,8 +1639,8 @@ any links that you are not going to use.
   "url": "https://KUBDatalab.github.io/R-textmining_new/instructor/aio.html",
   "identifier": "https://KUBDatalab.github.io/R-textmining_new/instructor/aio.html",
   "dateCreated": "2024-05-01",
-  "dateModified": "2025-08-19",
-  "datePublished": "2025-08-19"
+  "dateModified": "2025-08-25",
+  "datePublished": "2025-08-25"
 }
 
   </script><script>
