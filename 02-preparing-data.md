@@ -156,7 +156,7 @@ The `anti_join`-function removes the stopwords from the orginal dataset. This is
 
 These words are saved as the object `articles_anti_join`.
 
-![Anti-join examples](./fig/anti_join.jpg)
+![This is an illustration of anti_join. After running anti_join, only the dark grey part is left.](./fig/anti_join.jpg)
 
 ::: callout
 ### `Join` and `anti_join`
