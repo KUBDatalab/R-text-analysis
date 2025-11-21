@@ -334,7 +334,14 @@ the course.</p>
 <p>You do not need to download the file. We will do that together during
 the course.</p>
 </section><section><h2 class="section-heading" id="software-setup">Software Setup<a class="anchor" aria-label="anchor" href="#software-setup"></a></h2>
-<hr class="half-width"><div id="warning" class="callout">
+<hr class="half-width"><p>In the course we will use the Positron IDE. You might be more used to
+RStudio. Many differences exist, but the functionality we are going to
+actually use are almost identical. Therefore you do not need to install
+Positron if you already have RStudio installed. If not, we recommend
+that you install Positron.</p>
+<p>One difference is that the default pipe “%&gt;%” in RStudio is
+replaced with “|&gt;” in Positron. The way they work is identical</p>
+<div id="warning" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
@@ -342,26 +349,26 @@ the course.</p>
 <div id="warning" class="callout-inner">
 <h3 class="callout-title">Warning</h3>
 <div class="callout-content">
-<p>Please do NOT install R and RStudio on Onedrive or other clouddrives.
-R will work but you will not be able to install the extensions to R that
-you will need in this course!</p>
+<p>Please do NOT install R and Positron on Onedrive or other
+clouddrives. R will work but you will not be able to install the
+extensions to R that you will need in this course!</p>
 </div>
 </div>
 </div>
-<div id="installing-r-and-rstudio" class="callout discussion">
+<div id="installing-r-and-positron" class="callout discussion">
 <div class="callout-square">
 <i class="callout-icon" data-feather="message-circle"></i>
 </div>
 <span class="callout-header">Discussion</span>
-<div id="installing-r-and-rstudio" class="callout-inner">
-<h3 class="callout-title">Installing R and RStudio</h3>
+<div id="installing-r-and-positron" class="callout-inner">
+<h3 class="callout-title">Installing R and Positron</h3>
 <div class="callout-content">
-<p><strong>R</strong> and <strong>RStudio</strong> are separate
+<p><strong>R</strong> and <strong>Positron</strong> are separate
 downloads and installations. R is the underlying statistical computing
-environment, but using R alone is no fun. RStudio is a graphical
+environment, but using R alone is no fun. Positron is a graphical
 integrated development environment (IDE) that makes using R much easier
-and more interactive. You need to install R before you install RStudio.
-Once installed, because RStudio is an IDE, RStudio will run R in the
+and more interactive. You need to install R before you install Positron.
+Once installed, because Positron is an IDE, Positron will run R in the
 background. You do not need to run it separately.</p>
 </div>
 </div>
@@ -375,7 +382,7 @@ background. You do not need to run it separately.</p>
 </button>
 <div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
-<p>Rather than installing R and RStudio on your personal computer, <a href="https://posit.cloud//" target="_blank" class="external-link">Posit Cloud</a> offers a
+<p>Rather than installing R and Positron on your personal computer, <a href="https://posit.cloud//" target="_blank" class="external-link">Posit Cloud</a> offers a
 free, online alternative, where you will be able to run R and RStudio in
 your browser. Sign up with your Google/Gmail account if you have one, or
 with any other email.</p>
@@ -383,7 +390,7 @@ with any other email.</p>
 projects you can work on, and the amount of memory and processing power
 you can access. For the purposes of following these lessons, RStudio
 Cloud is perfectly adequate, and what we recommend if you have any
-problems installing R and RStudio on your personal computer.</p>
+problems installing R and Positron on your personal computer.</p>
 </div>
 </div>
 </div>
@@ -398,28 +405,31 @@ problems installing R and RStudio on your personal computer.</p>
 <div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <div class="section level4">
-<h4 id="if-you-already-have-r-and-rstudio-installed">If you already have R and RStudio installed<a class="anchor" aria-label="anchor" href="#if-you-already-have-r-and-rstudio-installed"></a></h4>
+<h4 id="if-you-already-have-r-and-rstudiopositron-installed">If you already have R and RStudio/Positron installed<a class="anchor" aria-label="anchor" href="#if-you-already-have-r-and-rstudiopositron-installed"></a></h4>
 <ul><li>Open RStudio, and click on “Help” &gt; “Check for updates”. If a new
 version is available, quit RStudio, and download the latest version for
 RStudio.</li>
-<li>To check which version of R you are using, start RStudio and the
-first thing that appears in the console indicates the version of R you
-are running. Alternatively, you can type <code>sessionInfo()</code>,
-which will also display which version of R you are running. Go on the <a href="https://cran.r-project.org/bin/windows/base/" target="_blank" class="external-link">CRAN
+<li>Or, open Positron, and click on “Help” &gt; “Installing
+update”.</li>
+<li>To check which version of R you are using, start RStudio or Positron
+and the first thing that appears in the console indicates the version of
+R you are running. Alternatively, you can type
+<code>sessionInfo()</code>, which will also display which version of R
+you are running. Go on the <a href="https://cran.r-project.org/bin/windows/base/" target="_blank" class="external-link">CRAN
 website</a> and check whether a more recent version is available. If so,
 please download and install it. You can <a href="https://cran.r-project.org/bin/windows/base/rw-FAQ.html#How-do-I-UNinstall-R_003f" target="_blank" class="external-link">check here</a> for more information on how to remove old
 versions from your system if you wish to do so.</li>
 </ul></div>
 <div class="section level4">
-<h4 id="if-you-dont-have-r-and-rstudio-installed">If you don’t have R and RStudio installed<a class="anchor" aria-label="anchor" href="#if-you-dont-have-r-and-rstudio-installed"></a></h4>
+<h4 id="if-you-dont-have-r-and-rstudio-or-positron-installed">If you don’t have R and RStudio or Positron installed<a class="anchor" aria-label="anchor" href="#if-you-dont-have-r-and-rstudio-or-positron-installed"></a></h4>
 <ul><li>Download R from the <a href="https://cran.r-project.org/bin/windows/base/release.htm" target="_blank" class="external-link">CRAN website</a>.</li>
 <li>Run the <code>.exe</code> file that was just downloaded.</li>
-<li>Go to the <a href="https://www.rstudio.com/products/rstudio/download/#download" target="_blank" class="external-link">RStudio download page</a>.</li>
-<li>Under <em>Installers</em> select <strong>RStudio x.yy.zzz - Windows.
-Vista/7/8/10</strong> (where x, y, and z represent version
-numbers).</li>
+<li>Go to the <a href="https://positron.posit.co/download.html" target="_blank" class="external-link">Positron download page</a>
+</li>
+<li>Accept the license agreement, and download the appropriate windows
+installer, probably Windows 10, 11 x64 (user level install)</li>
 <li>Double click the file to install it.</li>
-<li>Once it’s installed, open RStudio to make sure it works and you
+<li>Once it’s installed, open Positron to make sure it works and you
 don’t get any error messages.</li>
 </ul></div>
 </div>
@@ -436,10 +446,12 @@ don’t get any error messages.</li>
 <div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <div class="section level4">
-<h4 id="if-you-already-have-r-and-rstudio-installed-1">If you already have R and RStudio installed<a class="anchor" aria-label="anchor" href="#if-you-already-have-r-and-rstudio-installed-1"></a></h4>
+<h4 id="if-you-already-have-r-and-rstudio-installed">If you already have R and RStudio installed<a class="anchor" aria-label="anchor" href="#if-you-already-have-r-and-rstudio-installed"></a></h4>
 <ul><li>Open RStudio, and click on “Help” &gt; “Check for updates”. If a new
 version is available, quit RStudio, and download the latest version for
 RStudio.</li>
+<li>Or, open Positron, and click on “Help” &gt; “Installing
+update”.</li>
 <li>To check the version of R you are using, start RStudio and the first
 thing that appears on the terminal indicates the version of R you are
 running. Alternatively, you can type <code>sessionInfo()</code>, which
@@ -449,17 +461,17 @@ please download and install it. In any case, make sure you have at least
 R 3.2.</li>
 </ul></div>
 <div class="section level4">
-<h4 id="if-you-dont-have-r-and-rstudio-installed-1">If you don’t have R and RStudio installed<a class="anchor" aria-label="anchor" href="#if-you-dont-have-r-and-rstudio-installed-1"></a></h4>
+<h4 id="if-you-dont-have-r-and-rstudio-installed">If you don’t have R and RStudio installed<a class="anchor" aria-label="anchor" href="#if-you-dont-have-r-and-rstudio-installed"></a></h4>
 <ul><li>Download R from the <a href="https://cran.r-project.org/bin/macosx/" target="_blank" class="external-link">CRAN website</a>.</li>
 <li>Select the <code>.pkg</code> file for the latest R version.</li>
 <li>Double click on the downloaded file to install R.</li>
 <li>It is also a good idea to install <a href="https://www.xquartz.org/" target="_blank" class="external-link">XQuartz</a> (needed by some packages).</li>
-<li>Go to the <a href="https://www.rstudio.com/products/rstudio/download/#download" target="_blank" class="external-link">RStudio download page</a>.</li>
-<li>Under <em>Installers</em> select <strong>RStudio x.yy.zzz - Mac OS X
-10.6+ (64-bit)</strong> (where x, y, and z represent version
-numbers).</li>
-<li>Double click the file to install RStudio.</li>
-<li>Once it’s installed, open RStudio to make sure it works and you
+<li>Go to the <a href="https://positron.posit.co/download.html" target="_blank" class="external-link">Positron download page</a>
+</li>
+<li>Accept the license agreement, and download the appropriate MacOs
+installer, probably MacOS 11.0+ (universal)</li>
+<li>Double click the file to install Positron.</li>
+<li>Once it’s installed, open Positron to make sure it works and you
 don’t get any error messages.</li>
 </ul></div>
 </div>
@@ -483,12 +495,15 @@ manager (e.g., for Debian/Ubuntu run
 <code>sudo yum install R</code>), but we don’t recommend this approach
 as the versions provided by this approach are usually out of date. In
 any case, make sure you have at least R 3.2.</li>
-<li>Go to the <a href="https://www.rstudio.com/products/rstudio/download/#download" target="_blank" class="external-link">RStudio download page</a>.</li>
+<li>Go to the <a href="https://positron.posit.co/download.html" target="_blank" class="external-link">Positron download page</a>
+</li>
+<li>Accept the license agreement.</li>
 <li>Under <em>Installers</em> select the version that matches your
 distribution, and install it with your preferred method (e.g., with
-Debian/Ubuntu <code>sudo dpkg -i   rstudio-x.yy.zzz-amd64.deb</code> at
-the terminal).</li>
-<li>Once it’s installed, open RStudio to make sure it works and you
+Debian/Ubuntu
+<code>sudo dpkg -i   Positron-2025.11.0-234-arm64.deb</code> at the
+terminal).</li>
+<li>Once it’s installed, open Positron to make sure it works and you
 don’t get any error messages.</li>
 </ul></div>
 </div>
@@ -522,7 +537,7 @@ any links that you are not going to use.
 			</div>
 			<div class="col-md-6">
 
-        <p>Materials licensed under <a href="LICENSE.html">CC-BY 4.0</a> by the authors</p>
+        <p>Materials licensed under <a href="LICENSE.html">CC BY-NC-SA 4.0</a> by the authors</p>
 
         <p>Template licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" class="external-link">CC-BY 4.0</a> by <a href="https://carpentries.org/" class="external-link">The Carpentries</a></p>
         <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.17.1" class="external-link">sandpaper (0.17.1)</a>, <a href="https://github.com/carpentries/pegboard/tree/0.7.9" class="external-link">pegboard (0.7.9)</a>, and <a href="https://github.com/carpentries/varnish/tree/1.0.7" class="external-link">varnish (1.0.7)</a></p>
