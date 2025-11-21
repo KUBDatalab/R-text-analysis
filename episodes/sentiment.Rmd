@@ -6,14 +6,15 @@ exercises: 0
 
 :::::::::::::::::::::::::::::::::::::: questions 
 
+- What is a sentiment?
 - How is sentiment analysis conducted?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::: objectives
 
-- Learn about different lexicon
-- Learn how to add sentiment to words
+- Learn about different lexicons
+- Learn how to add sentiment to words using lexicons
 - Analyse and visualise the sentiments in a text
 
 
@@ -163,6 +164,7 @@ articles_afinn |>
 
 ::::::::::::::::::::::::::::::::::::: keypoints 
 
+- Sentiments is the emotion or tone in a text
 - There are different lexicons
 - It is possible to add sentiments to words
 - It is possible to visualise the sentiments
