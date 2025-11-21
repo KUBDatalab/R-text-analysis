@@ -25,7 +25,7 @@ exercises: 0
 
 
 
-## Getting startet
+## Getting started
 When performing text analysis in R, the built-in functions in R are not sufficient. It is therefore necessary to install some additional packages. In this course we will be using the packages `tidyverse`, `tidytext` and `tm`.
 
 

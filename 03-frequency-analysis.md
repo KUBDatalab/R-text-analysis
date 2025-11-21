@@ -121,7 +121,7 @@ articles_filtered %>%
   geom_point() 
 ```
 
-<img src="fig/03-frequency-analysis-rendered-unnamed-chunk-5-1.png" style="display: block; margin: auto;" />
+<img src="fig/03-frequency-analysis-rendered-top_ten_words_pr_president-1.png" style="display: block; margin: auto;" />
 The plot above shows the top-ten words associated with Obama and Trump respectively. If a word features on both presidents' top-ten list, it only occurs once in the plot. This is why the plot doesn't contain 20 words in total.
 
 Another interesting aspect to look at would be the most frequent words used in relation to each president. In this analysis the president is the guiding principle.
@@ -172,7 +172,7 @@ articles_filtered %>%
 Selecting by n
 ```
 
-<img src="fig/03-frequency-analysis-rendered-unnamed-chunk-7-1.png" style="display: block; margin: auto;" />
+<img src="fig/03-frequency-analysis-rendered-top_ten_visusalised-1.png" style="display: block; margin: auto;" />
 The analyses just made can easily be adjusted. For instance, if we want look at the words by `pillar_name` instead of by `president`, we simply replace `president` with `pillar_name` in the code.
 
 
@@ -185,7 +185,7 @@ articles_filtered %>%
   geom_point() 
 ```
 
-<img src="fig/03-frequency-analysis-rendered-unnamed-chunk-8-1.png" style="display: block; margin: auto;" />
+<img src="fig/03-frequency-analysis-rendered-vis_per_pillar-1.png" style="display: block; margin: auto;" />
 
 
 
