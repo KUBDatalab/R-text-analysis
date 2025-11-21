@@ -56,7 +56,7 @@ bing <- get_sentiments("bing")
 We now need to combine the sentiment to the words from our articles. We do this by performing an inner_join.
 
 ```{r bing_inner_join, warning = FALSE}
-articles_bing <- articles_filtered %>% 
+articles_bing <- articles_filtered |> 
   inner_join(bing)
 
 articles_bing
@@ -67,8 +67,8 @@ In R, `inner_join()` is commonly used to combine datasets based on a shared colu
 When we have the combined dataset we can begin making a sentiment analysis. A start could be to count the number of positive and negative words used in articles, per president.
 
 ```{r articles_bing_group_by_inner_join}
-articles_bing %>% 
-  group_by(president) %>% 
+articles_bing |> 
+  group_by(president) |> 
   summarise(positive = sum(sentiment == "positive"),
             negative = sum(sentiment == "negative"),
             difference = positive - negative) 
@@ -78,13 +78,13 @@ This shows that more positive than negative words are associated with both presi
 Another interesting thing to look at would the 10 most positive and negative words used in the articles.
 
 ```{r facet_wrap}
-articles_bing %>% 
-  count(word, sentiment, sort = TRUE) %>% 
-  ungroup() %>% 
-  group_by(sentiment) %>% 
-  slice_max(n, n = 10) %>% 
-  ungroup() %>% 
-  mutate(word = reorder(word, n)) %>% 
+articles_bing |> 
+  count(word, sentiment, sort = TRUE) |> 
+  ungroup() |> 
+  group_by(sentiment) |> 
+  slice_max(n, n = 10) |> 
+  ungroup() |> 
+  mutate(word = reorder(word, n)) |> 
   ggplot(mapping = aes(n, word, fill = sentiment)) +
   geom_col(show.legend = FALSE) +
   facet_wrap(~sentiment, scales = "free_y")
@@ -111,36 +111,36 @@ afinn <- get_sentiments("afinn")
 
 
 ```{r inner_join_afinn}
-articles_afinn <- articles_filtered %>% 
+articles_afinn <- articles_filtered |> 
   inner_join(afinn) 
 ```
 
 ```{r afinn_summarise}
-articles_afinn %>% 
-  group_by(president) %>% 
+articles_afinn |> 
+  group_by(president) |> 
   summarise(sentiment = sum(value))
 ```
 
 
 
 ```{r afinn_president_value_geom_col}
-articles_afinn %>% 
-  group_by(president, value) %>% 
-  summarise(sentiment = sum(value)) %>% 
-  ungroup() %>% 
+articles_afinn |> 
+  group_by(president, value) |> 
+  summarise(sentiment = sum(value)) |> 
+  ungroup() |>
   ggplot(mapping = aes(x = value, y = sentiment, fill = president)) +
   geom_col(position = "dodge")
 
 ```
 
 ```{r articles_afinn_ggplot_word_president}
-articles_afinn %>% 
-  count(president, word, value, sort = TRUE) %>% 
-  ungroup() %>% 
-  group_by(president, value) %>% 
-  slice_max(n, n = 3) %>% 
-  ungroup() %>% 
-  mutate(word = reorder(word, n)) %>% 
+articles_afinn |> 
+  count(president, word, value, sort = TRUE) |> 
+  ungroup() |> 
+  group_by(president, value) |> 
+  slice_max(n, n = 3) |> 
+  ungroup() |> 
+  mutate(word = reorder(word, n)) |> 
   ggplot(mapping = aes(n, word, fill = president)) +
   geom_col(show.legend = FALSE) +
   facet_wrap(~value, scales = "free_y") +
