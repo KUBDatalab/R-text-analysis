@@ -20,9 +20,6 @@ exercises: 0
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 
-``` r
-knitr::opts_chunk$set(warning = FALSE)
-```
 
 
 
@@ -139,7 +136,7 @@ articles_bing %>%
   facet_wrap(~sentiment, scales = "free_y")
 ```
 
-<img src="fig/04-sentiment-rendered-unnamed-chunk-7-1.png" style="display: block; margin: auto;" />
+<img src="fig/04-sentiment-rendered-facet_wrap-1.png" style="display: block; margin: auto;" />
 Here we can see the positive and negative words used in the articles.
 
 With ´bing´ we only look at the sentiment in a binary fashion - a word is either positive or negative. If we try to do a similar analysis with AFINN, it looks different.
