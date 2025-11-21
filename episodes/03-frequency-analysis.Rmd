@@ -21,7 +21,7 @@ exercises: 0
 
 
 
-```{r, include = FALSE}
+```{r load_libraries, include = FALSE}
 library(tidyverse)
 library(tidytext)
 library(tm)
@@ -33,7 +33,7 @@ articles_anti_join <- read_csv("data/articles_anti_join.csv", na = c("NA", "NULL
 A word frequency is a relatively simple analysis. It measures how often words occur in a text. 
 
 
-```{r}
+```{r simple_frequency_count}
 articles_anti_join %>% 
   count(word, sort = TRUE)
 ```
@@ -42,7 +42,7 @@ The previous code chunk resulted in a list containing the most frequent words. T
 
 A closer look at the list may reveal that some words are irrelevant. Given that the articles in the dataset are about the two presidents' respective inaugurations, we consider the words below irrelevant for our analysis. Therefore, we make a new dataset without these words.
 
-```{r}
+```{r filtered_frequency_count}
 articles_filtered <- articles_anti_join %>%
   filter(!word %in% c("trump", "trump’s", 
                       "obama", "obama's", 
@@ -55,14 +55,14 @@ The words deemed irrelevant are no longer on the list above.
 
 Instead of a general list it may be more interesting to focus on the most frequent words belonging to articles about the two presidents respectively.
 
-```{r}
+```{r count_pr_president}
 articles_filtered %>%
   count(president, word, sort = TRUE)
 ```
 Keeping an overview of the words associated with each president can be a bit tricky. For instance, the word "people" is associated with both presidents. This is easy to see, as the two words are right next to each other. The two occurrences of the word America, however, are further apart, although this word is also associated with both presidents. A visualisation may solve this problem.
 
 
-```{r}
+```{r top_ten_words_pr_president}
 articles_filtered %>%
   count(president, word, sort = TRUE) %>% 
   group_by(president) %>%
@@ -74,7 +74,7 @@ The plot above shows the top-ten words associated with Obama and Trump respectiv
 
 Another interesting aspect to look at would be the most frequent words used in relation to each president. In this analysis the president is the guiding principle.
 
-```{r}
+```{r top_ten_pivoted}
 articles_filtered %>%
   count(president, word, sort = TRUE) %>% 
   pivot_wider(
@@ -83,7 +83,7 @@ articles_filtered %>%
   )
 ```
 
-```{r}
+```{r top_ten_visusalised}
 articles_filtered %>%
   group_by(president) %>% 
   count(word, sort = TRUE) %>% 
@@ -99,7 +99,7 @@ articles_filtered %>%
 ```
 The analyses just made can easily be adjusted. For instance, if we want look at the words by `pillar_name` instead of by `president`, we simply replace `president` with `pillar_name` in the code.
 
-```{r}
+```{r vis_per_pillar}
 articles_filtered %>%
   count(pillar_name, word, sort = TRUE) %>% 
   group_by(pillar_name) %>%
@@ -109,7 +109,7 @@ articles_filtered %>%
 ```
 
 
-```{r, include = FALSE}
+```{r saving_data, include = FALSE}
 write_csv(articles_filtered, "data/articles_filtered.csv")
 ```
 
