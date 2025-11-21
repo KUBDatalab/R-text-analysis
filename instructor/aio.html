@@ -360,7 +360,7 @@
         
 <section id="aio-00-introduction"><p>Content from <a href="00-introduction.html">Introduction</a></p>
 <hr>
-<p>Last updated on 2025-11-19 |
+<p>Last updated on 2025-11-21 |
 
         <a href="https://github.com/KUBDatalab/R-textmining_new/edit/main/episodes/00-introduction.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 0 minutes</p>
@@ -496,7 +496,7 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-01-getting-ready"><p>Content from <a href="01-getting-ready.html">Loading data</a></p>
 <hr>
-<p>Last updated on 2025-11-19 |
+<p>Last updated on 2025-11-21 |
 
         <a href="https://github.com/KUBDatalab/R-textmining_new/edit/main/episodes/01-getting-ready.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 0 minutes</p>
@@ -779,7 +779,7 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-02-preparing-data"><p>Content from <a href="02-preparing-data.html">Tokenisation and stopwords</a></p>
 <hr>
-<p>Last updated on 2025-11-19 |
+<p>Last updated on 2025-11-21 |
 
         <a href="https://github.com/KUBDatalab/R-textmining_new/edit/main/episodes/02-preparing-data.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 0 minutes</p>
@@ -1043,7 +1043,7 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-03-frequency-analysis"><p>Content from <a href="03-frequency-analysis.html">Word frequency analysis</a></p>
 <hr>
-<p>Last updated on 2025-11-19 |
+<p>Last updated on 2025-11-21 |
 
         <a href="https://github.com/KUBDatalab/R-textmining_new/edit/main/episodes/03-frequency-analysis.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 0 minutes</p>
@@ -1118,7 +1118,9 @@ analysis. Therefore, we make a new dataset without these words.</p>
 </h3>
 <pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">articles_filtered</span> <span class="op">&lt;-</span> <span class="va">articles_anti_join</span> <span class="op">%&gt;%</span></span>
-<span>  <span class="fu">filter</span><span class="op">(</span><span class="op">!</span><span class="va">word</span> <span class="op">%in%</span> <span class="fu">c</span><span class="op">(</span><span class="st">"trump"</span>, <span class="st">"trump’s"</span>, <span class="st">"obama"</span>, <span class="st">"obama's"</span>, <span class="st">"inauguration"</span>, <span class="st">"president"</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="fu">filter</span><span class="op">(</span><span class="op">!</span><span class="va">word</span> <span class="op">%in%</span> <span class="fu">c</span><span class="op">(</span><span class="st">"trump"</span>, <span class="st">"trump’s"</span>, </span>
+<span>                      <span class="st">"obama"</span>, <span class="st">"obama's"</span>, </span>
+<span>                      <span class="st">"inauguration"</span>, <span class="st">"president"</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">articles_filtered</span> <span class="op">%&gt;%</span> </span>
 <span>  <span class="fu">count</span><span class="op">(</span><span class="va">word</span>, sort <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre>
@@ -1188,7 +1190,7 @@ visualisation may solve this problem.</p>
 <span>  <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span> </span></code></pre>
 </div>
 <p><img src="../fig/03-frequency-analysis-rendered-unnamed-chunk-5-1.png" style="display: block; margin: auto;" class="figure">
-The plot above shows the top-ten words associated Obama and Trump
+The plot above shows the top-ten words associated with Obama and Trump
 respectively. If a word features on both presidents’ top-ten list, it
 only occurs once in the plot. This is why the plot doesn’t contain 20
 words in total.</p>
@@ -1281,7 +1283,7 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-04-sentiment"><p>Content from <a href="04-sentiment.html">Sentiment analysis</a></p>
 <hr>
-<p>Last updated on 2025-11-19 |
+<p>Last updated on 2025-11-21 |
 
         <a href="https://github.com/KUBDatalab/R-textmining_new/edit/main/episodes/04-sentiment.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 0 minutes</p>
@@ -1639,8 +1641,8 @@ any links that you are not going to use.
   "url": "https://KUBDatalab.github.io/R-textmining_new/instructor/aio.html",
   "identifier": "https://KUBDatalab.github.io/R-textmining_new/instructor/aio.html",
   "dateCreated": "2024-05-01",
-  "dateModified": "2025-11-19",
-  "datePublished": "2025-11-19"
+  "dateModified": "2025-11-21",
+  "datePublished": "2025-11-21"
 }
 
   </script><script>
