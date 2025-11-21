@@ -352,12 +352,6 @@
 </div>
 </div>
 </div>
-<div class="codewrapper sourceCode" id="cb1">
-<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">knitr</span><span class="fu">::</span><span class="va">opts_chunk</span><span class="op">$</span><span class="fu">set</span><span class="op">(</span>warning <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre>
-</div>
 <section><h2 class="section-heading" id="sentiment-analysis">Sentiment analysis<a class="anchor" aria-label="anchor" href="#sentiment-analysis"></a></h2>
 <hr class="half-width"><p>Sentiment refers to the emotion or tone in a text. It is typically
 categorised as positive, negative or neutral. Sentiment is often used to
@@ -376,7 +370,7 @@ positive or negative.</p>
 <p>There are multiple sentiment lexicons. For a start we will be using
 the <code>bing</code> lexicon. This lexicon categorizes words as either
 positive or negative.</p>
-<div class="codewrapper sourceCode" id="cb2">
+<div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -402,7 +396,7 @@ positive or negative.</p>
 </div>
 <p>In order to use the <code>bing</code>-lexicon, we have to save
 it.</p>
-<div class="codewrapper sourceCode" id="cb4">
+<div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -410,7 +404,7 @@ it.</p>
 </div>
 <p>We now need to combine the sentiment to the words from our articles.
 We do this by performing an inner_join.</p>
-<div class="codewrapper sourceCode" id="cb5">
+<div class="codewrapper sourceCode" id="cb4">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -422,7 +416,7 @@ We do this by performing an inner_join.</p>
 </h3>
 <pre class="output" tabindex="0"><code>Joining with `by = join_by(word)`</code></pre>
 </div>
-<div class="codewrapper sourceCode" id="cb7">
+<div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -455,7 +449,7 @@ negative.</p>
 <p>When we have the combined dataset we can begin making a sentiment
 analysis. A start could be to count the number of positive and negative
 words used in articles, per president.</p>
-<div class="codewrapper sourceCode" id="cb9">
+<div class="codewrapper sourceCode" id="cb8">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -479,7 +473,7 @@ both presidents. It also shows that Trump is the president with the
 highest number of associated negative words.</p>
 <p>Another interesting thing to look at would the 10 most positive and
 negative words used in the articles.</p>
-<div class="codewrapper sourceCode" id="cb11">
+<div class="codewrapper sourceCode" id="cb10">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -494,13 +488,13 @@ negative words used in the articles.</p>
 <span>  <span class="fu">geom_col</span><span class="op">(</span>show.legend <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">facet_wrap</span><span class="op">(</span><span class="op">~</span><span class="va">sentiment</span>, scales <span class="op">=</span> <span class="st">"free_y"</span><span class="op">)</span></span></code></pre>
 </div>
-<p><img src="fig/04-sentiment-rendered-unnamed-chunk-7-1.png" style="display: block; margin: auto;" class="figure">
+<p><img src="fig/04-sentiment-rendered-facet_wrap-1.png" style="display: block; margin: auto;" class="figure">
 Here we can see the positive and negative words used in the
 articles.</p>
 <p>With ´bing´ we only look at the sentiment in a binary fashion - a
 word is either positive or negative. If we try to do a similar analysis
 with AFINN, it looks different.</p>
-<div class="codewrapper sourceCode" id="cb12">
+<div class="codewrapper sourceCode" id="cb11">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -517,13 +511,13 @@ These packages will be installed into "~/work/R-textmining_new/R-textmining_new/
 - Installing textdata ...                       OK [linked from cache]
 Successfully installed 1 package in 5.6 milliseconds.</code></pre>
 </div>
-<div class="codewrapper sourceCode" id="cb14">
+<div class="codewrapper sourceCode" id="cb13">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw">library</span><span class="op">(</span><span class="va">textdata</span><span class="op">)</span></span></code></pre>
 </div>
-<div class="codewrapper sourceCode" id="cb15">
+<div class="codewrapper sourceCode" id="cb14">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -544,7 +538,7 @@ Successfully installed 1 package in 5.6 milliseconds.</code></pre>
 </h3>
 <pre class="error" tabindex="0"><code>Error in menu(choices = c("Yes", "No"), title = title): menu() cannot be used non-interactively</code></pre>
 </div>
-<div class="codewrapper sourceCode" id="cb18">
+<div class="codewrapper sourceCode" id="cb17">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -556,7 +550,7 @@ Successfully installed 1 package in 5.6 milliseconds.</code></pre>
 </h3>
 <pre class="error" tabindex="0"><code>Error: object 'afinn' not found</code></pre>
 </div>
-<div class="codewrapper sourceCode" id="cb20">
+<div class="codewrapper sourceCode" id="cb19">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -569,7 +563,7 @@ Successfully installed 1 package in 5.6 milliseconds.</code></pre>
 </h3>
 <pre class="error" tabindex="0"><code>Error: object 'articles_afinn' not found</code></pre>
 </div>
-<div class="codewrapper sourceCode" id="cb22">
+<div class="codewrapper sourceCode" id="cb21">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -585,7 +579,7 @@ Successfully installed 1 package in 5.6 milliseconds.</code></pre>
 </h3>
 <pre class="error" tabindex="0"><code>Error: object 'articles_afinn' not found</code></pre>
 </div>
-<div class="codewrapper sourceCode" id="cb24">
+<div class="codewrapper sourceCode" id="cb23">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
