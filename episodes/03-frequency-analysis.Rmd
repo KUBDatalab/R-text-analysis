@@ -68,7 +68,7 @@ articles_filtered %>%
   ggplot(mapping = aes(x = n, y = word, colour = president, shape = president)) +
   geom_point() 
 ```
-The plot above shows the top-ten words associated Obama and Trump respectively. If a word features on both presidents' top-ten list, it only occurs once in the plot. This is why the plot doesn't contain 20 words in total.
+The plot above shows the top-ten words associated with Obama and Trump respectively. If a word features on both presidents' top-ten list, it only occurs once in the plot. This is why the plot doesn't contain 20 words in total.
 
 Another interesting aspect to look at would be the most frequent words used in relation to each president. In this analysis the president is the guiding principle.
 
