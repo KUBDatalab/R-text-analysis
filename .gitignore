@@ -40,3 +40,8 @@ secrets.txt
 scratchpad.R
 R-textmining_new.Rproj
 .DS_Store
+renv/activate.R
+renv/profile
+renv/profiles/lesson-requirements/renv.lock
+renv/profiles/lesson-requirements/renv/.gitignore
+renv/profiles/lesson-requirements/renv/settings.json
