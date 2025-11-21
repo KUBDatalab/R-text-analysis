@@ -1,12 +1,12 @@
 ---
-title: 'whats-next'
+title: 'Whats-next'
 teaching: 10
 exercises: 2
 ---
 
 :::::::::::::::::::::::::::::::::::::: questions 
 
-- How do you write a lesson using R Markdown and `{sandpaper}`?
+- What is the next step?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -17,10 +17,19 @@ exercises: 2
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-https://www.youtube.com/@JuliaSilge
 
-https://www.tidytextmining.com/
 
+For general techniques and approaches to working with
+text in a tidy manner, we recommend the [Text Mining with R](https://www.tidytextmining.com/){target="_blank"} book by Julia Silge and David Robinson.
+
+Julia Silge have her own [youtube channel](https://www.youtube.com/juliasilge){target="_blank"} where she, among other things, do text analysis. You will learn a lot by listening to her thoughts while she code.
+
+Text can be found everywhere. Rather than scraping text yourself, you can find R-packages containing text. 
+
+`janeaustenr` contains the text of Jane Austens novels. Get it by running `install.packages("janeaustenr")`
+
+The `sherlock` package contains the complete Sherlock Holmes collection by Arthur Conan Doyle. It must be installed from github, running 
+`devtools::install_github("EmilHvitfeldt/sherlock")`. 
 
 ::::::::::::::::::::::::::::::::::::: keypoints 
 
