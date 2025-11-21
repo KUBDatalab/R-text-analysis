@@ -58,7 +58,9 @@ A closer look at the list may reveal that some words are irrelevant. Given that 
 
 ``` r
 articles_filtered <- articles_anti_join %>%
-  filter(!word %in% c("trump", "trump’s", "obama", "obama's", "inauguration", "president"))
+  filter(!word %in% c("trump", "trump’s", 
+                      "obama", "obama's", 
+                      "inauguration", "president"))
 
 articles_filtered %>% 
   count(word, sort = TRUE)
@@ -120,7 +122,7 @@ articles_filtered %>%
 ```
 
 <img src="fig/03-frequency-analysis-rendered-unnamed-chunk-5-1.png" style="display: block; margin: auto;" />
-The plot above shows the top-ten words associated Obama and Trump respectively. If a word features on both presidents' top-ten list, it only occurs once in the plot. This is why the plot doesn't contain 20 words in total.
+The plot above shows the top-ten words associated with Obama and Trump respectively. If a word features on both presidents' top-ten list, it only occurs once in the plot. This is why the plot doesn't contain 20 words in total.
 
 Another interesting aspect to look at would be the most frequent words used in relation to each president. In this analysis the president is the guiding principle.
 
