@@ -144,23 +144,13 @@ With ´bing´ we only look at the sentiment in a binary fashion - a word is eith
 
 ``` r
 install.packages("textdata")
-```
-
-``` output
-The following package(s) will be installed:
-- textdata [0.4.5]
-These packages will be installed into "~/work/R-textmining_new/R-textmining_new/renv/profiles/lesson-requirements/renv/library/linux-ubuntu-jammy/R-4.5/x86_64-pc-linux-gnu".
-
-# Installing packages --------------------------------------------------------
-- Installing textdata ...                       OK [linked from cache]
-Successfully installed 1 package in 5.6 milliseconds.
-```
-
-``` r
 library(textdata)
 ```
 
 
+``` r
+library(textdata)
+```
 
 
 
