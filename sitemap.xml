@@ -61,6 +61,12 @@
     <loc>https://KUBDatalab.github.io/R-textmining_new/aio.html</loc>
   </url>
   <url>
+    <loc>https://KUBDatalab.github.io/R-textmining_new/frequency-analysis.html</loc>
+  </url>
+  <url>
+    <loc>https://KUBDatalab.github.io/R-textmining_new/getting-ready.html</loc>
+  </url>
+  <url>
     <loc>https://KUBDatalab.github.io/R-textmining_new/images.html</loc>
   </url>
   <url>
@@ -127,6 +133,12 @@
     <loc>https://KUBDatalab.github.io/R-textmining_new/instructor/aio.html</loc>
   </url>
   <url>
+    <loc>https://KUBDatalab.github.io/R-textmining_new/instructor/frequency-analysis.html</loc>
+  </url>
+  <url>
+    <loc>https://KUBDatalab.github.io/R-textmining_new/instructor/getting-ready.html</loc>
+  </url>
+  <url>
     <loc>https://KUBDatalab.github.io/R-textmining_new/instructor/images.html</loc>
   </url>
   <url>
@@ -142,10 +154,16 @@
     <loc>https://KUBDatalab.github.io/R-textmining_new/instructor/key-points.html</loc>
   </url>
   <url>
+    <loc>https://KUBDatalab.github.io/R-textmining_new/instructor/preparing-data.html</loc>
+  </url>
+  <url>
     <loc>https://KUBDatalab.github.io/R-textmining_new/instructor/profiles.html</loc>
   </url>
   <url>
     <loc>https://KUBDatalab.github.io/R-textmining_new/instructor/reference.html</loc>
+  </url>
+  <url>
+    <loc>https://KUBDatalab.github.io/R-textmining_new/instructor/sentiment.html</loc>
   </url>
   <url>
     <loc>https://KUBDatalab.github.io/R-textmining_new/instructor/whats-next.html</loc>
@@ -160,10 +178,16 @@
     <loc>https://KUBDatalab.github.io/R-textmining_new/key-points.html</loc>
   </url>
   <url>
+    <loc>https://KUBDatalab.github.io/R-textmining_new/preparing-data.html</loc>
+  </url>
+  <url>
     <loc>https://KUBDatalab.github.io/R-textmining_new/profiles.html</loc>
   </url>
   <url>
     <loc>https://KUBDatalab.github.io/R-textmining_new/reference.html</loc>
+  </url>
+  <url>
+    <loc>https://KUBDatalab.github.io/R-textmining_new/sentiment.html</loc>
   </url>
   <url>
     <loc>https://KUBDatalab.github.io/R-textmining_new/whats-next.html</loc>
