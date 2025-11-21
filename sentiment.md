@@ -136,7 +136,7 @@ articles_bing |>
   facet_wrap(~sentiment, scales = "free_y")
 ```
 
-<img src="fig/04-sentiment-rendered-facet_wrap-1.png" style="display: block; margin: auto;" />
+<img src="fig/sentiment-rendered-facet_wrap-1.png" style="display: block; margin: auto;" />
 Here we can see the positive and negative words used in the articles.
 
 With ´bing´ we only look at the sentiment in a binary fashion - a word is either positive or negative. If we try to do a similar analysis with AFINN, it looks different.
@@ -210,7 +210,7 @@ articles_afinn |>
 `.groups` argument.
 ```
 
-<img src="fig/04-sentiment-rendered-afinn_president_value_geom_col-1.png" style="display: block; margin: auto;" />
+<img src="fig/sentiment-rendered-afinn_president_value_geom_col-1.png" style="display: block; margin: auto;" />
 
 
 ``` r
@@ -228,7 +228,7 @@ articles_afinn |>
        y = NULL)
 ```
 
-<img src="fig/04-sentiment-rendered-articles_afinn_ggplot_word_president-1.png" style="display: block; margin: auto;" />
+<img src="fig/sentiment-rendered-articles_afinn_ggplot_word_president-1.png" style="display: block; margin: auto;" />
 
 
 
