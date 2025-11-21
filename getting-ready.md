@@ -61,7 +61,7 @@ Begin by downloading the dataset called `articles.csv`. Place the downloaded fil
 download.file("https://raw.githubusercontent.com/KUBDatalab/R-textmining_new/main/episodes/data/articles.csv", "data/articles.csv", mode = "wb")
 ```
 
-After downloading the data you need to load the data in R's memory by using the function `read_csv()`.
+After downloading the data you need to load the data into R's memory using the function `read_csv()`.
 
 
 ``` r
