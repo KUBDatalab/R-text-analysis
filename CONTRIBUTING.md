@@ -1,8 +1,7 @@
 ## Contributing
 
-[The Carpentries][cp-site] ([Software Carpentry][swc-site], [Data
-Carpentry][dc-site], and [Library Carpentry][lc-site]) are open source
-projects, and we welcome contributions of all kinds: new lessons, fixes to
+All course material from [KUB Datalab](https://kub.kb.dk/datalab)
+ are open source licensed under the [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/) license, and we welcome contributions of all kinds: fixes to
 existing material, bug reports, and reviews of proposed changes are all
 welcome.
 
@@ -10,9 +9,7 @@ welcome.
 
 By contributing, you agree that we may redistribute your work under [our
 license](LICENSE.md). In exchange, we will address your issues and/or assess
-your change proposal as promptly as we can, and help you become a member of our
-community. Everyone involved in [The Carpentries][cp-site] agrees to abide by
-our [code of conduct](CODE_OF_CONDUCT.md).
+your change proposal as promptly as we can.
 
 ### How to Contribute
 
@@ -33,14 +30,6 @@ introduce yourself and to meet some of our community members.
    you can submit a pull request (PR). Instructions for doing this are
    [included below](#using-github).
 
-Note: if you want to build the website locally, please refer to [The Workbench
-documentation][template-doc].
-
-### Where to Contribute
-
-1. If you wish to change this lesson, add issues and pull requests here.
-2. If you wish to change the template used for workshop websites, please refer
-   to [The Workbench documentation][template-doc].
 
 
 ### What to Contribute
@@ -91,31 +80,3 @@ NB: The published copy of the lesson is usually in the `main` branch.
 Each lesson has a team of maintainers who review issues and pull requests or
 encourage others to do so. The maintainers are community volunteers, and have
 final say over what gets merged into the lesson.
-
-### Other Resources
-
-The Carpentries is a global organisation with volunteers and learners all over
-the world. We share values of inclusivity and a passion for sharing knowledge,
-teaching and learning. There are several ways to connect with The Carpentries
-community listed at <https://carpentries.org/connect/> including via social
-media, slack, newsletters, and email lists. You can also [reach us by
-email][contact].
-
-[repo]: https://example.com/FIXME
-[contact]: mailto:team@carpentries.org
-[cp-site]: https://carpentries.org/
-[dc-issues]: https://github.com/issues?q=user%3Adatacarpentry
-[dc-lessons]: https://datacarpentry.org/lessons/
-[dc-site]: https://datacarpentry.org/
-[discuss-list]: https://carpentries.topicbox.com/groups/discuss
-[github]: https://github.com
-[github-flow]: https://guides.github.com/introduction/flow/
-[github-join]: https://github.com/join
-[how-contribute]: https://egghead.io/series/how-to-contribute-to-an-open-source-project-on-github
-[issues]: https://carpentries.org/help-wanted-issues/
-[lc-issues]: https://github.com/issues?q=user%3ALibraryCarpentry
-[swc-issues]: https://github.com/issues?q=user%3Aswcarpentry
-[swc-lessons]: https://software-carpentry.org/lessons/
-[swc-site]: https://software-carpentry.org/
-[lc-site]: https://librarycarpentry.org/
-[template-doc]: https://carpentries.github.io/workbench/
