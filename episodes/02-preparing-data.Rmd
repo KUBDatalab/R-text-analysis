@@ -59,7 +59,7 @@ Here is how you add and remove stopwords to a predefined list.
 ::: solution
 ### Add stopwords
 
-First, create a tibble with the word you wish to add to the stop words list
+First, create a tibble with the word you wish to add to the stopwords list
 
 ```{r new_stop_words}
 new_stop_words <- tibble(

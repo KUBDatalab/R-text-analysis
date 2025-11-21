@@ -7,7 +7,7 @@ exercises: 0
 :::::::::::::::::::::::::::::::::::::: questions
 
 - What is text mining?
-- What are stop words?
+- What are stopwords?
 - What is tokenisation?
 - What is tidytext?
 
@@ -17,7 +17,7 @@ exercises: 0
 ::::::::::::::::::::::::::::::::::::: objectives
 
 - Explain what text mining is
-- Explain what stop words are
+- Explain what stopwords are
 - Explain what tokenisation is
 - Explain what tidytext is
 
@@ -31,7 +31,7 @@ By applying text mining principles to to a body of text, you can gain insights t
 Before carrying out your analysis, the text must be transformed so that it can be read by a machine.
 
 ## Stopwords
-Text often contains words that hold no particular meaning. These are called stop words and can be found throughout the text. Since stop words rarely contribute to the understanding of the text, it is a good idea to remove them before analysing the text.
+Text often contains words that hold no particular meaning. These are called stopwords and can be found throughout the text. Since stopwords rarely contribute to the understanding of the text, it is a good idea to remove them before analysing the text.
 
 :::: callout
 
@@ -81,7 +81,7 @@ Here is an example of tokenisation at word-level.
 ::::::::::::::::::::::::::::::::::::: keypoints 
 
 - Know what text mining is
-- Know what stop words are
+- Know what stopwords are
 - Knowledge of the data we are working with
 - Know what tidy text means
 
