@@ -49,7 +49,7 @@ In the following we will be making the text machine-readable by means of the tid
 
 ### Tidy text
 
-The tidy text princples were developed by Silge and Robinson (reference tilføjes - https://www.tidytextmining.com) and apply the principles from the _tidy data_ on text.
+The tidy text princples were developed by [Silge and Robinson](https://www.tidytextmining.com){target="_blank"} and apply the principles from the _tidy data_ on text.
 
 The tidy data framework principles are:
 

@@ -47,9 +47,9 @@ library(tm)
 ### Documentation for each package
 If you would like to know more about the different packages, please click on the links below.
 
-* [tidyverse](https://www.tidyverse.org/packages/)
-* [tidytext](https://cran.r-project.org/web/packages/tidytext/vignettes/tidytext.html)
-* [tm](https://cran.r-project.org/web/packages/tm/tm.pdf)
+* [tidyverse](https://www.tidyverse.org/packages/){target="_blank"}
+* [tidytext](https://cran.r-project.org/web/packages/tidytext/vignettes/tidytext.html){target="_blank"}
+* [tm](https://cran.r-project.org/web/packages/tm/tm.pdf){target="_blank"}
 
 ::::::
 

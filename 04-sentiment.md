@@ -159,19 +159,14 @@ library(textdata)
 afinn <- get_sentiments("afinn")
 ```
 
-``` output
-Do you want to download:
- Name: AFINN-111 
- URL: http://www2.imm.dtu.dk/pubdb/views/publication_details.php?id=6010 
- License: Open Database License (ODbL) v1.0 
- Size: 78 KB (cleaned 59 KB) 
- Download mechanism: https 
-```
 
-``` error
-Error in menu(choices = c("Yes", "No"), title = title): menu() cannot be used non-interactively
-```
 
+:::: instructor
+Bemærk at vi ikke på github kan downloade afinn. Derfor 
+har vi downloaded afinn datasættet til en csv-fil pr 21. november 2025.
+Med andre ord er der risiko for at siden kører med et uopdateret
+datasæt.
+::::
 
 
 ``` r
@@ -179,8 +174,8 @@ articles_afinn <- articles_filtered |>
   inner_join(afinn) 
 ```
 
-``` error
-Error: object 'afinn' not found
+``` output
+Joining with `by = join_by(word)`
 ```
 
 
@@ -190,8 +185,12 @@ articles_afinn |>
   summarise(sentiment = sum(value))
 ```
 
-``` error
-Error: object 'articles_afinn' not found
+``` output
+# A tibble: 2 × 2
+  president sentiment
+  <chr>         <dbl>
+1 obama           224
+2 trump          -632
 ```
 
 
@@ -206,9 +205,12 @@ articles_afinn |>
   geom_col(position = "dodge")
 ```
 
-``` error
-Error: object 'articles_afinn' not found
+``` output
+`summarise()` has grouped output by 'president'. You can override using the
+`.groups` argument.
 ```
+
+<img src="fig/04-sentiment-rendered-afinn_president_value_geom_col-1.png" style="display: block; margin: auto;" />
 
 
 ``` r
@@ -226,9 +228,7 @@ articles_afinn |>
        y = NULL)
 ```
 
-``` error
-Error: object 'articles_afinn' not found
-```
+<img src="fig/04-sentiment-rendered-articles_afinn_ggplot_word_president-1.png" style="display: block; margin: auto;" />
 
 
 
