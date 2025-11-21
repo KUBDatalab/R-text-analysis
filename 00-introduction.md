@@ -37,7 +37,8 @@ Text often contains words that hold no particular meaning. These are called stop
 
 ### Example of removing stopwords
 
-![](./fig/Stopwords.png)
+![](fig/Stopwords.png){alt='Figure showing what removing stopword does to a text.'}
+
 ::::::
 
 ## Tidytext and tokenisation
@@ -70,7 +71,7 @@ Here is an example of tokenisation at word-level.
 
 ### Example of tokenization
 
-![](./fig/Tokenization.png)
+![](fig/Tokenization.png){alt='Figure showing what tokenization does to a text.'}
 
 ::::::
 
