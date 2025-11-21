@@ -33,7 +33,7 @@ life_cycle: 'pre-alpha'
 license: 'CC BY-NC-SA 4.0'
 
 # Link to the source repository for this lesson
-source: 'https://github.com/KUBDatalab/R-textmining_new'
+source: 'https://github.com/KUBDatalab/R-text-analysis'
 
 # Default branch of your lesson
 branch: 'main'
