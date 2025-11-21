@@ -27,7 +27,7 @@ Since we are working with text mining, we focus on the `text` coloumn. We do thi
 To tokenise a coloumn, we use the functions `unnest_tokens()` from the `tidytext`-package. The function gets two arguments. The first one is `word`. This defines that the text should be split up by words. The second argument, `text`, defines the column that we want to tokenise.
 
 ```{r articles_tidy_unnest_tokens}
-articles_tidy <- articles %>% 
+articles_tidy <- articles |> 
   unnest_tokens(word, text)
 ```
 
@@ -71,14 +71,14 @@ new_stop_words <- tibble(
 Then make a new stopwords tibble based on the original one, but with the new words added.
 
 ```{r updated_stop_words}
-updated_stop_words <- stop_words %>%
+updated_stop_words <- stop_words |>
   bind_rows(new_stop_words)
 ```
 
 Run the following code to see that the added lexicon `my_stopwords` contains two words.
 
 ```{r updated_stop_words_count_lexicon}
-updated_stop_words %>% 
+updated_stop_words |> 
   count(lexicon)
 ```
 :::
@@ -95,14 +95,14 @@ words_to_remove <- c("cat", "dog")
 Then remove the rows containing the unwanted words.
 
 ```{r updated_stop_words_filter}
-updated_stop_words <- stop_words %>%
+updated_stop_words <- stop_words |>
   filter(!word %in% words_to_remove)
 ```
 
 Run the following code to see that the added lexicon `my_stopwords` nolonger exists.
 
 ```{r updated_stop_words_count}
-updated_stop_words %>% 
+updated_stop_words |> 
   count(lexicon)
 ```
 :::
@@ -110,7 +110,7 @@ updated_stop_words %>%
 In order to remove stopwords from `articles_tidy`, we have to use the `anti_join`-function.
 
 ```{r articles_anti_join}
-articles_anti_join <- articles_tidy %>% 
+articles_anti_join <- articles_tidy |> 
   anti_join(stop_words, by = "word")
 ```
 
