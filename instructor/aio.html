@@ -453,9 +453,9 @@ of the tidy text principles.</p>
 <div id="tidy-text" class="callout-inner">
 <h3 class="callout-title">Tidy text</h3>
 <div class="callout-content">
-<p>The tidy text princples were developed by Silge and Robinson
-(reference tilføjes - <a href="https://www.tidytextmining.com" class="external-link uri">https://www.tidytextmining.com</a>) and apply the principles
-from the <em>tidy data</em> on text.</p>
+<p>The tidy text princples were developed by <a href="https://www.tidytextmining.com" target="_blank" class="external-link">Silge and
+Robinson</a> and apply the principles from the <em>tidy data</em> on
+text.</p>
 <p>The tidy data framework principles are:</p>
 <ul>
 <li>Each variable forms a column.</li>
@@ -574,9 +574,9 @@ packages. In this course we will be using the packages
 <p>If you would like to know more about the different packages, please
 click on the links below.</p>
 <ul>
-<li><a href="https://www.tidyverse.org/packages/" class="external-link">tidyverse</a></li>
-<li><a href="https://cran.r-project.org/web/packages/tidytext/vignettes/tidytext.html" class="external-link">tidytext</a></li>
-<li><a href="https://cran.r-project.org/web/packages/tm/tm.pdf" class="external-link">tm</a></li>
+<li><a href="https://www.tidyverse.org/packages/" target="_blank" class="external-link">tidyverse</a></li>
+<li><a href="https://cran.r-project.org/web/packages/tidytext/vignettes/tidytext.html" target="_blank" class="external-link">tidytext</a></li>
+<li><a href="https://cran.r-project.org/web/packages/tm/tm.pdf" target="_blank" class="external-link">tm</a></li>
 </ul>
 </div>
 </div>
@@ -1493,22 +1493,22 @@ with AFINN, it looks different.</p>
 <pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">afinn</span> <span class="op">&lt;-</span> <span class="fu">get_sentiments</span><span class="op">(</span><span class="st">"afinn"</span><span class="op">)</span></span></code></pre>
 </div>
-<div class="codewrapper">
-<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="output" tabindex="0"><code>Do you want to download:
- Name: AFINN-111
- URL: http://www2.imm.dtu.dk/pubdb/views/publication_details.php?id=6010
- License: Open Database License (ODbL) v1.0
- Size: 78 KB (cleaned 59 KB)
- Download mechanism: https </code></pre>
+<div id="accordionInstructor1" class="accordion instructor-note accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button instructor-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInstructor1" aria-expanded="false" aria-controls="collapseInstructor1">
+  <h3 class="accordion-header" id="headingInstructor1">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="edit-2"></i></div> Instructor Note </h3>
+</button>
+<div id="collapseInstructor1" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor1" aria-labelledby="headingInstructor1">
+<div class="accordion-body">
+<p>Bemærk at vi ikke på github kan downloade afinn. Derfor har vi
+downloaded afinn datasættet til en csv-fil pr 21. november 2025. Med
+andre ord er der risiko for at siden kører med et uopdateret
+datasæt.</p>
 </div>
-<div class="codewrapper">
-<h3 class="code-label">ERROR<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="error" tabindex="0"><code>Error in menu(choices = c("Yes", "No"), title = title): menu() cannot be used non-interactively</code></pre>
 </div>
-<div class="codewrapper sourceCode" id="cb16">
+</div>
+</div>
+<div class="codewrapper sourceCode" id="cb14">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -1516,11 +1516,11 @@ with AFINN, it looks different.</p>
 <span>  <span class="fu">inner_join</span><span class="op">(</span><span class="va">afinn</span><span class="op">)</span> </span></code></pre>
 </div>
 <div class="codewrapper">
-<h3 class="code-label">ERROR<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="error" tabindex="0"><code>Error: object 'afinn' not found</code></pre>
+<pre class="output" tabindex="0"><code>Joining with `by = join_by(word)`</code></pre>
 </div>
-<div class="codewrapper sourceCode" id="cb18">
+<div class="codewrapper sourceCode" id="cb16">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -1529,11 +1529,15 @@ with AFINN, it looks different.</p>
 <span>  <span class="fu">summarise</span><span class="op">(</span>sentiment <span class="op">=</span> <span class="fu">sum</span><span class="op">(</span><span class="va">value</span><span class="op">)</span><span class="op">)</span></span></code></pre>
 </div>
 <div class="codewrapper">
-<h3 class="code-label">ERROR<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="error" tabindex="0"><code>Error: object 'articles_afinn' not found</code></pre>
+<pre class="output" tabindex="0"><code># A tibble: 2 × 2
+  president sentiment
+  &lt;chr&gt;         &lt;dbl&gt;
+1 obama           224
+2 trump          -632</code></pre>
 </div>
-<div class="codewrapper sourceCode" id="cb20">
+<div class="codewrapper sourceCode" id="cb18">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -1545,11 +1549,12 @@ with AFINN, it looks different.</p>
 <span>  <span class="fu">geom_col</span><span class="op">(</span>position <span class="op">=</span> <span class="st">"dodge"</span><span class="op">)</span></span></code></pre>
 </div>
 <div class="codewrapper">
-<h3 class="code-label">ERROR<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="error" tabindex="0"><code>Error: object 'articles_afinn' not found</code></pre>
+<pre class="output" tabindex="0"><code>`summarise()` has grouped output by 'president'. You can override using the
+`.groups` argument.</code></pre>
 </div>
-<div class="codewrapper sourceCode" id="cb22">
+<figure><img src="../fig/04-sentiment-rendered-afinn_president_value_geom_col-1.png" style="display: block; margin: auto;" class="figure mx-auto d-block"></figure><div class="codewrapper sourceCode" id="cb20">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -1566,12 +1571,7 @@ with AFINN, it looks different.</p>
 <span>  <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Contribution to sentiment"</span>, </span>
 <span>       y <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre>
 </div>
-<div class="codewrapper">
-<h3 class="code-label">ERROR<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="error" tabindex="0"><code>Error: object 'articles_afinn' not found</code></pre>
-</div>
-<div id="keypoints1" class="callout keypoints">
+<figure><img src="../fig/04-sentiment-rendered-articles_afinn_ggplot_word_president-1.png" style="display: block; margin: auto;" class="figure mx-auto d-block"></figure><div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
 </div>
@@ -1654,7 +1654,7 @@ reinforce the objectives.</li>
 <button class="accordion-button instructor-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInstructor1" aria-expanded="false" aria-controls="collapseInstructor1">
   <h3 class="accordion-header" id="headingInstructor1">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="edit-2"></i></div> Instructor Note </h3>
 </button>
-<div id="collapseInstructor1" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor1" aria-labelledby="headingInstructor1">
+<div id="collapseInstructor1" class="accordion-collapse collapse" aria-labelledby="headingInstructor1" data-bs-parent="#accordionInstructor1">
 <div class="accordion-body">
 <p>Inline instructor notes can help inform instructors of timing
 challenges associated with the lessons. They appear in the “Instructor
@@ -1686,7 +1686,7 @@ View”</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Output </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1715,7 +1715,7 @@ challenge blocks?</h3>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>You can add a line with at least three colons and a
 <code>solution</code> tag.</p>
