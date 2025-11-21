@@ -23,7 +23,7 @@ To tokenise a coloumn, we use the functions `unnest_tokens()` from the `tidytext
 
 
 ``` r
-articles_tidy <- articles %>% 
+articles_tidy <- articles |> 
   unnest_tokens(word, text)
 ```
 
@@ -87,7 +87,7 @@ Then make a new stopwords tibble based on the original one, but with the new wor
 
 
 ``` r
-updated_stop_words <- stop_words %>%
+updated_stop_words <- stop_words |>
   bind_rows(new_stop_words)
 ```
 
@@ -95,7 +95,7 @@ Run the following code to see that the added lexicon `my_stopwords` contains two
 
 
 ``` r
-updated_stop_words %>% 
+updated_stop_words |> 
   count(lexicon)
 ```
 
@@ -124,7 +124,7 @@ Then remove the rows containing the unwanted words.
 
 
 ``` r
-updated_stop_words <- stop_words %>%
+updated_stop_words <- stop_words |>
   filter(!word %in% words_to_remove)
 ```
 
@@ -132,7 +132,7 @@ Run the following code to see that the added lexicon `my_stopwords` nolonger exi
 
 
 ``` r
-updated_stop_words %>% 
+updated_stop_words |> 
   count(lexicon)
 ```
 
@@ -150,7 +150,7 @@ In order to remove stopwords from `articles_tidy`, we have to use the `anti_join
 
 
 ``` r
-articles_anti_join <- articles_tidy %>% 
+articles_anti_join <- articles_tidy |> 
   anti_join(stop_words, by = "word")
 ```
 

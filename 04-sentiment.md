@@ -69,7 +69,7 @@ We now need to combine the sentiment to the words from our articles. We do this 
 
 
 ``` r
-articles_bing <- articles_filtered %>% 
+articles_bing <- articles_filtered |> 
   inner_join(bing)
 ```
 
@@ -104,8 +104,8 @@ When we have the combined dataset we can begin making a sentiment analysis. A st
 
 
 ``` r
-articles_bing %>% 
-  group_by(president) %>% 
+articles_bing |> 
+  group_by(president) |> 
   summarise(positive = sum(sentiment == "positive"),
             negative = sum(sentiment == "negative"),
             difference = positive - negative) 
@@ -124,13 +124,13 @@ Another interesting thing to look at would the 10 most positive and negative wor
 
 
 ``` r
-articles_bing %>% 
-  count(word, sentiment, sort = TRUE) %>% 
-  ungroup() %>% 
-  group_by(sentiment) %>% 
-  slice_max(n, n = 10) %>% 
-  ungroup() %>% 
-  mutate(word = reorder(word, n)) %>% 
+articles_bing |> 
+  count(word, sentiment, sort = TRUE) |> 
+  ungroup() |> 
+  group_by(sentiment) |> 
+  slice_max(n, n = 10) |> 
+  ungroup() |> 
+  mutate(word = reorder(word, n)) |> 
   ggplot(mapping = aes(n, word, fill = sentiment)) +
   geom_col(show.legend = FALSE) +
   facet_wrap(~sentiment, scales = "free_y")
@@ -175,7 +175,7 @@ Error in menu(choices = c("Yes", "No"), title = title): menu() cannot be used no
 
 
 ``` r
-articles_afinn <- articles_filtered %>% 
+articles_afinn <- articles_filtered |> 
   inner_join(afinn) 
 ```
 
@@ -185,8 +185,8 @@ Error: object 'afinn' not found
 
 
 ``` r
-articles_afinn %>% 
-  group_by(president) %>% 
+articles_afinn |> 
+  group_by(president) |> 
   summarise(sentiment = sum(value))
 ```
 
@@ -198,10 +198,10 @@ Error: object 'articles_afinn' not found
 
 
 ``` r
-articles_afinn %>% 
-  group_by(president, value) %>% 
-  summarise(sentiment = sum(value)) %>% 
-  ungroup() %>% 
+articles_afinn |> 
+  group_by(president, value) |> 
+  summarise(sentiment = sum(value)) |> 
+  ungroup() |>
   ggplot(mapping = aes(x = value, y = sentiment, fill = president)) +
   geom_col(position = "dodge")
 ```
@@ -212,13 +212,13 @@ Error: object 'articles_afinn' not found
 
 
 ``` r
-articles_afinn %>% 
-  count(president, word, value, sort = TRUE) %>% 
-  ungroup() %>% 
-  group_by(president, value) %>% 
-  slice_max(n, n = 3) %>% 
-  ungroup() %>% 
-  mutate(word = reorder(word, n)) %>% 
+articles_afinn |> 
+  count(president, word, value, sort = TRUE) |> 
+  ungroup() |> 
+  group_by(president, value) |> 
+  slice_max(n, n = 3) |> 
+  ungroup() |> 
+  mutate(word = reorder(word, n)) |> 
   ggplot(mapping = aes(n, word, fill = president)) +
   geom_col(show.legend = FALSE) +
   facet_wrap(~value, scales = "free_y") +
