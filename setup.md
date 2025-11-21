@@ -13,7 +13,7 @@ You do not need to download the file. We will do that together during the course
 In the course we will use the Positron IDE. You might be more used to RStudio. 
 Many differences exist, but the functionality we are going to actually use are
 almost identical. Therefore you do not need to install Positron if you
-already have RStudio installed. If not, we recommend that you install Positron.
+already have RStudio installed. If you do not have RStudio installed, we recommend that you install Positron.
 
 One difference is that the default pipe "%>%" in RStudio is replaced with "|>"
 in Positron. The way they work is identical
@@ -22,9 +22,8 @@ in Positron. The way they work is identical
 
 ### Warning
 
-Please do NOT install R and Positron on Onedrive or other clouddrives.
-R will work but you will not be able to install the extensions to R
-that you will need in this course!
+Please do NOT install R and Positron on Onedrive or other cloud drives.
+R will work but you will not be able to install the extensions to R needed in this course!
 
 ::::::::::::
 
@@ -34,10 +33,10 @@ that you will need in this course!
 
 **R** and **Positron** are separate downloads and installations. R is the
 underlying statistical computing environment, but using R alone is no
-fun. Positron is a graphical integrated development environment (IDE) that makes
+fun. Positron is a graphically integrated development environment (IDE) that makes
 using R much easier and more interactive. You need to install R before you
 install Positron. Once installed, because Positron is an IDE, Positron will run R in 
-the background.  You do not need to run it separately. 
+the background. You do not need to run R separately. 
 
 
 
