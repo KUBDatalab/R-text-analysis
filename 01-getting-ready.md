@@ -69,7 +69,7 @@ articles <- read_csv("data/articles.csv", na = c("NA", "NULL", ""))
 ```
 
 ## Data description
-The dataset contains newspaper articles from the Guardian newspaper. The harvested articles were published on the first inauguration day of US presidents Barack Obama and Donald Trump. Inclusion criteria were that the articles contained the name of the relevant president, the word "inauguration" and a publication dates 20th of January 2017 and 2021.
+The dataset contains newspaper articles from the Guardian newspaper. The harvested articles were published on the first inauguration day of US presidents Barack Obama and Donald Trump. Inclusion criteria were that the articles contained the name of the relevant president, the word "inauguration" and a publication dates 20th of January 2009 and 2017.
 
 The original dataset contained lots of variables considered irrelevant within the parameters of this course. The following variables were kept:
 
