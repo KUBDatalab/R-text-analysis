@@ -30,7 +30,7 @@ A word frequency is a relatively simple analysis. It measures how often words oc
 
 
 ``` r
-articles_anti_join %>% 
+articles_anti_join |> 
   count(word, sort = TRUE)
 ```
 
@@ -57,12 +57,12 @@ A closer look at the list may reveal that some words are irrelevant. Given that 
 
 
 ``` r
-articles_filtered <- articles_anti_join %>%
+articles_filtered <- articles_anti_join |> 
   filter(!word %in% c("trump", "trump’s", 
                       "obama", "obama's", 
                       "inauguration", "president"))
 
-articles_filtered %>% 
+articles_filtered |> 
   count(word, sort = TRUE)
 ```
 
@@ -88,7 +88,7 @@ Instead of a general list it may be more interesting to focus on the most freque
 
 
 ``` r
-articles_filtered %>%
+articles_filtered |> 
   count(president, word, sort = TRUE)
 ```
 
@@ -113,10 +113,10 @@ Keeping an overview of the words associated with each president can be a bit tri
 
 
 ``` r
-articles_filtered %>%
-  count(president, word, sort = TRUE) %>% 
-  group_by(president) %>%
-  slice(1:10) %>% 
+articles_filtered |> 
+  count(president, word, sort = TRUE) |> 
+  group_by(president) |> 
+  slice(1:10) |> 
   ggplot(mapping = aes(x = n, y = word, colour = president, shape = president)) +
   geom_point() 
 ```
@@ -128,8 +128,8 @@ Another interesting aspect to look at would be the most frequent words used in r
 
 
 ``` r
-articles_filtered %>%
-  count(president, word, sort = TRUE) %>% 
+articles_filtered |> 
+  count(president, word, sort = TRUE) |> 
   pivot_wider(
     names_from = president,
     values_from = n
@@ -155,12 +155,12 @@ articles_filtered %>%
 
 
 ``` r
-articles_filtered %>%
-  group_by(president) %>% 
-  count(word, sort = TRUE) %>% 
-  top_n(10) %>% 
-  ungroup() %>% 
-  mutate(word = reorder_within(word, n, president)) %>% 
+articles_filtered |> 
+  group_by(president) |> 
+  count(word, sort = TRUE) |> 
+  top_n(10) |> 
+  ungroup() |> 
+  mutate(word = reorder_within(word, n, president)) |> 
   ggplot(aes(n, word, fill = president)) +
   geom_col() +
   facet_wrap(~president, scales = "free") +
@@ -177,10 +177,10 @@ The analyses just made can easily be adjusted. For instance, if we want look at 
 
 
 ``` r
-articles_filtered %>%
-  count(pillar_name, word, sort = TRUE) %>% 
-  group_by(pillar_name) %>%
-  slice(1:10) %>% 
+articles_filtered |> 
+  count(pillar_name, word, sort = TRUE) |> 
+  group_by(pillar_name) |> 
+  slice(1:10) |> 
   ggplot(mapping = aes(x = n, y = word, colour = pillar_name, shape = pillar_name)) +
   geom_point() 
 ```
