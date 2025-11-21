@@ -44,7 +44,9 @@ A closer look at the list may reveal that some words are irrelevant. Given that 
 
 ```{r}
 articles_filtered <- articles_anti_join %>%
-  filter(!word %in% c("trump", "trump’s", "obama", "obama's", "inauguration", "president"))
+  filter(!word %in% c("trump", "trump’s", 
+                      "obama", "obama's", 
+                      "inauguration", "president"))
 
 articles_filtered %>% 
   count(word, sort = TRUE)
