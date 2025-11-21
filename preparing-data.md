@@ -19,7 +19,7 @@ exercises: 0
 
 Since we are working with text mining, we focus on the `text` coloumn. We do this because the coloumn contains the text from the articles in question.
 
-To tokenise a coloumn, we use the functions `unnest_tokens()` from the `tidytext`-package. The function gets two arguments. The first one is `word`. This defines that the text should be split up by words. The second argument, `text`, defines the column that we want to tokenise.
+To tokenise a column, we use the functions `unnest_tokens()` from the `tidytext`-package. The function gets two arguments. The first one is `word`. This defines that the text should be split up by words. The second argument, `text`, defines the column that we want to tokenise.
 
 
 ``` r
