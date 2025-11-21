@@ -82,7 +82,7 @@ The original dataset contained lots of variables considered irrelevant within th
 ::::::::::::::::::::::::::::::::::::::: discussion
 
 ### Taking a quick look at the data
-The 'tidyverse'-package has some functions that allow you to inspect the dataset. Below, you can see some of these functions and what they do.
+The `tidyverse`-package has some functions that allow you to inspect the dataset. Below, you can see some of these functions and what they do.
 
 :::::::::::::::::::::::::::::::::::::::
 
