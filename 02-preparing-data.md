@@ -27,11 +27,13 @@ articles_tidy <- articles %>%
   unnest_tokens(word, text)
 ```
 
-::: callout
-### Tokenisation
+:::: callout
 
-The result of the tokenisation is 118,269 rows. The reason is that the `text`-column has been replaced by a new column named `word`. This columns contains all words found in all of the articles. The information from the remaining columns are kept. This makes is possible to determine which article each word belongs to.
-:::
+## Tokenisation
+
+The result of the tokenisation is 118,269 rows. The reason is that the `text`-column has been replaced by a new column named `word`. This column contains all words found in all of the articles. The information from the remaining columns are kept. This makes is possible to determine which article each word belongs to.
+
+::::
 
 ## Stopwords
 
@@ -109,7 +111,7 @@ updated_stop_words %>%
 :::
 
 ::: solution
-### Remove stopword
+### Remove stopwords
 
 First, create a vector with the word(s) you wish to remove from the stopwords list.
 
