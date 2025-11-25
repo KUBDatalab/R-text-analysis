@@ -34,17 +34,8 @@
   <div class="container-fluid top-nav-container">
     <div class="col-md-8">
       <div class="large-logo">
-        <img id="lc-logo" alt="Library Carpentry" src="../assets/images/library-logo.svg"><span class="badge text-bg-danger">
-          <abbr title="This lesson is in the pre-alpha phase, which means that it is in early development, but has not yet been taught.">
-            <a href="https://docs.carpentries.org/resources/curriculum/lesson-life-cycle.html" class="external-link alert-link">
-              <i aria-hidden="true" class="icon" data-feather="alert-octagon" style="border-radius: 5px"></i>
-              Pre-Alpha
-            </a>
-            <span class="visually-hidden">This lesson is in the pre-alpha phase, which means that it is in early development, but has not yet been taught.</span>
-          </abbr>
-        </span>
-
-      </div>
+        <img id="lc-logo" alt="Library Carpentry" src="../assets/images/library-logo.svg">
+</div>
     </div>
     <div class="selector-container">
       <div id="theme-selector">
@@ -586,8 +577,8 @@ click on the links below.</p>
 <hr class="half-width">
 <p>Begin by downloading the dataset called <code>articles.csv</code>.
 Place the downloaded file in the data/ folder. You can do this directly
-from R by copying and pasting this into your terminal. (The terminal is
-the tab to the right of the console.)</p>
+from R by copying and pasting this into your console. (The console is
+the panel under your script).</p>
 <div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -912,7 +903,7 @@ the stopwords list.</p>
   Add stopwords
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>First, create a tibble with the word you wish to add to the stopwords
 list</p>
@@ -965,7 +956,7 @@ the new words added.</p>
   Remove stopwords
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>First, create a vector with the word(s) you wish to remove from the
 stopwords list.</p>
@@ -1499,7 +1490,7 @@ with AFINN, it looks different.</p>
 <button class="accordion-button instructor-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInstructor1" aria-expanded="false" aria-controls="collapseInstructor1">
   <h3 class="accordion-header" id="headingInstructor1">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="edit-2"></i></div> Instructor Note </h3>
 </button>
-<div id="collapseInstructor1" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor1" aria-labelledby="headingInstructor1">
+<div id="collapseInstructor1" class="accordion-collapse collapse" aria-labelledby="headingInstructor1" data-bs-parent="#accordionInstructor1">
 <div class="accordion-body">
 <p>Bemærk at vi ikke på github kan downloade afinn. Derfor har vi
 downloaded afinn datasættet til en csv-fil pr 21. november 2025. Med
