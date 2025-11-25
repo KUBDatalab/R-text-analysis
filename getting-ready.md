@@ -54,7 +54,7 @@ If you would like to know more about the different packages, please click on the
 ::::::
 
 ## Getting data
-Begin by downloading the dataset called `articles.csv`. Place the downloaded file in the data/ folder. You can do this directly from R by copying and pasting this into your terminal. (The terminal is the tab to the right of the console.)
+Begin by downloading the dataset called `articles.csv`. Place the downloaded file in the data/ folder. You can do this directly from R by copying and pasting this into your console. (The console is the panel under your script).
 
 
 ``` r
