@@ -1,0 +1,24 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.2.0
+title: Text analysis with R
+message: >-
+  If you use this software, please cite it using the
+  metadata from this file.
+type: software
+authors:
+  - given-names: Ene
+    family-names: Rammer
+    email: enrn@kb.dk
+    affiliation: Roskilde University Library
+  - given-names: Søren
+    family-names: Davidsen
+    email: sdav@kb.dk
+    affiliation: Copenhagen University Library
+repository-code: 'https://github.com/KUBDatalab/R-text-analysis'
+url: 'https://kubdatalab.github.io/R-text-analysis/'
+abstract: A course on analysing text using R
+keywords:
+  - R
+  - text analysis
