@@ -1,5 +1,5 @@
 ---
-title: 'Whats-next'
+title: 'Whats next?'
 teaching: 10
 exercises: 2
 ---
