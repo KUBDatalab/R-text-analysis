@@ -198,8 +198,7 @@
 
     <div id="flush-collapsecurrent" class="accordion-collapse collapse show" aria-labelledby="flush-headingcurrent" data-bs-parent="#accordionFlushcurrent">
       <div class="accordion-body">
-        <ul><li><a href="#data-sets">Data Sets</a></li>
-<li><a href="#software-setup">Software Setup</a></li>
+        <ul><li><a href="#software-setup">Software Setup</a></li>
         </ul></div><!--/div.accordion-body-->
     </div><!--/div.accordion-collapse-->
 
@@ -311,28 +310,16 @@
       <hr></nav><main id="main-content" class="main-content"><h1 class="schedule-heading">Summary and Setup</h1>
       
 
-<p>Here you can read how to download and install R and R-studio, and how
-to download data files for the course.</p>
+<p>This page tells you how to install R and Positron. Here you’ll also
+find information on how to donload data files for the course.</p>
 <!--
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use.
  -->
 
 
-      <section id="setup"><section><h2 class="section-heading" id="data-sets">Data Sets<a class="anchor" aria-label="anchor" href="#data-sets"></a></h2>
-<hr class="half-width"><p>We will work with this <a href="data/articles.csv">data set</a> in
-the course.</p>
-<p>You do not need to download the file. We will do that together during
-the course.</p>
-</section><section><h2 class="section-heading" id="software-setup">Software Setup<a class="anchor" aria-label="anchor" href="#software-setup"></a></h2>
-<hr class="half-width"><p>In the course we will use the Positron IDE. You might be more used to
-RStudio. Many differences exist, but the functionality we are going to
-actually use are almost identical. Therefore you do not need to install
-Positron if you already have RStudio installed. If you do not have
-RStudio installed, we recommend that you install Positron.</p>
-<p>One difference is that the default pipe “%&gt;%” in RStudio is
-replaced with “|&gt;” in Positron. The way they work is identical</p>
-<div id="warning" class="callout">
+      <section id="setup"><section><h2 class="section-heading" id="software-setup">Software Setup<a class="anchor" aria-label="anchor" href="#software-setup"></a></h2>
+<hr class="half-width"><div id="warning" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
@@ -340,9 +327,9 @@ replaced with “|&gt;” in Positron. The way they work is identical</p>
 <div id="warning" class="callout-inner">
 <h3 class="callout-title">Warning</h3>
 <div class="callout-content">
-<p>Please do NOT install R and Positron on Onedrive or other cloud
-drives. R will work but you will not be able to install the extensions
-to R needed in this course!</p>
+<p>Please do NOT install R, Positron and RStudio on Onedrive or other
+cloud drives. R will work but you will not be able to install the
+extensions to R needed in this course!</p>
 </div>
 </div>
 </div>
@@ -356,11 +343,17 @@ to R needed in this course!</p>
 <div class="callout-content">
 <p><strong>R</strong> and <strong>Positron</strong> are separate
 downloads and installations. R is the underlying statistical computing
-environment, but using R alone is no fun. Positron is a graphically
-integrated development environment (IDE) that makes using R much easier
+environment, but using R alone is no fun. Positron is a graphical
+Integrated Development Environment (IDE) that makes using R much easier
 and more interactive. You need to install R before you install Positron.
 Once installed, because Positron is an IDE, Positron will run R in the
 background. You do not need to run R separately.</p>
+<p>In the course we will be using <strong>Positron</strong>. If you are
+already using RStudio and would prefer to keep doing so, that is not a
+problem.</p>
+<p>Please note that the short cut (ctrl + shift + m) in Positron will
+give you the base-R pipe (|&gt;), whereas in RStudio the same short cut
+will give you the magrittr pipe (%&gt;%). They work the same way.</p>
 </div>
 </div>
 </div>
@@ -373,10 +366,9 @@ background. You do not need to run R separately.</p>
 </button>
 <div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
-<p>Rather than installing R and Positron on your personal computer, <a href="https://posit.cloud//" target="_blank" class="external-link">Posit Cloud</a> offers a
-free, online alternative, where you will be able to run R and RStudio in
-your browser. Sign up with your Google/Gmail account if you have one, or
-with any other email.</p>
+<p>Rather than installing R and Positron on your personal computer, <a href="https://posit.cloud//" class="external-link">Posit Cloud</a> offers a free, online
+alternative, where you will be able to run R and RStudio in your
+browser. Sign up with your email address.</p>
 <p>The free version of RStudio Cloud places limitations on the number of
 projects you can work on, and the amount of memory and processing power
 you can access. For the purposes of following these lessons, RStudio
@@ -396,29 +388,46 @@ problems installing R and Positron on your personal computer.</p>
 <div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <div class="section level4">
-<h4 id="if-you-already-have-r-and-rstudiopositron-installed">If you already have R and RStudio/Positron installed<a class="anchor" aria-label="anchor" href="#if-you-already-have-r-and-rstudiopositron-installed"></a></h4>
+<h4 id="if-you-already-have-r-and-rstudio-installed">If you already have R and RStudio installed<a class="anchor" aria-label="anchor" href="#if-you-already-have-r-and-rstudio-installed"></a></h4>
+<p>In the course we will be using Positron. If you prefer to continue
+using RStudio, that is not a problem, but please do the following:</p>
 <ul><li>Open RStudio, and click on “Help” &gt; “Check for updates”. If a new
-version is available, quit RStudio, and download the latest version for
+version is available, quit RStudio, and download the latest version of
 RStudio.</li>
-<li>Or, open Positron, and click on “Help” &gt; “Installing
-update”.</li>
-<li>To check which version of R you are using, start RStudio or Positron
-and the first thing that appears in the console indicates the version of
-R you are running. Alternatively, you can type
-<code>sessionInfo()</code>, which will also display which version of R
-you are running. Go on the <a href="https://cran.r-project.org/bin/windows/base/" target="_blank" class="external-link">CRAN
-website</a> and check whether a more recent version is available. If so,
-please download and install it. You can <a href="https://cran.r-project.org/bin/windows/base/rw-FAQ.html#How-do-I-UNinstall-R_003f" target="_blank" class="external-link">check here</a> for more information on how to remove old
-versions from your system if you wish to do so.</li>
+<li>To check which version of R you are using, start RStudio and the
+first thing that appears in the console indicates the version of R you
+are running. Alternatively, you can type <code>sessionInfo()</code>,
+which will also display which version of R you are running. Go to the <a href="https://cran.r-project.org/bin/windows/base/" class="external-link">CRAN website</a> and
+check if a more recent version is available. If so, please download and
+install it. You can <a href="https://cran.r-project.org/bin/windows/base/rw-FAQ.html#How-do-I-UNinstall-R_003f" class="external-link">check
+here</a> for more information on how to remove old versions from your
+system if you wish to do so.</li>
+<li>In any case, make sure you have at least R 4.5 installed.</li>
 </ul></div>
 <div class="section level4">
-<h4 id="if-you-dont-have-r-and-rstudio-or-positron-installed">If you don’t have R and RStudio or Positron installed<a class="anchor" aria-label="anchor" href="#if-you-dont-have-r-and-rstudio-or-positron-installed"></a></h4>
-<ul><li>Download R from the <a href="https://cran.r-project.org/bin/windows/base/release.htm" target="_blank" class="external-link">CRAN website</a>.</li>
+<h4 id="if-you-already-have-r-and-positron-installed">If you already have R and Positron installed<a class="anchor" aria-label="anchor" href="#if-you-already-have-r-and-positron-installed"></a></h4>
+<ul><li>Open Positron, and click on the “cogwheel” (lower left corner) &gt;
+“Check for updates”. If a new version is available, it will be installed
+in the background.</li>
+<li>To check which version of R you are using, start Positron and the
+first thing that appears in the console indicates the version of R you
+are running. Alternatively, you can type <code>sessionInfo()</code>,
+which will also display which version of R you are running. Go to the <a href="https://cran.r-project.org/bin/windows/base/" class="external-link">CRAN website</a> and
+check if a more recent version is available. If so, please download and
+install it. You can <a href="https://cran.r-project.org/bin/windows/base/rw-FAQ.html#How-do-I-UNinstall-R_003f" class="external-link">check
+here</a> for more information on how to remove old versions from your
+system if you wish to do so.</li>
+<li>In any case, make sure you have at least R 4.5 installed.</li>
+</ul></div>
+<div class="section level4">
+<h4 id="if-you-dont-have-r-and-positron-installed">If you don’t have R and Positron installed<a class="anchor" aria-label="anchor" href="#if-you-dont-have-r-and-positron-installed"></a></h4>
+<ul><li>Download R from the <a href="https://cran.r-project.org/bin/windows/base/release.htm" class="external-link">CRAN
+website</a>.</li>
 <li>Run the <code>.exe</code> file that was just downloaded.</li>
-<li>Go to the <a href="https://positron.posit.co/download.html" target="_blank" class="external-link">Positron download page</a>
-</li>
-<li>Accept the license agreement, and download the appropriate windows
-installer, probably Windows 10, 11 x64 (user level install)</li>
+<li>Go to the <a href="https://positron.posit.co/download.html" class="external-link">Positron
+download page</a>.</li>
+<li>First accept the user agreement</li>
+<li>Choose the windows user level install option.</li>
 <li>Double click the file to install it.</li>
 <li>Once it’s installed, open Positron to make sure it works and you
 don’t get any error messages.</li>
@@ -437,34 +446,48 @@ don’t get any error messages.</li>
 <div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <div class="section level4">
-<h4 id="if-you-already-have-r-and-rstudio-installed">If you already have R and RStudio installed<a class="anchor" aria-label="anchor" href="#if-you-already-have-r-and-rstudio-installed"></a></h4>
+<h4 id="if-you-already-have-r-and-rstudio-installed-1">If you already have R and RStudio installed<a class="anchor" aria-label="anchor" href="#if-you-already-have-r-and-rstudio-installed-1"></a></h4>
+<p>In the course we will be using Positron. If you prefer to continue
+using RStudio, that is not a problem, but please do the following.</p>
 <ul><li>Open RStudio, and click on “Help” &gt; “Check for updates”. If a new
 version is available, quit RStudio, and download the latest version for
 RStudio.</li>
-<li>Or, open Positron, and click on “Help” &gt; “Installing
-update”.</li>
 <li>To check the version of R you are using, start RStudio and the first
 thing that appears on the terminal indicates the version of R you are
 running. Alternatively, you can type <code>sessionInfo()</code>, which
-will also display which version of R you are running. Go on the <a href="https://cran.r-project.org/bin/macosx/" target="_blank" class="external-link">CRAN
-website</a> and check whether a more recent version is available. If so,
-please download and install it. In any case, make sure you have at least
-R 3.2.</li>
+will also display which version of R you are running. Go to the <a href="https://cran.r-project.org/bin/macosx/" class="external-link">CRAN website</a> and check
+if a more recent version is available. If so, please download and
+install it.</li>
+<li>In any case, make sure you have at least R 4.5 installed.</li>
 </ul></div>
-<div class="section level4">
-<h4 id="if-you-dont-have-r-and-rstudio-installed">If you don’t have R and RStudio installed<a class="anchor" aria-label="anchor" href="#if-you-dont-have-r-and-rstudio-installed"></a></h4>
-<ul><li>Download R from the <a href="https://cran.r-project.org/bin/macosx/" target="_blank" class="external-link">CRAN website</a>.</li>
+<div class="section level3">
+<h3 id="if-you-already-have-r-and-positron-installed-1">If you already have R and Positron installed<a class="anchor" aria-label="anchor" href="#if-you-already-have-r-and-positron-installed-1"></a></h3>
+<ul><li>Open Positron, and click on the “cogwheel” (lower left corner) &gt;
+“Check for updates”. If a new version is available, it will be installed
+in the backgound.</li>
+<li>To check the version of R you are using, start RStudio and the first
+thing that appears on the terminal indicates the version of R you are
+running. Alternatively, you can type <code>sessionInfo()</code>, which
+will also display which version of R you are running. Go to the <a href="https://cran.r-project.org/bin/macosx/" class="external-link">CRAN website</a> and check
+if a more recent version is available. If so, please download and
+install it.</li>
+<li>In any case, make sure you have at least R 4.5 installed.</li>
+</ul><div class="section level4">
+<h4 id="if-you-dont-have-r-and-positron-installed-1">If you don’t have R and Positron installed<a class="anchor" aria-label="anchor" href="#if-you-dont-have-r-and-positron-installed-1"></a></h4>
+<ul><li>Download R from the <a href="https://cran.r-project.org/bin/macosx/" class="external-link">CRAN website</a>.</li>
 <li>Select the <code>.pkg</code> file for the latest R version.</li>
 <li>Double click on the downloaded file to install R.</li>
-<li>It is also a good idea to install <a href="https://www.xquartz.org/" target="_blank" class="external-link">XQuartz</a> (needed by some packages).</li>
-<li>Go to the <a href="https://positron.posit.co/download.html" target="_blank" class="external-link">Positron download page</a>
-</li>
-<li>Accept the license agreement, and download the appropriate MacOs
-installer, probably MacOS 11.0+ (universal)</li>
-<li>Double click the file to install Positron.</li>
+<li>It is also a good idea to install <a href="https://www.xquartz.org/" class="external-link">XQuartz</a> (needed by some
+packages).</li>
+<li>Go to the <a href="https://positron.posit.co/download.html" class="external-link">Positron
+download page</a>.</li>
+<li>First accept the user agreement</li>
+<li>Choose the version appropriate for your version of Mac.</li>
+<li>Double click the file to install it.</li>
 <li>Once it’s installed, open Positron to make sure it works and you
 don’t get any error messages.</li>
 </ul></div>
+</div>
 </div>
 </div>
 </div>
@@ -478,21 +501,20 @@ don’t get any error messages.</li>
 </button>
 <div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
 <div class="accordion-body">
-<ul><li>Follow the instructions for your distribution from <a href="https://cloud.r-project.org/bin/linux" target="_blank" class="external-link">CRAN</a>,
-they provide information to get the most recent version of R for common
+<ul><li>Follow the instructions for your distribution from <a href="https://cloud.r-project.org/bin/linux" class="external-link">CRAN</a>, they provide
+information to get the most recent version of R for common
 distributions. For most distributions, you could use your package
 manager (e.g., for Debian/Ubuntu run
 <code>sudo apt-get install r-base</code>, and for Fedora
 <code>sudo yum install R</code>), but we don’t recommend this approach
-as the versions provided by this approach are usually out of date. In
-any case, make sure you have at least R 3.2.</li>
-<li>Go to the <a href="https://positron.posit.co/download.html" target="_blank" class="external-link">Positron download page</a>
-</li>
-<li>Accept the license agreement.</li>
-<li>Under <em>Installers</em> select the version that matches your
-distribution, and install it with your preferred method (e.g., with
-Debian/Ubuntu
-<code>sudo dpkg -i   Positron-2025.11.0-234-arm64.deb</code> at the
+as the versions provided by this approach are usually out of date.</li>
+<li>In any case, make sure you have at least R 4.5.</li>
+<li>Go to the <a href="https://positron.posit.co/download.html" class="external-link">Positron
+download page</a>.</li>
+<li>First accept the user agreement</li>
+<li>Choose the version appropriate for your distribution, and install it
+with your preferred method (e.g., with Debian/Ubuntu
+<code>sudo dpkg -i   Positron-2025.12.0-167-x64.deb</code> at the
 terminal).</li>
 <li>Once it’s installed, open Positron to make sure it works and you
 don’t get any error messages.</li>
@@ -555,8 +577,8 @@ any links that you are not going to use.
   "url": "https://KUBDatalab.github.io/R-text-analysis/index.html",
   "identifier": "https://KUBDatalab.github.io/R-text-analysis/index.html",
   "dateCreated": "2024-05-01",
-  "dateModified": "2025-12-04",
-  "datePublished": "2025-12-04"
+  "dateModified": "2025-12-08",
+  "datePublished": "2025-12-08"
 }
 
   </script><script>
