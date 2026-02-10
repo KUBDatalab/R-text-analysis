@@ -207,8 +207,12 @@ articles_afinn |>
 ```
 
 ``` output
-`summarise()` has grouped output by 'president'. You can override using the
-`.groups` argument.
+`summarise()` has regrouped the output.
+ℹ Summaries were computed grouped by president and value.
+ℹ Output is grouped by president.
+ℹ Use `summarise(.groups = "drop_last")` to silence this message.
+ℹ Use `summarise(.by = c(president, value))` for per-operation grouping
+  (`?dplyr::dplyr_by`) instead.
 ```
 
 <img src="fig/sentiment-rendered-afinn_president_value_geom_col-1.png" alt="" style="display: block; margin: auto;" />
