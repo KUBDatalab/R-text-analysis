@@ -899,7 +899,7 @@ the stopwords list.</p>
   Add stopwords
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>First, create a tibble with the word you wish to add to the stopwords
 list</p>
@@ -952,7 +952,7 @@ the new words added.</p>
   Remove stopwords
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>First, create a vector with the word(s) you wish to remove from the
 stopwords list.</p>
@@ -1090,10 +1090,10 @@ often words occur in a text.</p>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="output" tabindex="0"><code># A tibble: 12,332 × 2
+<pre class="output" tabindex="0"><code># A tibble: 12,328 × 2
    word             n
    &lt;chr&gt;        &lt;int&gt;
- 1 obama          512
+ 1 obama          513
  2 trump          479
  3 president      450
  4 people         337
@@ -1103,7 +1103,7 @@ often words occur in a text.</p>
  8 american       201
  9 time           189
 10 day            188
-# ℹ 12,322 more rows</code></pre>
+# ℹ 12,318 more rows</code></pre>
 </div>
 <p>The previous code chunk resulted in a list containing the most
 frequent words. The words are from articles about both presidents, and
@@ -1127,7 +1127,7 @@ analysis. Therefore, we make a new dataset without these words.</p>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="output" tabindex="0"><code># A tibble: 12,326 × 2
+<pre class="output" tabindex="0"><code># A tibble: 12,322 × 2
    word           n
    &lt;chr&gt;      &lt;int&gt;
  1 people       337
@@ -1140,7 +1140,7 @@ analysis. Therefore, we make a new dataset without these words.</p>
  8 speech       183
  9 white        180
 10 washington   150
-# ℹ 12,316 more rows</code></pre>
+# ℹ 12,312 more rows</code></pre>
 </div>
 <p>The words deemed irrelevant are no longer on the list above.</p>
 <p>Instead of a general list it may be more interesting to focus on the
@@ -1156,7 +1156,7 @@ respectively.</p>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="output" tabindex="0"><code># A tibble: 15,993 × 3
+<pre class="output" tabindex="0"><code># A tibble: 15,989 × 3
    president word         n
    &lt;chr&gt;     &lt;chr&gt;    &lt;int&gt;
  1 obama     bush       174
@@ -1169,7 +1169,7 @@ respectively.</p>
  8 obama     american   116
  9 trump     america    114
 10 trump     it’s       108
-# ℹ 15,983 more rows</code></pre>
+# ℹ 15,979 more rows</code></pre>
 </div>
 <p>Keeping an overview of the words associated with each president can
 be a bit tricky. For instance, the word “people” is associated with both
@@ -1210,7 +1210,7 @@ is the guiding principle.</p>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="output" tabindex="0"><code># A tibble: 12,326 × 3
+<pre class="output" tabindex="0"><code># A tibble: 12,322 × 3
    word     obama trump
    &lt;chr&gt;    &lt;int&gt; &lt;int&gt;
  1 bush       174    12
@@ -1223,7 +1223,7 @@ is the guiding principle.</p>
  8 it’s        NA   108
  9 day        106    82
 10 donald       1   106
-# ℹ 12,316 more rows</code></pre>
+# ℹ 12,312 more rows</code></pre>
 </div>
 <div class="codewrapper sourceCode" id="cb10">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1507,7 +1507,7 @@ with AFINN, it looks different.</p>
   president sentiment
   &lt;chr&gt;         &lt;dbl&gt;
 1 obama           224
-2 trump          -630</code></pre>
+2 trump          -632</code></pre>
 </div>
 <div class="codewrapper sourceCode" id="cb18">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1662,7 +1662,7 @@ locally</li>
         <p>Materials licensed under <a href="LICENSE.html">CC BY-NC-SA 4.0</a> by the authors</p>
 
         <p>Template licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" class="external-link">CC-BY 4.0</a> by <a href="https://carpentries.org/" class="external-link">The Carpentries</a></p>
-        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/" class="external-link">sandpaper (0.20.0)</a>, <a href="https://github.com/carpentries/pegboard/tree/" class="external-link">pegboard (0.7.9)</a>, and <a href="https://github.com/carpentries/varnish/tree/" class="external-link">varnish (1.0.9)</a></p>
+        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.20.0" class="external-link">sandpaper (0.20.0)</a>, <a href="https://github.com/carpentries/pegboard/tree/0.7.9" class="external-link">pegboard (0.7.9)</a>, and <a href="https://github.com/carpentries/varnish/tree/1.0.9" class="external-link">varnish (1.0.9)</a></p>
 		</div>
 		</footer>
 </div> <!-- / div.container -->
