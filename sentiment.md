@@ -191,7 +191,7 @@ articles_afinn |>
   president sentiment
   <chr>         <dbl>
 1 obama           224
-2 trump          -632
+2 trump          -630
 ```
 
 
