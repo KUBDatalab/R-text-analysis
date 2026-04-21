@@ -15,4 +15,3 @@
 "learners/reference.md" "527a12e217602daae51c5fd9ef8958df" "site/built/reference.md" "2026-04-21"
 "learners/setup.md" "04ba55a9ebaebeadfc3629c5f0652e65" "site/built/setup.md" "2026-04-21"
 "profiles/learner-profiles.md" "5fe5bf7537072422b91ed393ada03f9a" "site/built/learner-profiles.md" "2026-04-21"
-"renv/profiles/lesson-requirements/renv.lock" "1958ec27a09d6295dcf59e0038792b11" "site/built/renv.lock" "2026-04-21"
