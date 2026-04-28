@@ -6893,8 +6893,7 @@ id,president,web_publication_date,pillar_name,word
 21,obama,2009-01-20T19:38:05Z,News,administration
 21,obama,2009-01-20T19:38:05Z,News,front
 21,obama,2009-01-20T19:38:05Z,News,page
-21,obama,2009-01-20T19:38:05Z,News,whitehouse
-21,obama,2009-01-20T19:38:05Z,News,gov
+21,obama,2009-01-20T19:38:05Z,News,whitehouse.gov
 21,obama,2009-01-20T19:38:05Z,News,sections
 21,obama,2009-01-20T19:38:05Z,News,global
 21,obama,2009-01-20T19:38:05Z,News,war
@@ -6978,8 +6977,7 @@ id,president,web_publication_date,pillar_name,word
 21,obama,2009-01-20T19:38:05Z,News,portico
 21,obama,2009-01-20T19:38:05Z,News,white
 21,obama,2009-01-20T19:38:05Z,News,house
-21,obama,2009-01-20T19:38:05Z,News,whitehouse
-21,obama,2009-01-20T19:38:05Z,News,gov
+21,obama,2009-01-20T19:38:05Z,News,whitehouse.gov
 21,obama,2009-01-20T19:38:05Z,News,central
 21,obama,2009-01-20T19:38:05Z,News,president
 21,obama,2009-01-20T19:38:05Z,News,obama's
@@ -14529,9 +14527,9 @@ id,president,web_publication_date,pillar_name,word
 42,obama,2009-01-19T23:01:00Z,News,obama
 42,obama,2009-01-19T23:01:00Z,News,election
 42,obama,2009-01-19T23:01:00Z,News,campaign
-42,obama,2009-01-19T23:01:00Z,News,barackobama
+42,obama,2009-01-19T23:01:00Z,News,barackobama.com
 42,obama,2009-01-19T23:01:00Z,News,speeches
-42,obama,2009-01-19T23:01:00Z,News,obamaspeeches
+42,obama,2009-01-19T23:01:00Z,News,obamaspeeches.com
 43,obama,2009-01-19T23:01:00Z,News,obama's
 43,obama,2009-01-19T23:01:00Z,News,inbox
 43,obama,2009-01-19T23:01:00Z,News,president's
@@ -20910,11 +20908,10 @@ id,president,web_publication_date,pillar_name,word
 59,obama,2009-01-19T23:01:00Z,Opinion,lazy
 59,obama,2009-01-19T23:01:00Z,Opinion,political
 59,obama,2009-01-19T23:01:00Z,Opinion,cynicism
-59,obama,2009-01-19T23:01:00Z,Opinion,polly
-59,obama,2009-01-19T23:01:00Z,Opinion,toynbee
-59,obama,2009-01-19T23:01:00Z,Opinion,theguardian
+59,obama,2009-01-19T23:01:00Z,Opinion,polly.toynbee
+59,obama,2009-01-19T23:01:00Z,Opinion,theguardian.com
 60,obama,2009-01-20T13:20:02Z,Opinion,lessons
-60,obama,2009-01-20T13:20:02Z,Opinion,obama
+60,obama,2009-01-20T13:20:02Z,Opinion,obama.com
 60,obama,2009-01-20T13:20:02Z,Opinion,mps
 60,obama,2009-01-20T13:20:02Z,Opinion,learning
 60,obama,2009-01-20T13:20:02Z,Opinion,obama's
@@ -21028,7 +21025,7 @@ id,president,web_publication_date,pillar_name,word
 60,obama,2009-01-20T13:20:02Z,Opinion,partisan
 60,obama,2009-01-20T13:20:02Z,Opinion,website
 60,obama,2009-01-20T13:20:02Z,Opinion,called
-60,obama,2009-01-20T13:20:02Z,Opinion,theyworkforyou
+60,obama,2009-01-20T13:20:02Z,Opinion,theyworkforyou.com
 60,obama,2009-01-20T13:20:02Z,Opinion,normal
 60,obama,2009-01-20T13:20:02Z,Opinion,people
 60,obama,2009-01-20T13:20:02Z,Opinion,free
@@ -22277,7 +22274,7 @@ id,president,web_publication_date,pillar_name,word
 64,obama,2009-01-20T11:50:21Z,News,news
 64,obama,2009-01-20T11:50:21Z,News,developments
 64,obama,2009-01-20T11:50:21Z,News,happen
-64,obama,2009-01-20T11:50:21Z,News,theguardian
+64,obama,2009-01-20T11:50:21Z,News,theguardian.com
 64,obama,2009-01-20T11:50:21Z,News,live
 64,obama,2009-01-20T11:50:21Z,News,blog
 64,obama,2009-01-20T11:50:21Z,News,oliver
@@ -23264,8 +23261,7 @@ id,president,web_publication_date,pillar_name,word
 68,obama,2009-01-20T22:23:10Z,Opinion,huge
 68,obama,2009-01-20T22:23:10Z,Opinion,photo
 68,obama,2009-01-20T22:23:10Z,Opinion,montage
-68,obama,2009-01-20T22:23:10Z,Opinion,www
-68,obama,2009-01-20T22:23:10Z,Opinion,cnn
+68,obama,2009-01-20T22:23:10Z,Opinion,www.cnn.com
 68,obama,2009-01-20T22:23:10Z,Opinion,themoment
 68,obama,2009-01-20T22:23:10Z,Opinion,cool
 68,obama,2009-01-20T22:23:10Z,Opinion,check
@@ -23415,16 +23411,14 @@ id,president,web_publication_date,pillar_name,word
 68,obama,2009-01-20T22:23:10Z,Opinion,change
 68,obama,2009-01-20T22:23:10Z,Opinion,begun
 69,obama,2009-01-20T20:26:22Z,News,change
-69,obama,2009-01-20T20:26:22Z,News,whitehouse
-69,obama,2009-01-20T20:26:22Z,News,gov
+69,obama,2009-01-20T20:26:22Z,News,whitehouse.gov
 69,obama,2009-01-20T20:26:22Z,News,change
 69,obama,2009-01-20T20:26:22Z,News,president's
 69,obama,2009-01-20T20:26:22Z,News,site
 69,obama,2009-01-20T20:26:22Z,News,kicks
 69,obama,2009-01-20T20:26:22Z,News,blog
 69,obama,2009-01-20T20:26:22Z,News,noticed
-69,obama,2009-01-20T20:26:22Z,News,whitehouse
-69,obama,2009-01-20T20:26:22Z,News,gov
+69,obama,2009-01-20T20:26:22Z,News,whitehouse.gov
 69,obama,2009-01-20T20:26:22Z,News,site
 69,obama,2009-01-20T20:26:22Z,News,management
 69,obama,2009-01-20T20:26:22Z,News,blog
@@ -23447,8 +23441,7 @@ id,president,web_publication_date,pillar_name,word
 69,obama,2009-01-20T20:26:22Z,News,role
 69,obama,2009-01-20T20:26:22Z,News,significant
 69,obama,2009-01-20T20:26:22Z,News,addition
-69,obama,2009-01-20T20:26:22Z,News,whitehouse
-69,obama,2009-01-20T20:26:22Z,News,gov
+69,obama,2009-01-20T20:26:22Z,News,whitehouse.gov
 69,obama,2009-01-20T20:26:22Z,News,reflects
 69,obama,2009-01-20T20:26:22Z,News,campaign
 69,obama,2009-01-20T20:26:22Z,News,promise
@@ -23466,8 +23459,7 @@ id,president,web_publication_date,pillar_name,word
 69,obama,2009-01-20T20:26:22Z,News,hear
 69,obama,2009-01-20T20:26:22Z,News,sort
 69,obama,2009-01-20T20:26:22Z,News,valuable
-69,obama,2009-01-20T20:26:22Z,News,whitehouse
-69,obama,2009-01-20T20:26:22Z,News,gov
+69,obama,2009-01-20T20:26:22Z,News,whitehouse.gov
 69,obama,2009-01-20T20:26:22Z,News,idea
 69,obama,2009-01-20T20:26:22Z,News,form
 69,obama,2009-01-20T20:26:22Z,News,transition
@@ -25476,9 +25468,8 @@ id,president,web_publication_date,pillar_name,word
 76,obama,2009-01-19T23:01:00Z,Opinion,bankrupt
 76,obama,2009-01-19T23:01:00Z,Opinion,financial
 76,obama,2009-01-19T23:01:00Z,Opinion,system
-76,obama,2009-01-19T23:01:00Z,Opinion,dan
-76,obama,2009-01-19T23:01:00Z,Opinion,roberts
-76,obama,2009-01-19T23:01:00Z,Opinion,theguardian
+76,obama,2009-01-19T23:01:00Z,Opinion,dan.roberts
+76,obama,2009-01-19T23:01:00Z,Opinion,theguardian.com
 77,obama,2009-01-20T07:00:01Z,Opinion,russia
 77,obama,2009-01-20T07:00:01Z,Opinion,reality
 77,obama,2009-01-20T07:00:01Z,Opinion,financial
@@ -26086,7 +26077,7 @@ id,president,web_publication_date,pillar_name,word
 78,obama,2009-01-19T23:01:00Z,News,bye
 78,obama,2009-01-19T23:01:00Z,News,bye
 78,obama,2009-01-19T23:01:00Z,News,diary
-78,obama,2009-01-19T23:01:00Z,News,theguardian
+78,obama,2009-01-19T23:01:00Z,News,theguardian.com
 79,obama,2009-01-20T20:11:42Z,News,calls
 79,obama,2009-01-20T20:11:42Z,News,nationalise
 79,obama,2009-01-20T20:11:42Z,News,rbs
@@ -30894,6 +30885,7 @@ id,president,web_publication_date,pillar_name,word
 88,trump,2017-01-20T04:56:34Z,News,statement
 88,trump,2017-01-20T04:56:34Z,News,russian
 88,trump,2017-01-20T04:56:34Z,News,hacking
+88,trump,2017-01-20T04:56:34Z,News,d.n.c
 88,trump,2017-01-20T04:56:34Z,News,knowledge
 88,trump,2017-01-20T04:56:34Z,News,read
 88,trump,2017-01-20T04:56:34Z,News,papers
@@ -40720,7 +40712,7 @@ id,president,web_publication_date,pillar_name,word
 112,trump,2017-01-20T19:53:00Z,News,emphasize
 112,trump,2017-01-20T19:53:00Z,News,incoming
 112,trump,2017-01-20T19:53:00Z,News,administration’s
-112,trump,2017-01-20T19:53:00Z,News,priorities
+112,trump,2017-01-20T19:53:00Z,News,priorities.just
 112,trump,2017-01-20T19:53:00Z,News,couple
 112,trump,2017-01-20T19:53:00Z,News,minutes
 112,trump,2017-01-20T19:53:00Z,News,trump
@@ -43338,8 +43330,7 @@ id,president,web_publication_date,pillar_name,word
 118,trump,2017-01-20T17:12:20Z,News,aaron
 118,trump,2017-01-20T17:12:20Z,News,banks
 118,trump,2017-01-20T17:12:20Z,News,bankrolled
-118,trump,2017-01-20T17:12:20Z,News,leave
-118,trump,2017-01-20T17:12:20Z,News,eu
+118,trump,2017-01-20T17:12:20Z,News,leave.eu
 118,trump,2017-01-20T17:12:20Z,News,campaign
 118,trump,2017-01-20T17:12:20Z,News,held
 118,trump,2017-01-20T17:12:20Z,News,party
@@ -47151,8 +47142,7 @@ id,president,web_publication_date,pillar_name,word
 129,trump,2017-01-20T09:00:28Z,News,insurance
 129,trump,2017-01-20T09:00:28Z,News,millionaire
 129,trump,2017-01-20T09:00:28Z,News,funded
-129,trump,2017-01-20T09:00:28Z,News,leave
-129,trump,2017-01-20T09:00:28Z,News,eu’s
+129,trump,2017-01-20T09:00:28Z,News,leave.eu’s
 129,trump,2017-01-20T09:00:28Z,News,campaign
 129,trump,2017-01-20T09:00:28Z,News,arron’s
 129,trump,2017-01-20T09:00:28Z,News,communications
@@ -51519,4 +51509,4 @@ id,president,web_publication_date,pillar_name,word
 137,trump,2017-01-20T12:00:06Z,News,justin
 137,trump,2017-01-20T12:00:06Z,News,myers
 137,trump,2017-01-20T12:00:06Z,News,blogs
-137,trump,2017-01-20T12:00:06Z,News,theguyliner
+137,trump,2017-01-20T12:00:06Z,News,theguyliner.com
