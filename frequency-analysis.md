@@ -35,10 +35,10 @@ articles_anti_join |>
 ```
 
 ``` output
-# A tibble: 12,332 × 2
+# A tibble: 12,328 × 2
    word             n
    <chr>        <int>
- 1 obama          512
+ 1 obama          513
  2 trump          479
  3 president      450
  4 people         337
@@ -48,7 +48,7 @@ articles_anti_join |>
  8 american       201
  9 time           189
 10 day            188
-# ℹ 12,322 more rows
+# ℹ 12,318 more rows
 ```
 
 The previous code chunk resulted in a list containing the most frequent words. The words are from articles about both presidents, and they are sorted based on frequency with the highest number on top.
@@ -67,7 +67,7 @@ articles_filtered |>
 ```
 
 ``` output
-# A tibble: 12,326 × 2
+# A tibble: 12,322 × 2
    word           n
    <chr>      <int>
  1 people       337
@@ -80,7 +80,7 @@ articles_filtered |>
  8 speech       183
  9 white        180
 10 washington   150
-# ℹ 12,316 more rows
+# ℹ 12,312 more rows
 ```
 The words deemed irrelevant are no longer on the list above.
 
@@ -93,7 +93,7 @@ articles_filtered |>
 ```
 
 ``` output
-# A tibble: 15,993 × 3
+# A tibble: 15,989 × 3
    president word         n
    <chr>     <chr>    <int>
  1 obama     bush       174
@@ -106,7 +106,7 @@ articles_filtered |>
  8 obama     american   116
  9 trump     america    114
 10 trump     it’s       108
-# ℹ 15,983 more rows
+# ℹ 15,979 more rows
 ```
 Keeping an overview of the words associated with each president can be a bit tricky. For instance, the word "people" is associated with both presidents. This is easy to see, as the two words are right next to each other. The two occurrences of the word America, however, are further apart, although this word is also associated with both presidents. A visualisation may solve this problem.
 
@@ -137,7 +137,7 @@ articles_filtered |>
 ```
 
 ``` output
-# A tibble: 12,326 × 3
+# A tibble: 12,322 × 3
    word     obama trump
    <chr>    <int> <int>
  1 bush       174    12
@@ -150,7 +150,7 @@ articles_filtered |>
  8 it’s        NA   108
  9 day        106    82
 10 donald       1   106
-# ℹ 12,316 more rows
+# ℹ 12,312 more rows
 ```
 
 
