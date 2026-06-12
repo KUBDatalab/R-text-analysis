@@ -26,7 +26,7 @@ exercises: 0
 
 
 ## Getting started
-When performing text analysis in R, the built-in functions in R are not sufficient. It is therefore necessary to install some additional packages. In this course we will be using the packages `tidyverse`, `tidytext` and `tm`.
+When performing text analysis in R, the built-in functions in R are not sufficient. It is therefore necessary to install some additional packages. In this course we will be using the packages `tidyverse` and `tidytext`.
 
 
 
@@ -35,11 +35,9 @@ When performing text analysis in R, the built-in functions in R are not sufficie
 ``` r
 install.packages("tidyverse")
 install.packages("tidytext")
-install.packages("tm")
 
 library(tidyverse)
 library(tidytext)
-library(tm)
 ```
 
 
@@ -49,7 +47,6 @@ If you would like to know more about the different packages, please click on the
 
 * [tidyverse](https://www.tidyverse.org/packages/){target="_blank"}
 * [tidytext](https://cran.r-project.org/web/packages/tidytext/vignettes/tidytext.html){target="_blank"}
-* [tm](https://cran.r-project.org/web/packages/tm/tm.pdf){target="_blank"}
 
 ::::::
 
@@ -58,26 +55,28 @@ Begin by downloading the dataset called `articles.csv`. Place the downloaded fil
 
 
 ``` r
-download.file("https://raw.githubusercontent.com/KUBDatalab/R-textmining_new/main/episodes/data/articles.csv", "data/articles.csv", mode = "wb")
+download.file("https://raw.githubusercontent.com/KUBDatalab/R-textmining_new/main/episodes/data/guardianArticles.csv", "data/guardianArticles.csv", mode = "wb")
 ```
 
 After downloading the data you need to load the data into R's memory using the function `read_csv()`.
 
 
 ``` r
-articles <- read_csv("data/articles.csv", na = c("NA", "NULL", ""))
+articles <- read_csv("data/guardianArticles.csv", na = c("NA", "NULL", ""))
 ```
 
 ## Data description
-The dataset contains newspaper articles from the Guardian newspaper. The harvested articles were published on the first inauguration day of US presidents Barack Obama and Donald Trump. Inclusion criteria were that the articles contained the name of the relevant president, the word "inauguration" and a publication dates 20th of January 2009 and 2017.
+The dataset contains newspaper articles from the Guardian newspaper. The harvested articles were published between June 2025 and May 2026 and contain the word "technology".
 
 The original dataset contained lots of variables considered irrelevant within the parameters of this course. The following variables were kept:
 
-* __id__ - a unique number identifying each article
-* __president__ - the president mentioned in the article
-* __text__ - the full text from the article
-* __web_publication_date__ - the date of publication
-* __pillar_name__ - the section in the newspaper
+* __id__ - unique number identifying each article
+* __date__ - month and publication year
+* __text__ - full text from the article
+* __section__ - Guardian news section
+* __region__ - production region
+* __author__ - name(s) of journalist(s)
+* __wordcount__ - number of words
 
 ::::::::::::::::::::::::::::::::::::::: discussion
 
@@ -96,15 +95,15 @@ head(articles)
 ```
 
 ``` output
-# A tibble: 6 × 5
-     id president text                          web_publication_date pillar_name
-  <dbl> <chr>     <chr>                         <dttm>               <chr>      
-1     1 obama     "Obama inauguration: We will… 2009-01-20 19:16:38  News       
-2     2 obama     "Obama from outer space Whet… 2009-01-20 22:00:00  Opinion    
-3     3 obama     "Obama inauguration: today's… 2009-01-20 10:17:27  News       
-4     4 obama     "Obama inauguration: Countdo… 2009-01-19 23:01:00  News       
-5     5 obama     "Inaugural address of Presid… 2009-01-20 16:07:44  News       
-6     6 obama     "Liveblogging the inaugurati… 2009-01-20 13:56:40  News       
+# A tibble: 6 × 7
+     id date    text                             section region author wordcount
+  <dbl> <chr>   <chr>                            <chr>   <chr>  <chr>      <dbl>
+1     1 2026-05 Britain’s biometrics watchdogs … News    UK     Jessi…      1328
+2     2 2026-01 TikTok will begin to roll out n… News    UK     Mark …       623
+3     3 2026-05 The parent company of Donald Tr… News    US     Edwar…       348
+4     4 2026-05 It is a familiar story. Extrava… Opinion UK     Edito…       585
+5     5 2026-04 Sonia Bompastor, the Chelsea he… Sport   UK     Tom G…       468
+6     6 2026-03 Transcription ends with an epil… Arts    UK     Sukhd…       917
 ```
 
 ``` r
@@ -112,15 +111,15 @@ tail(articles)
 ```
 
 ``` output
-# A tibble: 6 × 5
-     id president text                          web_publication_date pillar_name
-  <dbl> <chr>     <chr>                         <dttm>               <chr>      
-1   132 trump     Buy, George? World's largest… 2017-01-20 15:53:41  News       
-2   133 trump     Gove’s ‘snowflake’ tweet is … 2017-01-20 12:44:10  Opinion    
-3   134 trump     Monet, Renoir and a £44.2m M… 2017-01-20 04:00:22  News       
-4   135 trump     El Chapo is not a Robin Hood… 2017-01-20 17:09:54  News       
-5   136 trump     They call it fun, but the di… 2017-01-20 16:19:50  Opinion    
-6   137 trump     Totes annoying: words that s… 2017-01-20 12:00:06  News       
+# A tibble: 6 × 7
+     id date    text                             section region author wordcount
+  <dbl> <chr>   <chr>                            <chr>   <chr>  <chr>      <dbl>
+1  4964 2025-06 "This ends our live coverage of… News    US     Rober…     13133
+2  4965 2026-05 "The Guardian’s live coverage o… News    UK     Hayde…     25077
+3  4966 2025-07 "It’s time to wind down our liv… News    AUS    Daisy…     15261
+4  4967 2025-07 "Here’s Ewan Murray’s report an… Sport   UK     David…     14350
+5  4968 2025-09 "Keir Starmer implements a majo… News    UK     Nadee…     16769
+6  4969 2025-12 "We’ll draw our blog to a close… News    AUS    Franc…     24723
 ```
 
 
@@ -135,13 +134,15 @@ glimpse(articles)
 ```
 
 ``` output
-Rows: 137
-Columns: 5
-$ id                   <dbl> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15…
-$ president            <chr> "obama", "obama", "obama", "obama", "obama", "oba…
-$ text                 <chr> "Obama inauguration: We will remake America, vows…
-$ web_publication_date <dttm> 2009-01-20 19:16:38, 2009-01-20 22:00:00, 2009-0…
-$ pillar_name          <chr> "News", "Opinion", "News", "News", "News", "News"…
+Rows: 4,911
+Columns: 7
+$ id        <dbl> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 1…
+$ date      <chr> "2026-05", "2026-01", "2026-05", "2026-05", "2026-04", "2026…
+$ text      <chr> "Britain’s biometrics watchdogs have warned that national ov…
+$ section   <chr> "News", "News", "News", "Opinion", "Sport", "Arts", "Sport",…
+$ region    <chr> "UK", "UK", "US", "UK", "UK", "UK", "AUS", "US", "UK", "UK",…
+$ author    <chr> "Jessica Murray and Robert Booth", "Mark Sweney", "Edward He…
+$ wordcount <dbl> 1328, 623, 348, 585, 468, 917, 794, 915, 4213, 1304, 661, 64…
 ```
 ::::::::::::::::
 
@@ -153,8 +154,8 @@ names(articles)
 ```
 
 ``` output
-[1] "id"                   "president"            "text"                
-[4] "web_publication_date" "pillar_name"         
+[1] "id"        "date"      "text"      "section"   "region"    "author"   
+[7] "wordcount"
 ```
  
 :::::::::::::::: 
@@ -168,7 +169,7 @@ dim(articles)
 ```
 
 ``` output
-[1] 137   5
+[1] 4911    7
 ```
 
 ::::::::::::::::
