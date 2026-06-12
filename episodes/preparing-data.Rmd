@@ -16,7 +16,7 @@ exercises: 0
 ```{r biblioteker_og_read_csv, include = FALSE}
 library(tidyverse)
 library(tidytext)
-library(tm)
+
 articles <- read_csv("data/articles.csv", na = c("NA", "NULL", ""))
 ```
 
@@ -29,6 +29,7 @@ To tokenise a column, we use the functions `unnest_tokens()` from the `tidytext`
 ```{r articles_tidy_unnest_tokens}
 articles_tidy <- articles |> 
   unnest_tokens(word, text)
+articles_tidy
 ```
 
 :::: callout
@@ -112,6 +113,7 @@ In order to remove stopwords from `articles_tidy`, we have to use the `anti_join
 ```{r articles_anti_join}
 articles_anti_join <- articles_tidy |> 
   anti_join(stop_words, by = "word")
+articles_anti_join
 ```
 
 The `anti_join`-function removes the stopwords from the orginal dataset. This is illustrated in the figure below. The only part left after anti-joining is the dark grey area to the left.
