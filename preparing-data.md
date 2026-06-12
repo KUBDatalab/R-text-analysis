@@ -25,6 +25,24 @@ To tokenise a column, we use the functions `unnest_tokens()` from the `tidytext`
 ``` r
 articles_tidy <- articles |> 
   unnest_tokens(word, text)
+articles_tidy
+```
+
+``` output
+# A tibble: 118,269 × 5
+      id president web_publication_date pillar_name word        
+   <dbl> <chr>     <dttm>               <chr>       <chr>       
+ 1     1 obama     2009-01-20 19:16:38  News        obama       
+ 2     1 obama     2009-01-20 19:16:38  News        inauguration
+ 3     1 obama     2009-01-20 19:16:38  News        we          
+ 4     1 obama     2009-01-20 19:16:38  News        will        
+ 5     1 obama     2009-01-20 19:16:38  News        remake      
+ 6     1 obama     2009-01-20 19:16:38  News        america     
+ 7     1 obama     2009-01-20 19:16:38  News        vows        
+ 8     1 obama     2009-01-20 19:16:38  News        president   
+ 9     1 obama     2009-01-20 19:16:38  News        obama       
+10     1 obama     2009-01-20 19:16:38  News        america's   
+# ℹ 118,259 more rows
 ```
 
 :::: callout
@@ -152,6 +170,24 @@ In order to remove stopwords from `articles_tidy`, we have to use the `anti_join
 ``` r
 articles_anti_join <- articles_tidy |> 
   anti_join(stop_words, by = "word")
+articles_anti_join
+```
+
+``` output
+# A tibble: 51,511 × 5
+      id president web_publication_date pillar_name word        
+   <dbl> <chr>     <dttm>               <chr>       <chr>       
+ 1     1 obama     2009-01-20 19:16:38  News        obama       
+ 2     1 obama     2009-01-20 19:16:38  News        inauguration
+ 3     1 obama     2009-01-20 19:16:38  News        remake      
+ 4     1 obama     2009-01-20 19:16:38  News        america     
+ 5     1 obama     2009-01-20 19:16:38  News        vows        
+ 6     1 obama     2009-01-20 19:16:38  News        president   
+ 7     1 obama     2009-01-20 19:16:38  News        obama       
+ 8     1 obama     2009-01-20 19:16:38  News        america's   
+ 9     1 obama     2009-01-20 19:16:38  News        black       
+10     1 obama     2009-01-20 19:16:38  News        president   
+# ℹ 51,501 more rows
 ```
 
 The `anti_join`-function removes the stopwords from the orginal dataset. This is illustrated in the figure below. The only part left after anti-joining is the dark grey area to the left.
