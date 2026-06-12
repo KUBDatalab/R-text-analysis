@@ -28,23 +28,21 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ## Getting started
-When performing text analysis in R, the built-in functions in R are not sufficient. It is therefore necessary to install some additional packages. In this course we will be using the packages `tidyverse`, `tidytext` and `tm`.
+When performing text analysis in R, the built-in functions in R are not sufficient. It is therefore necessary to install some additional packages. In this course we will be using the packages `tidyverse` and `tidytext`.
 
 ```{r library, include = FALSE, message = F, warning = F}
 library(tidyverse)
 library(tidytext)
-library(tm)
+# library(tm)
 ```
 
 
 ```{r library_show, eval = FALSE,  message = FALSE, purl = FALSE}
 install.packages("tidyverse")
 install.packages("tidytext")
-install.packages("tm")
 
 library(tidyverse)
 library(tidytext)
-library(tm)
 ```
 
 
@@ -54,7 +52,6 @@ If you would like to know more about the different packages, please click on the
 
 * [tidyverse](https://www.tidyverse.org/packages/){target="_blank"}
 * [tidytext](https://cran.r-project.org/web/packages/tidytext/vignettes/tidytext.html){target="_blank"}
-* [tm](https://cran.r-project.org/web/packages/tm/tm.pdf){target="_blank"}
 
 ::::::
 
@@ -62,25 +59,27 @@ If you would like to know more about the different packages, please click on the
 Begin by downloading the dataset called `articles.csv`. Place the downloaded file in the data/ folder. You can do this directly from R by copying and pasting this into your console. (The console is the panel under your script).
 
 ```{r download-data, eval = FALSE}
-download.file("https://raw.githubusercontent.com/KUBDatalab/R-textmining_new/main/episodes/data/articles.csv", "data/articles.csv", mode = "wb")
+download.file("https://raw.githubusercontent.com/KUBDatalab/R-textmining_new/main/episodes/data/guardianArticles.csv", "data/guardianArticles.csv", mode = "wb")
 ```
 
 After downloading the data you need to load the data into R's memory using the function `read_csv()`.
 
 ```{r read_csv_articles, eval = TRUE,  message = FALSE, purl = FALSE, echo = TRUE}
-articles <- read_csv("data/articles.csv", na = c("NA", "NULL", ""))
+articles <- read_csv("data/guardianArticles.csv", na = c("NA", "NULL", ""))
 ```
 
 ## Data description
-The dataset contains newspaper articles from the Guardian newspaper. The harvested articles were published on the first inauguration day of US presidents Barack Obama and Donald Trump. Inclusion criteria were that the articles contained the name of the relevant president, the word "inauguration" and a publication dates 20th of January 2009 and 2017.
+The dataset contains newspaper articles from the Guardian newspaper. The harvested articles were published between June 2025 and May 2026 and contain the word "technology".
 
 The original dataset contained lots of variables considered irrelevant within the parameters of this course. The following variables were kept:
 
-* __id__ - a unique number identifying each article
-* __president__ - the president mentioned in the article
-* __text__ - the full text from the article
-* __web_publication_date__ - the date of publication
-* __pillar_name__ - the section in the newspaper
+* __id__ - unique number identifying each article
+* __date__ - month and publication year
+* __text__ - full text from the article
+* __section__ - Guardian news section
+* __region__ - production region
+* __author__ - name(s) of journalist(s)
+* __wordcount__ - number of words
 
 ::::::::::::::::::::::::::::::::::::::: discussion
 
