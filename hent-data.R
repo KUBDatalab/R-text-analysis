@@ -7,25 +7,44 @@ guardianapi::gu_api_key()
 
 #obama
 
-obama <- guardianapi::gu_content(query = "Obama", from_date = "2009-01-20", to_date = "2009-01-20")
+articles <- guardianapi::gu_content(query = "technology", from_date = "2025-06-01", to_date = "2026-05-31")
+
+articles |> group_by(production_office) |> count()
 
 
-obama %>% 
-  filter(!(type %in% c("gallery", "audio", "video"))) %>%
-  filter(!(section_id %in% c("tv-and-radio", 
-                             "film", 
-                             "football", 
-                             "stage", 
-                             "theguardian",
-                             "lifeandstyle", 
-                             "sport",
-                             "media",
-                             "travel",
-                             "music"))) %>% 
-    select(c(id, web_publication_date, pillar_name, headline, 
-             standfirst, body_text)) %>% 
-  mutate(id = row_number()) %>%
-  write_csv("episodes/data/obama.csv")  
+articlesTechnology <- articles %>% 
+  select(c(web_publication_date, pillar_name, byline, wordcount, body_text, production_office)) %>% 
+  rename(section = pillar_name) |> 
+  mutate(id = row_number(), .before = "web_publication_date") |> 
+  filter(!section == "NA" ) |> 
+  separate_wider_delim(web_publication_date, delim = " ", names = c("date", "time")) |> 
+  select(-time) |> 
+  separate_wider_delim(date, delim = "-", names = c("year", "month", "day")) |> 
+  select(-day) |> 
+  unite(date, year:month, sep='-') |> 
+  rename(region = production_office, text = body_text, author = byline) |> 
+  relocate(text, .after = date) |> 
+  relocate(region, .after = section)
+
+write_csv(articlesTechnology, "episodes/data/guardianArticles.csv")  
+
+articles_tokenized <- articlesTechnology %>% 
+  unnest_tokens(word, body_text) %>%
+  relocate(word)
+
+# tæller stopord og kan vise dem at der er en masse som er 'unødvendige'
+# skal fjernes - stopord
+articles_tokenized %>% count(word, sort = TRUE)
+
+articles_tokenized %>% 
+  group_by(section) %>% 
+  count(word, sort = TRUE) %>% 
+  top_n(10) %>% 
+  ggplot(aes(n, word, fill = section)) +
+  geom_col() +
+  facet_wrap(~section, scales = "free") +
+  scale_y_reordered() +
+  labs(x = "Word occurrences")
 
 
 
