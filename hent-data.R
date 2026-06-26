@@ -5,8 +5,6 @@ library(tidytext)
 # kør og giv den api-nøglen i console
 guardianapi::gu_api_key()
  
-#obama
- 
 articles <- guardianapi::gu_content(query = "technology", from_date = "2025-06-01", to_date = "2026-05-31")
  
 articles |> group_by(production_office) |> count()
@@ -40,11 +38,8 @@ articlesTechnology |> group_by(section) |> count()
 write_csv(articlesTechnology, "episodes/data/guardianArticles.csv")  
  
  
-articlesTechnology |>
-  sort(section)
- 
 articles_tokenized <- articlesTechnology %>%
-  unnest_tokens(word, body_text) %>%
+  unnest_tokens(word, text) %>%
   relocate(word)
  
 # tæller stopord og kan vise dem at der er en masse som er 'unødvendige'

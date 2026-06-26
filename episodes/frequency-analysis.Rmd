@@ -28,6 +28,10 @@ library(tm)
 articles_anti_join <- read_csv("data/articles_anti_join.csv", na = c("NA", "NULL", ""))
 ```
 
+```{r}
+articles_anti_join
+```
+
 ## Frequency analysis
 
 A word frequency is a relatively simple analysis. It measures how often words occur in a text. 
@@ -44,9 +48,7 @@ A closer look at the list may reveal that some words are irrelevant. Given that 
 
 ```{r filtered_frequency_count}
 articles_filtered <- articles_anti_join |> 
-  filter(!word %in% c("trump", "trump’s", 
-                      "obama", "obama's", 
-                      "inauguration", "president"))
+  filter(!word %in% c("it’s", "don’t"))
 
 articles_filtered |> 
   count(word, sort = TRUE)
@@ -57,9 +59,9 @@ Instead of a general list it may be more interesting to focus on the most freque
 
 ```{r count_pr_president}
 articles_filtered |> 
-  count(president, word, sort = TRUE)
+  count(section, word, sort = TRUE)
 ```
-Keeping an overview of the words associated with each president can be a bit tricky. For instance, the word "people" is associated with both presidents. This is easy to see, as the two words are right next to each other. The two occurrences of the word America, however, are further apart, although this word is also associated with both presidents. A visualisation may solve this problem.
+Keeping an overview of the words associated with each section can be a bit tricky. For instance, the word "people" is associated with both presidents. This is easy to see, as the two words are right next to each other. The two occurrences of the word America, however, are further apart, although this word is also associated with both presidents. A visualisation may solve this problem.
 
 
 ```{r top_ten_words_pr_president}
