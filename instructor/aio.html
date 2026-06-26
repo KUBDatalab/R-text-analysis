@@ -883,11 +883,12 @@ defines that the text should be split up by words. The second argument,
 <div id="tokenisation-1" class="callout-inner">
 <h3 class="callout-title">Tokenisation</h3>
 <div class="callout-content">
-<p>The result of the tokenisation is 118,269 rows. The reason is that
+<p>The result of the tokenisation is 2,405,300 rows. The reason is that
 the <code>text</code>-column has been replaced by a new column named
 <code>word</code>. This column contains all words found in all of the
 articles. The information from the remaining columns are kept. This
 makes is possible to determine which article each word belongs to.</p>
+<p>Note that we can only see part of the word column’s content.</p>
 </div>
 </div>
 </div>
@@ -1084,7 +1085,8 @@ running anti_join, only the dark grey part is left.</div>
 <code>anti_join</code>
 </h3>
 <div class="callout-content">
-<p>There are multiple <code>join</code>-functions in R.</p>
+<p>There are multiple <code>join</code>-functions in R. <a href="https://r4ds.hadley.nz/joins.html" target="_blank" class="external-link">Read
+more</a></p>
 </div>
 </div>
 </div>
@@ -1140,12 +1142,36 @@ any links that you are not going to use.
 </div>
 </div>
 </div>
+<div class="codewrapper sourceCode" id="cb1">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">articles_anti_join</span></span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code># A tibble: 1,118,028 × 7
+      id date    section region author                          wordcount word
+   &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;                               &lt;dbl&gt; &lt;chr&gt;
+ 1     1 2026-05 News    UK     Jessica Murray and Robert Booth      1328 brita…
+ 2     1 2026-05 News    UK     Jessica Murray and Robert Booth      1328 biome…
+ 3     1 2026-05 News    UK     Jessica Murray and Robert Booth      1328 watch…
+ 4     1 2026-05 News    UK     Jessica Murray and Robert Booth      1328 warned
+ 5     1 2026-05 News    UK     Jessica Murray and Robert Booth      1328 natio…
+ 6     1 2026-05 News    UK     Jessica Murray and Robert Booth      1328 overs…
+ 7     1 2026-05 News    UK     Jessica Murray and Robert Booth      1328 ai
+ 8     1 2026-05 News    UK     Jessica Murray and Robert Booth      1328 power…
+ 9     1 2026-05 News    UK     Jessica Murray and Robert Booth      1328 scann…
+10     1 2026-05 News    UK     Jessica Murray and Robert Booth      1328 catch
+# ℹ 1,118,018 more rows</code></pre>
+</div>
 <section><h2 class="section-heading" id="frequency-analysis">Frequency analysis<a class="anchor" aria-label="anchor" href="#frequency-analysis"></a>
 </h2>
 <hr class="half-width">
 <p>A word frequency is a relatively simple analysis. It measures how
 often words occur in a text.</p>
-<div class="codewrapper sourceCode" id="cb1">
+<div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -1177,14 +1203,12 @@ they are sorted based on frequency with the highest number on top.</p>
 Given that the articles in the dataset are about the two presidents’
 respective inaugurations, we consider the words below irrelevant for our
 analysis. Therefore, we make a new dataset without these words.</p>
-<div class="codewrapper sourceCode" id="cb3">
+<div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">articles_filtered</span> <span class="op">&lt;-</span> <span class="va">articles_anti_join</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu">filter</span><span class="op">(</span><span class="op">!</span><span class="va">word</span> <span class="op">%in%</span> <span class="fu">c</span><span class="op">(</span><span class="st">"trump"</span>, <span class="st">"trump’s"</span>, </span>
-<span>                      <span class="st">"obama"</span>, <span class="st">"obama's"</span>, </span>
-<span>                      <span class="st">"inauguration"</span>, <span class="st">"president"</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="fu">filter</span><span class="op">(</span><span class="op">!</span><span class="va">word</span> <span class="op">%in%</span> <span class="fu">c</span><span class="op">(</span><span class="st">"it’s"</span>, <span class="st">"don’t"</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">articles_filtered</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu">count</span><span class="op">(</span><span class="va">word</span>, sort <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre>
@@ -1192,46 +1216,57 @@ analysis. Therefore, we make a new dataset without these words.</p>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="output" tabindex="0"><code># A tibble: 68,894 × 2
+<pre class="output" tabindex="0"><code># A tibble: 68,897 × 2
    word           n
    &lt;chr&gt;      &lt;int&gt;
- 1 it’s        6584
- 2 ai          5778
- 3 people      4422
- 4 time        4277
- 5 technology  3946
- 6 world       2758
- 7 don’t       2131
- 8 day         1803
- 9 life        1694
-10 uk          1690
-# ℹ 68,884 more rows</code></pre>
+ 1 ai          5778
+ 2 people      4422
+ 3 time        4277
+ 4 technology  3946
+ 5 world       2758
+ 6 day         1803
+ 7 life        1694
+ 8 uk          1690
+ 9 that’s      1667
+10 government  1644
+# ℹ 68,887 more rows</code></pre>
 </div>
 <p>The words deemed irrelevant are no longer on the list above.</p>
 <p>Instead of a general list it may be more interesting to focus on the
 most frequent words belonging to articles about the two presidents
 respectively.</p>
-<div class="codewrapper sourceCode" id="cb5">
+<div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">articles_filtered</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu">count</span><span class="op">(</span><span class="va">president</span>, <span class="va">word</span>, sort <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre>
+<span>  <span class="fu">count</span><span class="op">(</span><span class="va">section</span>, <span class="va">word</span>, sort <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre>
 </div>
 <div class="codewrapper">
-<h3 class="code-label">ERROR<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="error" tabindex="0"><code>Error in `count()`:
-! Must group by variables found in `.data`.
-✖ Column `president` is not found.</code></pre>
+<pre class="output" tabindex="0"><code># A tibble: 138,065 × 3
+   section   word           n
+   &lt;chr&gt;     &lt;chr&gt;      &lt;int&gt;
+ 1 News      ai          3131
+ 2 News      technology  1993
+ 3 Sport     england     1371
+ 4 Sport     ball        1287
+ 5 Opinion   ai          1250
+ 6 Sport     1           1239
+ 7 News      people      1196
+ 8 Lifestyle time        1117
+ 9 Lifestyle people      1062
+10 Sport     time        1050
+# ℹ 138,055 more rows</code></pre>
 </div>
-<p>Keeping an overview of the words associated with each president can
-be a bit tricky. For instance, the word “people” is associated with both
+<p>Keeping an overview of the words associated with each section can be
+a bit tricky. For instance, the word “people” is associated with both
 presidents. This is easy to see, as the two words are right next to each
 other. The two occurrences of the word America, however, are further
 apart, although this word is also associated with both presidents. A
 visualisation may solve this problem.</p>
-<div class="codewrapper sourceCode" id="cb7">
+<div class="codewrapper sourceCode" id="cb9">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -1256,7 +1291,7 @@ words in total.</p>
 <p>Another interesting aspect to look at would be the most frequent
 words used in relation to each president. In this analysis the president
 is the guiding principle.</p>
-<div class="codewrapper sourceCode" id="cb9">
+<div class="codewrapper sourceCode" id="cb11">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -1274,7 +1309,7 @@ is the guiding principle.</p>
 ! Must group by variables found in `.data`.
 ✖ Column `president` is not found.</code></pre>
 </div>
-<div class="codewrapper sourceCode" id="cb11">
+<div class="codewrapper sourceCode" id="cb13">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -1301,7 +1336,7 @@ is the guiding principle.</p>
 want look at the words by <code>pillar_name</code> instead of by
 <code>president</code>, we simply replace <code>president</code> with
 <code>pillar_name</code> in the code.</p>
-<div class="codewrapper sourceCode" id="cb13">
+<div class="codewrapper sourceCode" id="cb15">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -1449,7 +1484,7 @@ We do this by performing an inner_join.</p>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="output" tabindex="0"><code># A tibble: 122,405 × 8
+<pre class="output" tabindex="0"><code># A tibble: 123,667 × 8
       id date    section region author                 wordcount word  sentiment
    &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;                      &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;
  1     1 2026-05 News    UK     Jessica Murray and Ro…      1328 warn… negative
@@ -1462,7 +1497,7 @@ We do this by performing an inner_join.</p>
  8     1 2026-05 News    UK     Jessica Murray and Ro…      1328 misu… negative
  9     1 2026-05 News    UK     Jessica Murray and Ro…      1328 over… negative
 10     1 2026-05 News    UK     Jessica Murray and Ro…      1328 brea… positive
-# ℹ 122,395 more rows</code></pre>
+# ℹ 123,657 more rows</code></pre>
 </div>
 <p>In R, <code>inner_join()</code> is commonly used to combine datasets
 based on a shared column. In this case it is the <code>word</code>
