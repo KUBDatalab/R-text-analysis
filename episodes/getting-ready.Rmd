@@ -33,16 +33,18 @@ When performing text analysis in R, the built-in functions in R are not sufficie
 ```{r library, include = FALSE, message = F, warning = F}
 library(tidyverse)
 library(tidytext)
-# library(tm)
+library(tm)
 ```
 
 
 ```{r library_show, eval = FALSE,  message = FALSE, purl = FALSE}
 install.packages("tidyverse")
 install.packages("tidytext")
+install.packages("tm")
 
 library(tidyverse)
 library(tidytext)
+library(tm)
 ```
 
 
@@ -52,6 +54,7 @@ If you would like to know more about the different packages, please click on the
 
 * [tidyverse](https://www.tidyverse.org/packages/){target="_blank"}
 * [tidytext](https://cran.r-project.org/web/packages/tidytext/vignettes/tidytext.html){target="_blank"}
+* [tm](https://cran.r-project.org/web/packages/tm/vignettes/tm.pdf){target="_blank"}
 
 ::::::
 
@@ -67,6 +70,14 @@ After downloading the data you need to load the data into R's memory using the f
 ```{r read_csv_articles, eval = TRUE,  message = FALSE, purl = FALSE, echo = TRUE}
 articles <- read_csv("data/guardianArticles.csv", na = c("NA", "NULL", ""))
 ```
+
+## Taking a first look at the dataset
+
+```{r view_dataset}
+articles
+```
+
+
 
 ## Data description
 The dataset contains newspaper articles from the Guardian newspaper. The harvested articles were published between June 2025 and May 2026 and contain the word "technology".
