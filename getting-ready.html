@@ -311,7 +311,7 @@
       </div>
     </nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Loading data</h1>
-        <p>Last updated on 2026-06-12 |
+        <p>Last updated on 2026-06-26 |
 
         <a href="https://github.com/KUBDatalab/R-text-analysis/edit/main/episodes/getting-ready.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -439,7 +439,7 @@ what they do.</p>
   How to show the first / last rows
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb4">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -454,11 +454,11 @@ what they do.</p>
      id date    text                             section region author wordcount
   &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;                            &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;      &lt;dbl&gt;
 1     1 2026-05 Britain’s biometrics watchdogs … News    UK     Jessi…      1328
-2     2 2026-01 TikTok will begin to roll out n… News    UK     Mark …       623
-3     3 2026-05 The parent company of Donald Tr… News    US     Edwar…       348
-4     4 2026-05 It is a familiar story. Extrava… Opinion UK     Edito…       585
-5     5 2026-04 Sonia Bompastor, the Chelsea he… Sport   UK     Tom G…       468
-6     6 2026-03 Transcription ends with an epil… Arts    UK     Sukhd…       917</code></pre>
+2     2 2026-02 Iran’s architecture of internet… News    UK     Aisha…       657
+3     3 2026-01 TikTok will begin to roll out n… News    UK     Mark …       623
+4     4 2026-05 The parent company of Donald Tr… News    US     Edwar…       348
+5     5 2026-05 It is a familiar story. Extrava… Opinion UK     Edito…       585
+6     6 2026-04 Sonia Bompastor, the Chelsea he… Sport   UK     Tom G…       468</code></pre>
 </div>
 <div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -472,12 +472,12 @@ what they do.</p>
 <pre class="output" tabindex="0"><code># A tibble: 6 × 7
      id date    text                             section region author wordcount
   &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;                            &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;      &lt;dbl&gt;
-1  4964 2025-06 "This ends our live coverage of… News    US     Rober…     13133
-2  4965 2026-05 "The Guardian’s live coverage o… News    UK     Hayde…     25077
-3  4966 2025-07 "It’s time to wind down our liv… News    AUS    Daisy…     15261
-4  4967 2025-07 "Here’s Ewan Murray’s report an… Sport   UK     David…     14350
-5  4968 2025-09 "Keir Starmer implements a majo… News    UK     Nadee…     16769
-6  4969 2025-12 "We’ll draw our blog to a close… News    AUS    Franc…     24723</code></pre>
+1  4970 2025-07 "[Where’s the game at?] Definit… Sport   UK     James…      8817
+2  4975 2025-06 "Tim Henman, who was disqualifi… Sport   UK     Katy …      7537
+3  4981 2025-06 "Ali Martin’s report will be wi… Sport   UK     Rob S…      8874
+4  4994 2025-06 "An epic tie-break to end an ep… Sport   UK     John …      9208
+5  5003 2025-11 "Don’t you just love Christmas … Lifest… UK     Hanna…     13325
+6  5018 2025-07 "Here’s Ewan Murray’s report an… Sport   UK     David…     14350</code></pre>
 </div>
 </div>
 </div>
@@ -490,7 +490,7 @@ what they do.</p>
   How to show information about the columns
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb8">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -501,15 +501,15 @@ what they do.</p>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="output" tabindex="0"><code>Rows: 4,911
+<pre class="output" tabindex="0"><code>Rows: 1,898
 Columns: 7
 $ id        &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 1…
-$ date      &lt;chr&gt; "2026-05", "2026-01", "2026-05", "2026-05", "2026-04", "2026…
+$ date      &lt;chr&gt; "2026-05", "2026-02", "2026-01", "2026-05", "2026-05", "2026…
 $ text      &lt;chr&gt; "Britain’s biometrics watchdogs have warned that national ov…
-$ section   &lt;chr&gt; "News", "News", "News", "Opinion", "Sport", "Arts", "Sport",…
-$ region    &lt;chr&gt; "UK", "UK", "US", "UK", "UK", "UK", "AUS", "US", "UK", "UK",…
-$ author    &lt;chr&gt; "Jessica Murray and Robert Booth", "Mark Sweney", "Edward He…
-$ wordcount &lt;dbl&gt; 1328, 623, 348, 585, 468, 917, 794, 915, 4213, 1304, 661, 64…</code></pre>
+$ section   &lt;chr&gt; "News", "News", "News", "News", "Opinion", "Sport", "Arts", …
+$ region    &lt;chr&gt; "UK", "UK", "UK", "US", "UK", "UK", "UK", "AUS", "US", "UK",…
+$ author    &lt;chr&gt; "Jessica Murray and Robert Booth", "Aisha Down", "Mark Swene…
+$ wordcount &lt;dbl&gt; 1328, 657, 623, 348, 585, 468, 917, 794, 915, 4213, 1304, 66…</code></pre>
 </div>
 </div>
 </div>
@@ -522,7 +522,7 @@ $ wordcount &lt;dbl&gt; 1328, 623, 348, 585, 468, 917, 794, 915, 4213, 1304, 661
   Get the names of the variables / columns
   </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb10">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -547,7 +547,7 @@ $ wordcount &lt;dbl&gt; 1328, 623, 348, 585, 468, 917, 794, 915, 4213, 1304, 661
   Get the dimension of the dataset (number of rows and coloumns)
   </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb12">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -558,7 +558,7 @@ $ wordcount &lt;dbl&gt; 1328, 623, 348, 585, 468, 917, 794, 915, 4213, 1304, 661
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="output" tabindex="0"><code>[1] 4911    7</code></pre>
+<pre class="output" tabindex="0"><code>[1] 1898    7</code></pre>
 </div>
 </div>
 </div>
@@ -641,8 +641,8 @@ any links that you are not going to use.
   "url": "https://KUBDatalab.github.io/R-text-analysis/getting-ready.html",
   "identifier": "https://KUBDatalab.github.io/R-text-analysis/getting-ready.html",
   "dateCreated": "2024-05-01",
-  "dateModified": "2026-06-12",
-  "datePublished": "2026-06-12"
+  "dateModified": "2026-06-26",
+  "datePublished": "2026-06-26"
 }
 
   </script><script>
