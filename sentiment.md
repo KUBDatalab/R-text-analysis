@@ -83,7 +83,7 @@ articles_bing
 ```
 
 ``` output
-# A tibble: 122,405 × 8
+# A tibble: 123,667 × 8
       id date    section region author                 wordcount word  sentiment
    <dbl> <chr>   <chr>   <chr>  <chr>                      <dbl> <chr> <chr>    
  1     1 2026-05 News    UK     Jessica Murray and Ro…      1328 warn… negative 
@@ -96,7 +96,7 @@ articles_bing
  8     1 2026-05 News    UK     Jessica Murray and Ro…      1328 misu… negative 
  9     1 2026-05 News    UK     Jessica Murray and Ro…      1328 over… negative 
 10     1 2026-05 News    UK     Jessica Murray and Ro…      1328 brea… positive 
-# ℹ 122,395 more rows
+# ℹ 123,657 more rows
 ```
 
 In R, `inner_join()` is commonly used to combine datasets based on a shared column. In this case it is the `word` column. `inner_join()` matches words from a text dataset, in this case `articles_filtered` with words in the Bing sentiment lexicon to determine whether they are positive or negative.
