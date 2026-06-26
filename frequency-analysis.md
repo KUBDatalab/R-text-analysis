@@ -24,27 +24,6 @@ exercises: 0
 
 
 
-``` r
-articles_anti_join
-```
-
-``` output
-# A tibble: 1,118,028 × 7
-      id date    section region author                          wordcount word  
-   <dbl> <chr>   <chr>   <chr>  <chr>                               <dbl> <chr> 
- 1     1 2026-05 News    UK     Jessica Murray and Robert Booth      1328 brita…
- 2     1 2026-05 News    UK     Jessica Murray and Robert Booth      1328 biome…
- 3     1 2026-05 News    UK     Jessica Murray and Robert Booth      1328 watch…
- 4     1 2026-05 News    UK     Jessica Murray and Robert Booth      1328 warned
- 5     1 2026-05 News    UK     Jessica Murray and Robert Booth      1328 natio…
- 6     1 2026-05 News    UK     Jessica Murray and Robert Booth      1328 overs…
- 7     1 2026-05 News    UK     Jessica Murray and Robert Booth      1328 ai    
- 8     1 2026-05 News    UK     Jessica Murray and Robert Booth      1328 power…
- 9     1 2026-05 News    UK     Jessica Murray and Robert Booth      1328 scann…
-10     1 2026-05 News    UK     Jessica Murray and Robert Booth      1328 catch 
-# ℹ 1,118,018 more rows
-```
-
 ## Frequency analysis
 
 A word frequency is a relatively simple analysis. It measures how often words occur in a text. 
@@ -134,18 +113,14 @@ Keeping an overview of the words associated with each section can be a bit trick
 
 ``` r
 articles_filtered |> 
-  count(president, word, sort = TRUE) |> 
-  group_by(president) |> 
+  count(section, word, sort = TRUE) |> 
+  group_by(section) |> 
   slice(1:10) |> 
-  ggplot(mapping = aes(x = n, y = word, colour = president, shape = president)) +
+  ggplot(mapping = aes(x = n, y = word, colour = section, shape = section)) +
   geom_point() 
 ```
 
-``` error
-Error in `count()`:
-! Must group by variables found in `.data`.
-✖ Column `president` is not found.
-```
+<img src="fig/frequency-analysis-rendered-top_ten_words_pr_president-1.png" alt="" style="display: block; margin: auto;" />
 The plot above shows the top-ten words associated with Obama and Trump respectively. If a word features on both presidents' top-ten list, it only occurs once in the plot. This is why the plot doesn't contain 20 words in total.
 
 Another interesting aspect to look at would be the most frequent words used in relation to each president. In this analysis the president is the guiding principle.
@@ -205,7 +180,9 @@ Error in `count()`:
 ```
 
 
-
+<!-- ```{r saving_data, include = FALSE}
+write_csv(articles_filtered, "episodes/data/articles_filtered.csv")
+``` -->
 
 
 ::::::::::::::::::::::::::::::::::::: keypoints 
