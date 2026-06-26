@@ -29,20 +29,20 @@ articles_tidy
 ```
 
 ``` output
-# A tibble: 118,269 × 5
-      id president web_publication_date pillar_name word        
-   <dbl> <chr>     <dttm>               <chr>       <chr>       
- 1     1 obama     2009-01-20 19:16:38  News        obama       
- 2     1 obama     2009-01-20 19:16:38  News        inauguration
- 3     1 obama     2009-01-20 19:16:38  News        we          
- 4     1 obama     2009-01-20 19:16:38  News        will        
- 5     1 obama     2009-01-20 19:16:38  News        remake      
- 6     1 obama     2009-01-20 19:16:38  News        america     
- 7     1 obama     2009-01-20 19:16:38  News        vows        
- 8     1 obama     2009-01-20 19:16:38  News        president   
- 9     1 obama     2009-01-20 19:16:38  News        obama       
-10     1 obama     2009-01-20 19:16:38  News        america's   
-# ℹ 118,259 more rows
+# A tibble: 2,405,300 × 7
+      id date    section region author                          wordcount word  
+   <dbl> <chr>   <chr>   <chr>  <chr>                               <dbl> <chr> 
+ 1     1 2026-05 News    UK     Jessica Murray and Robert Booth      1328 brita…
+ 2     1 2026-05 News    UK     Jessica Murray and Robert Booth      1328 biome…
+ 3     1 2026-05 News    UK     Jessica Murray and Robert Booth      1328 watch…
+ 4     1 2026-05 News    UK     Jessica Murray and Robert Booth      1328 have  
+ 5     1 2026-05 News    UK     Jessica Murray and Robert Booth      1328 warned
+ 6     1 2026-05 News    UK     Jessica Murray and Robert Booth      1328 that  
+ 7     1 2026-05 News    UK     Jessica Murray and Robert Booth      1328 natio…
+ 8     1 2026-05 News    UK     Jessica Murray and Robert Booth      1328 overs…
+ 9     1 2026-05 News    UK     Jessica Murray and Robert Booth      1328 of    
+10     1 2026-05 News    UK     Jessica Murray and Robert Booth      1328 ai    
+# ℹ 2,405,290 more rows
 ```
 
 :::: callout
@@ -174,20 +174,20 @@ articles_anti_join
 ```
 
 ``` output
-# A tibble: 51,511 × 5
-      id president web_publication_date pillar_name word        
-   <dbl> <chr>     <dttm>               <chr>       <chr>       
- 1     1 obama     2009-01-20 19:16:38  News        obama       
- 2     1 obama     2009-01-20 19:16:38  News        inauguration
- 3     1 obama     2009-01-20 19:16:38  News        remake      
- 4     1 obama     2009-01-20 19:16:38  News        america     
- 5     1 obama     2009-01-20 19:16:38  News        vows        
- 6     1 obama     2009-01-20 19:16:38  News        president   
- 7     1 obama     2009-01-20 19:16:38  News        obama       
- 8     1 obama     2009-01-20 19:16:38  News        america's   
- 9     1 obama     2009-01-20 19:16:38  News        black       
-10     1 obama     2009-01-20 19:16:38  News        president   
-# ℹ 51,501 more rows
+# A tibble: 1,118,028 × 7
+      id date    section region author                          wordcount word  
+   <dbl> <chr>   <chr>   <chr>  <chr>                               <dbl> <chr> 
+ 1     1 2026-05 News    UK     Jessica Murray and Robert Booth      1328 brita…
+ 2     1 2026-05 News    UK     Jessica Murray and Robert Booth      1328 biome…
+ 3     1 2026-05 News    UK     Jessica Murray and Robert Booth      1328 watch…
+ 4     1 2026-05 News    UK     Jessica Murray and Robert Booth      1328 warned
+ 5     1 2026-05 News    UK     Jessica Murray and Robert Booth      1328 natio…
+ 6     1 2026-05 News    UK     Jessica Murray and Robert Booth      1328 overs…
+ 7     1 2026-05 News    UK     Jessica Murray and Robert Booth      1328 ai    
+ 8     1 2026-05 News    UK     Jessica Murray and Robert Booth      1328 power…
+ 9     1 2026-05 News    UK     Jessica Murray and Robert Booth      1328 scann…
+10     1 2026-05 News    UK     Jessica Murray and Robert Booth      1328 catch 
+# ℹ 1,118,018 more rows
 ```
 
 The `anti_join`-function removes the stopwords from the orginal dataset. This is illustrated in the figure below. The only part left after anti-joining is the dark grey area to the left.

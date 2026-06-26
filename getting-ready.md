@@ -99,11 +99,11 @@ head(articles)
      id date    text                             section region author wordcount
   <dbl> <chr>   <chr>                            <chr>   <chr>  <chr>      <dbl>
 1     1 2026-05 Britain’s biometrics watchdogs … News    UK     Jessi…      1328
-2     2 2026-01 TikTok will begin to roll out n… News    UK     Mark …       623
-3     3 2026-05 The parent company of Donald Tr… News    US     Edwar…       348
-4     4 2026-05 It is a familiar story. Extrava… Opinion UK     Edito…       585
-5     5 2026-04 Sonia Bompastor, the Chelsea he… Sport   UK     Tom G…       468
-6     6 2026-03 Transcription ends with an epil… Arts    UK     Sukhd…       917
+2     2 2026-02 Iran’s architecture of internet… News    UK     Aisha…       657
+3     3 2026-01 TikTok will begin to roll out n… News    UK     Mark …       623
+4     4 2026-05 The parent company of Donald Tr… News    US     Edwar…       348
+5     5 2026-05 It is a familiar story. Extrava… Opinion UK     Edito…       585
+6     6 2026-04 Sonia Bompastor, the Chelsea he… Sport   UK     Tom G…       468
 ```
 
 ``` r
@@ -114,12 +114,12 @@ tail(articles)
 # A tibble: 6 × 7
      id date    text                             section region author wordcount
   <dbl> <chr>   <chr>                            <chr>   <chr>  <chr>      <dbl>
-1  4964 2025-06 "This ends our live coverage of… News    US     Rober…     13133
-2  4965 2026-05 "The Guardian’s live coverage o… News    UK     Hayde…     25077
-3  4966 2025-07 "It’s time to wind down our liv… News    AUS    Daisy…     15261
-4  4967 2025-07 "Here’s Ewan Murray’s report an… Sport   UK     David…     14350
-5  4968 2025-09 "Keir Starmer implements a majo… News    UK     Nadee…     16769
-6  4969 2025-12 "We’ll draw our blog to a close… News    AUS    Franc…     24723
+1  4970 2025-07 "[Where’s the game at?] Definit… Sport   UK     James…      8817
+2  4975 2025-06 "Tim Henman, who was disqualifi… Sport   UK     Katy …      7537
+3  4981 2025-06 "Ali Martin’s report will be wi… Sport   UK     Rob S…      8874
+4  4994 2025-06 "An epic tie-break to end an ep… Sport   UK     John …      9208
+5  5003 2025-11 "Don’t you just love Christmas … Lifest… UK     Hanna…     13325
+6  5018 2025-07 "Here’s Ewan Murray’s report an… Sport   UK     David…     14350
 ```
 
 
@@ -134,15 +134,15 @@ glimpse(articles)
 ```
 
 ``` output
-Rows: 4,911
+Rows: 1,898
 Columns: 7
 $ id        <dbl> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 1…
-$ date      <chr> "2026-05", "2026-01", "2026-05", "2026-05", "2026-04", "2026…
+$ date      <chr> "2026-05", "2026-02", "2026-01", "2026-05", "2026-05", "2026…
 $ text      <chr> "Britain’s biometrics watchdogs have warned that national ov…
-$ section   <chr> "News", "News", "News", "Opinion", "Sport", "Arts", "Sport",…
-$ region    <chr> "UK", "UK", "US", "UK", "UK", "UK", "AUS", "US", "UK", "UK",…
-$ author    <chr> "Jessica Murray and Robert Booth", "Mark Sweney", "Edward He…
-$ wordcount <dbl> 1328, 623, 348, 585, 468, 917, 794, 915, 4213, 1304, 661, 64…
+$ section   <chr> "News", "News", "News", "News", "Opinion", "Sport", "Arts", …
+$ region    <chr> "UK", "UK", "UK", "US", "UK", "UK", "UK", "AUS", "US", "UK",…
+$ author    <chr> "Jessica Murray and Robert Booth", "Aisha Down", "Mark Swene…
+$ wordcount <dbl> 1328, 657, 623, 348, 585, 468, 917, 794, 915, 4213, 1304, 66…
 ```
 ::::::::::::::::
 
@@ -169,7 +169,7 @@ dim(articles)
 ```
 
 ``` output
-[1] 4911    7
+[1] 1898    7
 ```
 
 ::::::::::::::::

@@ -83,20 +83,20 @@ articles_bing
 ```
 
 ``` output
-# A tibble: 6,159 × 6
-      id president web_publication_date pillar_name word          sentiment
-   <dbl> <chr>     <dttm>               <chr>       <chr>         <chr>    
- 1     1 obama     2009-01-20 19:16:38  News        promises      positive 
- 2     1 obama     2009-01-20 19:16:38  News        promise       positive 
- 3     1 obama     2009-01-20 19:16:38  News        dust          negative 
- 4     1 obama     2009-01-20 19:16:38  News        cold          negative 
- 5     1 obama     2009-01-20 19:16:38  News        dawn          positive 
- 6     1 obama     2009-01-20 19:16:38  News        celebrate     positive 
- 7     1 obama     2009-01-20 19:16:38  News        inspirational positive 
- 8     1 obama     2009-01-20 19:16:38  News        failed        negative 
- 9     1 obama     2009-01-20 19:16:38  News        resound       positive 
-10     1 obama     2009-01-20 19:16:38  News        attacks       negative 
-# ℹ 6,149 more rows
+# A tibble: 122,405 × 8
+      id date    section region author                 wordcount word  sentiment
+   <dbl> <chr>   <chr>   <chr>  <chr>                      <dbl> <chr> <chr>    
+ 1     1 2026-05 News    UK     Jessica Murray and Ro…      1328 warn… negative 
+ 2     1 2026-05 News    UK     Jessica Murray and Ro…      1328 over… negative 
+ 3     1 2026-05 News    UK     Jessica Murray and Ro…      1328 lagg… negative 
+ 4     1 2026-05 News    UK     Jessica Murray and Ro…      1328 rapid positive 
+ 5     1 2026-05 News    UK     Jessica Murray and Ro…      1328 slow  negative 
+ 6     1 2026-05 News    UK     Jessica Murray and Ro…      1328 warn… negative 
+ 7     1 2026-05 News    UK     Jessica Murray and Ro…      1328 effe… positive 
+ 8     1 2026-05 News    UK     Jessica Murray and Ro…      1328 misu… negative 
+ 9     1 2026-05 News    UK     Jessica Murray and Ro…      1328 over… negative 
+10     1 2026-05 News    UK     Jessica Murray and Ro…      1328 brea… positive 
+# ℹ 122,395 more rows
 ```
 
 In R, `inner_join()` is commonly used to combine datasets based on a shared column. In this case it is the `word` column. `inner_join()` matches words from a text dataset, in this case `articles_filtered` with words in the Bing sentiment lexicon to determine whether they are positive or negative.
@@ -112,12 +112,10 @@ articles_bing |>
             difference = positive - negative) 
 ```
 
-``` output
-# A tibble: 2 × 4
-  president positive negative difference
-  <chr>        <int>    <int>      <int>
-1 obama         1499     1800       -301
-2 trump         1160     1700       -540
+``` error
+Error in `group_by()`:
+! Must group by variables found in `.data`.
+✖ Column `president` is not found.
 ```
 This shows that more positive than negative words are associated with both presidents. It also shows that Trump is the president with the highest number of associated negative words.
 
@@ -186,12 +184,10 @@ articles_afinn |>
   summarise(sentiment = sum(value))
 ```
 
-``` output
-# A tibble: 2 × 2
-  president sentiment
-  <chr>         <dbl>
-1 obama           224
-2 trump          -630
+``` error
+Error in `group_by()`:
+! Must group by variables found in `.data`.
+✖ Column `president` is not found.
 ```
 
 
@@ -206,16 +202,11 @@ articles_afinn |>
   geom_col(position = "dodge")
 ```
 
-``` output
-`summarise()` has regrouped the output.
-ℹ Summaries were computed grouped by president and value.
-ℹ Output is grouped by president.
-ℹ Use `summarise(.groups = "drop_last")` to silence this message.
-ℹ Use `summarise(.by = c(president, value))` for per-operation grouping
-  (`?dplyr::dplyr_by`) instead.
+``` error
+Error in `group_by()`:
+! Must group by variables found in `.data`.
+✖ Column `president` is not found.
 ```
-
-<img src="fig/sentiment-rendered-afinn_president_value_geom_col-1.png" alt="" style="display: block; margin: auto;" />
 
 
 ``` r
@@ -233,7 +224,11 @@ articles_afinn |>
        y = NULL)
 ```
 
-<img src="fig/sentiment-rendered-articles_afinn_ggplot_word_president-1.png" alt="" style="display: block; margin: auto;" />
+``` error
+Error in `count()`:
+! Must group by variables found in `.data`.
+✖ Column `president` is not found.
+```
 
 
 

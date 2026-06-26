@@ -35,20 +35,20 @@ articles_anti_join |>
 ```
 
 ``` output
-# A tibble: 12,332 × 2
-   word             n
-   <chr>        <int>
- 1 obama          512
- 2 trump          479
- 3 president      450
- 4 people         337
- 5 inauguration   249
- 6 america        237
- 7 world          212
- 8 american       201
- 9 time           189
-10 day            188
-# ℹ 12,322 more rows
+# A tibble: 68,899 × 2
+   word           n
+   <chr>      <int>
+ 1 it’s        6584
+ 2 ai          5778
+ 3 people      4422
+ 4 time        4277
+ 5 technology  3946
+ 6 world       2758
+ 7 don’t       2131
+ 8 day         1803
+ 9 life        1694
+10 uk          1690
+# ℹ 68,889 more rows
 ```
 
 The previous code chunk resulted in a list containing the most frequent words. The words are from articles about both presidents, and they are sorted based on frequency with the highest number on top.
@@ -67,20 +67,20 @@ articles_filtered |>
 ```
 
 ``` output
-# A tibble: 12,326 × 2
+# A tibble: 68,894 × 2
    word           n
    <chr>      <int>
- 1 people       337
- 2 america      237
- 3 world        212
- 4 american     201
- 5 time         189
- 6 day          188
- 7 bush         186
- 8 speech       183
- 9 white        180
-10 washington   150
-# ℹ 12,316 more rows
+ 1 it’s        6584
+ 2 ai          5778
+ 3 people      4422
+ 4 time        4277
+ 5 technology  3946
+ 6 world       2758
+ 7 don’t       2131
+ 8 day         1803
+ 9 life        1694
+10 uk          1690
+# ℹ 68,884 more rows
 ```
 The words deemed irrelevant are no longer on the list above.
 
@@ -92,21 +92,10 @@ articles_filtered |>
   count(president, word, sort = TRUE)
 ```
 
-``` output
-# A tibble: 15,993 × 3
-   president word         n
-   <chr>     <chr>    <int>
- 1 obama     bush       174
- 2 obama     people     170
- 3 trump     people     167
- 4 obama     america    123
- 5 obama     speech     121
- 6 obama     world      120
- 7 obama     time       119
- 8 obama     american   116
- 9 trump     america    114
-10 trump     it’s       108
-# ℹ 15,983 more rows
+``` error
+Error in `count()`:
+! Must group by variables found in `.data`.
+✖ Column `president` is not found.
 ```
 Keeping an overview of the words associated with each president can be a bit tricky. For instance, the word "people" is associated with both presidents. This is easy to see, as the two words are right next to each other. The two occurrences of the word America, however, are further apart, although this word is also associated with both presidents. A visualisation may solve this problem.
 
@@ -121,7 +110,11 @@ articles_filtered |>
   geom_point() 
 ```
 
-<img src="fig/frequency-analysis-rendered-top_ten_words_pr_president-1.png" alt="" style="display: block; margin: auto;" />
+``` error
+Error in `count()`:
+! Must group by variables found in `.data`.
+✖ Column `president` is not found.
+```
 The plot above shows the top-ten words associated with Obama and Trump respectively. If a word features on both presidents' top-ten list, it only occurs once in the plot. This is why the plot doesn't contain 20 words in total.
 
 Another interesting aspect to look at would be the most frequent words used in relation to each president. In this analysis the president is the guiding principle.
@@ -136,21 +129,10 @@ articles_filtered |>
   )
 ```
 
-``` output
-# A tibble: 12,326 × 3
-   word     obama trump
-   <chr>    <int> <int>
- 1 bush       174    12
- 2 people     170   167
- 3 america    123   114
- 4 speech     121    62
- 5 world      120    92
- 6 time       119    70
- 7 american   116    85
- 8 it’s        NA   108
- 9 day        106    82
-10 donald       1   106
-# ℹ 12,316 more rows
+``` error
+Error in `count()`:
+! Must group by variables found in `.data`.
+✖ Column `president` is not found.
 ```
 
 
@@ -168,11 +150,11 @@ articles_filtered |>
   labs(x = "word occurrences")
 ```
 
-``` output
-Selecting by n
+``` error
+Error in `group_by()`:
+! Must group by variables found in `.data`.
+✖ Column `president` is not found.
 ```
-
-<img src="fig/frequency-analysis-rendered-top_ten_visusalised-1.png" alt="" style="display: block; margin: auto;" />
 The analyses just made can easily be adjusted. For instance, if we want look at the words by `pillar_name` instead of by `president`, we simply replace `president` with `pillar_name` in the code.
 
 
@@ -185,7 +167,11 @@ articles_filtered |>
   geom_point() 
 ```
 
-<img src="fig/frequency-analysis-rendered-vis_per_pillar-1.png" alt="" style="display: block; margin: auto;" />
+``` error
+Error in `count()`:
+! Must group by variables found in `.data`.
+✖ Column `pillar_name` is not found.
+```
 
 
 
