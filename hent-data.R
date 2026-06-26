@@ -38,74 +38,74 @@ articlesTechnology |> group_by(section) |> count()
 write_csv(articlesTechnology, "episodes/data/guardianArticles.csv")  
  
  
-articles_tokenized <- articlesTechnology %>%
-  unnest_tokens(word, text) %>%
-  relocate(word)
+# articles_tokenized <- articlesTechnology %>%
+#   unnest_tokens(word, text) %>%
+#   relocate(word)
  
-# tæller stopord og kan vise dem at der er en masse som er 'unødvendige'
-# skal fjernes - stopord
-articles_tokenized %>% count(word, sort = TRUE)
+# # tæller stopord og kan vise dem at der er en masse som er 'unødvendige'
+# # skal fjernes - stopord
+# articles_tokenized %>% count(word, sort = TRUE)
  
-articles_tokenized %>%
-  group_by(section) %>%
-  count(word, sort = TRUE) %>%
-  top_n(10) %>%
-  ggplot(aes(n, word, fill = section)) +
-  geom_col() +
-  facet_wrap(~section, scales = "free") +
-  scale_y_reordered() +
-  labs(x = "Word occurrences")
- 
- 
- 
-#trump
- 
-trump <- guardianapi::gu_content(query = "Trump", from_date = "2017-01-20", to_date = "2017-01-20")
- 
-trump %>%
-  filter(!(type %in% c("gallery", "audio", "video", "liveblog"))) %>%
-  filter(!(section_id %in% c("tv-and-radio",
-                             "film",
-                             "football",
-                             "stage",
-                             "theguardian",
-                             "lifeandstyle",
-                             "sport",
-                             "media",
-                             "travel",
-                             "music",
-                             "artanddesign",
-                             "books",
-                             "fashion"))) %>%
-   select(c(id, web_publication_date, pillar_name, headline,
-   standfirst, body_text)) %>%
-  mutate(id = row_number()) %>%
-  write_csv("episodes/data/trump.csv")
- 
-# read in files -----------------------------------------------------------
- 
-trumpOrg <- read_csv("episodes/data/trump.csv")
-obamaOrg <- read_csv("episodes/data/obama.csv")
+# articles_tokenized %>%
+#   group_by(section) %>%
+#   count(word, sort = TRUE) %>%
+#   top_n(10) %>%
+#   ggplot(aes(n, word, fill = section)) +
+#   geom_col() +
+#   facet_wrap(~section, scales = "free") +
+#   scale_y_reordered() +
+#   labs(x = "Word occurrences")
  
  
-# tilrette datasæt --------------------------------------------------------
  
-trump <- trumpOrg %>%
-  mutate(president = "trump", .after = id)
+# #trump
  
-obama <- obamaOrg %>%
-  mutate(president = "obama", .after = id)
+# trump <- guardianapi::gu_content(query = "Trump", from_date = "2017-01-20", to_date = "2017-01-20")
  
-obamaTrump <- obama %>%
-  rbind(trump) %>%
-  mutate(id = row_number()) %>%
-  mutate(standfirst = str_replace_na(standfirst, replacement = "")) %>%
-  mutate(text = str_c(headline, standfirst, body_text, sep = " "), .after = president) %>%
-  select(-c(headline, standfirst, body_text))
+# trump %>%
+#   filter(!(type %in% c("gallery", "audio", "video", "liveblog"))) %>%
+#   filter(!(section_id %in% c("tv-and-radio",
+#                              "film",
+#                              "football",
+#                              "stage",
+#                              "theguardian",
+#                              "lifeandstyle",
+#                              "sport",
+#                              "media",
+#                              "travel",
+#                              "music",
+#                              "artanddesign",
+#                              "books",
+#                              "fashion"))) %>%
+#    select(c(id, web_publication_date, pillar_name, headline,
+#    standfirst, body_text)) %>%
+#   mutate(id = row_number()) %>%
+#   write_csv("episodes/data/trump.csv")
  
-write_csv(obamaTrump, "episodes/data/obamaTrump.csv")
+# # read in files -----------------------------------------------------------
  
-articles <- read_csv("episodes/data/obamaTrump.csv")
+# trumpOrg <- read_csv("episodes/data/trump.csv")
+# obamaOrg <- read_csv("episodes/data/obama.csv")
  
-articles_tidy <- articles %>%
-  unnest_tokens(word, text)
+ 
+# # tilrette datasæt --------------------------------------------------------
+ 
+# trump <- trumpOrg %>%
+#   mutate(president = "trump", .after = id)
+ 
+# obama <- obamaOrg %>%
+#   mutate(president = "obama", .after = id)
+ 
+# obamaTrump <- obama %>%
+#   rbind(trump) %>%
+#   mutate(id = row_number()) %>%
+#   mutate(standfirst = str_replace_na(standfirst, replacement = "")) %>%
+#   mutate(text = str_c(headline, standfirst, body_text, sep = " "), .after = president) %>%
+#   select(-c(headline, standfirst, body_text))
+ 
+# write_csv(obamaTrump, "episodes/data/obamaTrump.csv")
+ 
+# articles <- read_csv("episodes/data/obamaTrump.csv")
+ 
+# articles_tidy <- articles %>%
+#   unnest_tokens(word, text)

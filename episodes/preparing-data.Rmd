@@ -132,9 +132,9 @@ There are multiple `join`-functions in R. [Read more](https://r4ds.hadley.nz/joi
 :::
 
 
-```{r write_csv, include = FALSE}
+<!-- ```{r write_csv, include = FALSE}
 write_csv(articles_anti_join, "data/articles_anti_join.csv")
-```
+``` -->
 
 ::: keypoints
 -   Know how to prepare text for analysis
