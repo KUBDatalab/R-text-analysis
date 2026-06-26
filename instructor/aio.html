@@ -945,7 +945,7 @@ the stopwords list.</p>
   Add stopwords
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>First, create a tibble with the word you wish to add to the stopwords
 list</p>
@@ -998,7 +998,7 @@ the new words added.</p>
   Remove stopwords
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>First, create a vector with the word(s) you wish to remove from the
 stopwords list.</p>
@@ -1090,6 +1090,9 @@ more</a></p>
 </div>
 </div>
 </div>
+<!-- ```{r write_csv, include = FALSE}
+write_csv(articles_anti_join, "data/articles_anti_join.csv")
+``` -->
 <div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
@@ -1142,36 +1145,12 @@ any links that you are not going to use.
 </div>
 </div>
 </div>
-<div class="codewrapper sourceCode" id="cb1">
-<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">articles_anti_join</span></span></code></pre>
-</div>
-<div class="codewrapper">
-<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="output" tabindex="0"><code># A tibble: 1,118,028 × 7
-      id date    section region author                          wordcount word
-   &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;                               &lt;dbl&gt; &lt;chr&gt;
- 1     1 2026-05 News    UK     Jessica Murray and Robert Booth      1328 brita…
- 2     1 2026-05 News    UK     Jessica Murray and Robert Booth      1328 biome…
- 3     1 2026-05 News    UK     Jessica Murray and Robert Booth      1328 watch…
- 4     1 2026-05 News    UK     Jessica Murray and Robert Booth      1328 warned
- 5     1 2026-05 News    UK     Jessica Murray and Robert Booth      1328 natio…
- 6     1 2026-05 News    UK     Jessica Murray and Robert Booth      1328 overs…
- 7     1 2026-05 News    UK     Jessica Murray and Robert Booth      1328 ai
- 8     1 2026-05 News    UK     Jessica Murray and Robert Booth      1328 power…
- 9     1 2026-05 News    UK     Jessica Murray and Robert Booth      1328 scann…
-10     1 2026-05 News    UK     Jessica Murray and Robert Booth      1328 catch
-# ℹ 1,118,018 more rows</code></pre>
-</div>
 <section><h2 class="section-heading" id="frequency-analysis">Frequency analysis<a class="anchor" aria-label="anchor" href="#frequency-analysis"></a>
 </h2>
 <hr class="half-width">
 <p>A word frequency is a relatively simple analysis. It measures how
 often words occur in a text.</p>
-<div class="codewrapper sourceCode" id="cb3">
+<div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -1203,7 +1182,7 @@ they are sorted based on frequency with the highest number on top.</p>
 Given that the articles in the dataset are about the two presidents’
 respective inaugurations, we consider the words below irrelevant for our
 analysis. Therefore, we make a new dataset without these words.</p>
-<div class="codewrapper sourceCode" id="cb5">
+<div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -1235,7 +1214,7 @@ analysis. Therefore, we make a new dataset without these words.</p>
 <p>Instead of a general list it may be more interesting to focus on the
 most frequent words belonging to articles about the two presidents
 respectively.</p>
-<div class="codewrapper sourceCode" id="cb7">
+<div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -1266,32 +1245,26 @@ presidents. This is easy to see, as the two words are right next to each
 other. The two occurrences of the word America, however, are further
 apart, although this word is also associated with both presidents. A
 visualisation may solve this problem.</p>
-<div class="codewrapper sourceCode" id="cb9">
+<div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">articles_filtered</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu">count</span><span class="op">(</span><span class="va">president</span>, <span class="va">word</span>, sort <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu">group_by</span><span class="op">(</span><span class="va">president</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">count</span><span class="op">(</span><span class="va">section</span>, <span class="va">word</span>, sort <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">group_by</span><span class="op">(</span><span class="va">section</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu">slice</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu">ggplot</span><span class="op">(</span>mapping <span class="op">=</span> <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">n</span>, y <span class="op">=</span> <span class="va">word</span>, colour <span class="op">=</span> <span class="va">president</span>, shape <span class="op">=</span> <span class="va">president</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">ggplot</span><span class="op">(</span>mapping <span class="op">=</span> <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">n</span>, y <span class="op">=</span> <span class="va">word</span>, colour <span class="op">=</span> <span class="va">section</span>, shape <span class="op">=</span> <span class="va">section</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span> </span></code></pre>
 </div>
-<div class="codewrapper">
-<h3 class="code-label">ERROR<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="error" tabindex="0"><code>Error in `count()`:
-! Must group by variables found in `.data`.
-✖ Column `president` is not found.</code></pre>
-</div>
-<p>The plot above shows the top-ten words associated with Obama and
-Trump respectively. If a word features on both presidents’ top-ten list,
-it only occurs once in the plot. This is why the plot doesn’t contain 20
+<p><img src="../fig/frequency-analysis-rendered-top_ten_words_pr_president-1.png" alt="" style="display: block; margin: auto;" class="figure">
+The plot above shows the top-ten words associated with Obama and Trump
+respectively. If a word features on both presidents’ top-ten list, it
+only occurs once in the plot. This is why the plot doesn’t contain 20
 words in total.</p>
 <p>Another interesting aspect to look at would be the most frequent
 words used in relation to each president. In this analysis the president
 is the guiding principle.</p>
-<div class="codewrapper sourceCode" id="cb11">
+<div class="codewrapper sourceCode" id="cb8">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -1309,7 +1282,7 @@ is the guiding principle.</p>
 ! Must group by variables found in `.data`.
 ✖ Column `president` is not found.</code></pre>
 </div>
-<div class="codewrapper sourceCode" id="cb13">
+<div class="codewrapper sourceCode" id="cb10">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -1336,7 +1309,7 @@ is the guiding principle.</p>
 want look at the words by <code>pillar_name</code> instead of by
 <code>president</code>, we simply replace <code>president</code> with
 <code>pillar_name</code> in the code.</p>
-<div class="codewrapper sourceCode" id="cb15">
+<div class="codewrapper sourceCode" id="cb12">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -1354,6 +1327,9 @@ want look at the words by <code>pillar_name</code> instead of by
 ! Must group by variables found in `.data`.
 ✖ Column `pillar_name` is not found.</code></pre>
 </div>
+<!-- ```{r saving_data, include = FALSE}
+write_csv(articles_filtered, "episodes/data/articles_filtered.csv")
+``` -->
 <div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
@@ -1575,7 +1551,7 @@ with AFINN, it looks different.</p>
 <button class="accordion-button instructor-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInstructor1" aria-expanded="false" aria-controls="collapseInstructor1">
   <h3 class="accordion-header" id="headingInstructor1">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="edit-2"></i></div> Instructor Note </h3>
 </button>
-<div id="collapseInstructor1" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor1" aria-labelledby="headingInstructor1">
+<div id="collapseInstructor1" class="accordion-collapse collapse" aria-labelledby="headingInstructor1" data-bs-parent="#accordionInstructor1">
 <div class="accordion-body">
 <p>Bemærk at vi ikke på github kan downloade afinn. Derfor har vi
 downloaded afinn datasættet til en csv-fil pr 21. november 2025. Med
