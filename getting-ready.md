@@ -35,9 +35,11 @@ When performing text analysis in R, the built-in functions in R are not sufficie
 ``` r
 install.packages("tidyverse")
 install.packages("tidytext")
+install.packages("tm")
 
 library(tidyverse)
 library(tidytext)
+library(tm)
 ```
 
 
@@ -47,6 +49,7 @@ If you would like to know more about the different packages, please click on the
 
 * [tidyverse](https://www.tidyverse.org/packages/){target="_blank"}
 * [tidytext](https://cran.r-project.org/web/packages/tidytext/vignettes/tidytext.html){target="_blank"}
+* [tm](https://cran.r-project.org/web/packages/tm/vignettes/tm.pdf){target="_blank"}
 
 ::::::
 
@@ -64,6 +67,32 @@ After downloading the data you need to load the data into R's memory using the f
 ``` r
 articles <- read_csv("data/guardianArticles.csv", na = c("NA", "NULL", ""))
 ```
+
+## Taking a first look at the dataset
+
+
+``` r
+articles
+```
+
+``` output
+# A tibble: 1,898 × 7
+      id date    text                            section region author wordcount
+   <dbl> <chr>   <chr>                           <chr>   <chr>  <chr>      <dbl>
+ 1     1 2026-05 Britain’s biometrics watchdogs… News    UK     Jessi…      1328
+ 2     2 2026-02 Iran’s architecture of interne… News    UK     Aisha…       657
+ 3     3 2026-01 TikTok will begin to roll out … News    UK     Mark …       623
+ 4     4 2026-05 The parent company of Donald T… News    US     Edwar…       348
+ 5     5 2026-05 It is a familiar story. Extrav… Opinion UK     Edito…       585
+ 6     6 2026-04 Sonia Bompastor, the Chelsea h… Sport   UK     Tom G…       468
+ 7     7 2026-03 Transcription ends with an epi… Arts    UK     Sukhd…       917
+ 8     8 2026-04 When Greg Swann was appointed … Sport   AUS    Jonat…       794
+ 9     9 2026-02 Immigration and Customs Enforc… News    US     Harry…       915
+10    10 2026-01 Gathering Summer after summer,… News    UK     Rebec…      4213
+# ℹ 1,888 more rows
+```
+
+
 
 ## Data description
 The dataset contains newspaper articles from the Guardian newspaper. The harvested articles were published between June 2025 and May 2026 and contain the word "technology".
