@@ -439,14 +439,13 @@ respectively.</p>
 a bit tricky. For instance, the word “time” is associated with both
 lifestyle and sport. This is easy to see, as the two words are right
 next to each other, but what if the words are further apart.</p>
-<!-- ```{r top_ten_words_pr_president}
-articles_filtered |>
-  count(section, word, sort = TRUE) |>
-  group_by(section) |>
-  slice(1:5) |>
-  ggplot(mapping = aes(x = n, y = word, colour = section, shape = section)) +
-  geom_point()
-``` -->
+<!-- ```{r top_ten_words_pr_president} -->
+<p><!-- articles_filtered |>
+   count(section, word, sort = TRUE) |>
+   group_by(section) |>
+   slice(1:5) |>
+   ggplot(mapping = aes(x = n, y = word, colour = section, shape = section)) +
+   geom_point()  --> <!-- ``` --></p>
 <!-- The plot above shows the top-five words associated with the sections respectively. If a word features on multiple sections' top-five list, it only occurs once in the plot. This is why the plot doesn't contain 35 words in total. -->
 <p>Another way of looking at the words compared with eachother in
 section could be a table where we count the words used pr sections
@@ -481,9 +480,53 @@ principle.</p>
 10 game          25   953      31       144   386
 # ℹ 68,887 more rows</code></pre>
 </div>
+</section><div class="section level1">
+<h1 id="proportion">Proportion<a class="anchor" aria-label="anchor" href="#proportion"></a></h1>
+<p>It is well enough to count the words, but we do not know wether 3131
+word about AI in the news section is alot compared to 1250 word in the
+opnion section if we compare to the total amount of words used in each
+section.</p>
+<p>So let us have a look at how it looks if we make the same query, but
+with proportion insted of word count.</p>
+<div class="codewrapper sourceCode" id="cb9">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">articles_filtered</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">count</span><span class="op">(</span><span class="va">section</span>, <span class="va">word</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">group_by</span><span class="op">(</span><span class="va">section</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">mutate</span><span class="op">(</span>proportion <span class="op">=</span> <span class="va">n</span> <span class="op">/</span> <span class="fu">sum</span><span class="op">(</span><span class="va">n</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">ungroup</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">select</span><span class="op">(</span><span class="op">-</span><span class="va">n</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">arrange</span><span class="op">(</span><span class="fu">desc</span><span class="op">(</span><span class="va">proportion</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">pivot_wider</span><span class="op">(</span></span>
+<span>    names_from <span class="op">=</span> <span class="va">section</span>,</span>
+<span>    values_from <span class="op">=</span> <span class="va">proportion</span><span class="op">)</span></span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code># A tibble: 68,897 × 6
+   word            News   Opinion    Sport      Arts Lifestyle
+   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
+ 1 ai         0.0125    0.00809   0.000175 0.00450   0.00128
+ 2 technology 0.00795   0.00366   0.00143  0.00280   0.00170
+ 3 england    0.000423  0.000265  0.00668  0.000209  0.0000984
+ 4 ball       0.0000199 0.0000712 0.00627  0.0000891 0.000146
+ 5 1          0.000355  0.000259  0.00604  0.000325  0.000386
+ 6 people     0.00477   0.00571   0.00122  0.00459   0.00387
+ 7 time       0.00270   0.00357   0.00512  0.00393   0.00407
+ 8 2          0.000271  0.000162  0.00472  0.000530  0.000587
+ 9 game       0.0000997 0.000201  0.00465  0.00172   0.000525
+10 australia  0.00106   0.000912  0.00417  0.000401  0.000153
+# ℹ 68,887 more rows</code></pre>
+</div>
+</div>
+<div class="section level1">
+<h1 id="visualization">Visualization<a class="anchor" aria-label="anchor" href="#visualization"></a></h1>
 <p>We can also visualize word frequency. In the following we will
 visualize what the top 10 word used in each section is</p>
-<div class="codewrapper sourceCode" id="cb9">
+<div class="codewrapper sourceCode" id="cb11">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -523,7 +566,7 @@ articles. ````</p>
 </h3>
 <pre class="error" tabindex="0"><code>Error in parse(text = input): attempt to use zero-length variable name</code></pre>
 </div>
-<div class="codewrapper sourceCode" id="cb12">
+<div class="codewrapper sourceCode" id="cb14">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -563,7 +606,11 @@ articles. ````</p>
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use.
  -->
-</section></div> <!-- / div.lesson-content -->
+</div>
+
+
+
+      </div> <!-- / div.lesson-content -->
     </main><!-- / main#main-content.main-content --><nav class="bottom-pagination mx-md-4" aria-label="Previous and Next Chapter Bottom"><div class="d-block d-sm-block d-md-none">
         <a class="chapter-link" href="preparing-data.html"><i aria-hidden="true" class="small-arrow" data-feather="arrow-left"></i>Previous</a>
         <a class="chapter-link float-end" href="sentiment.html">Next<i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
