@@ -945,7 +945,7 @@ the stopwords list.</p>
   Add stopwords
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>First, create a tibble with the word you wish to add to the stopwords
 list</p>
@@ -998,7 +998,7 @@ the new words added.</p>
   Remove stopwords
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>First, create a vector with the word(s) you wish to remove from the
 stopwords list.</p>
@@ -1552,24 +1552,83 @@ words used in articles, per president.</p>
 </h3>
 <pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">articles_bing</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu">group_by</span><span class="op">(</span><span class="va">president</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">group_by</span><span class="op">(</span><span class="va">section</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu">summarise</span><span class="op">(</span>positive <span class="op">=</span> <span class="fu">sum</span><span class="op">(</span><span class="va">sentiment</span> <span class="op">==</span> <span class="st">"positive"</span><span class="op">)</span>,</span>
 <span>            negative <span class="op">=</span> <span class="fu">sum</span><span class="op">(</span><span class="va">sentiment</span> <span class="op">==</span> <span class="st">"negative"</span><span class="op">)</span>,</span>
 <span>            difference <span class="op">=</span> <span class="va">positive</span> <span class="op">-</span> <span class="va">negative</span><span class="op">)</span> </span></code></pre>
 </div>
 <div class="codewrapper">
-<h3 class="code-label">ERROR<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="error" tabindex="0"><code>Error in `group_by()`:
-! Must group by variables found in `.data`.
-✖ Column `president` is not found.</code></pre>
+<pre class="output" tabindex="0"><code># A tibble: 5 × 4
+  section   positive negative difference
+  &lt;chr&gt;        &lt;int&gt;    &lt;int&gt;      &lt;int&gt;
+1 Arts         11844    13555      -1711
+2 Lifestyle    18337    13504       4833
+3 News         11216    14220      -3004
+4 Opinion       8452    11419      -2967
+5 Sport        11350     9770       1580</code></pre>
 </div>
 <p>This shows that more positive than negative words are associated with
 both presidents. It also shows that Trump is the president with the
 highest number of associated negative words.</p>
+<div class="codewrapper sourceCode" id="cb10">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">articles_bing</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">group_by</span><span class="op">(</span><span class="va">section</span>, <span class="va">date</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">summarise</span><span class="op">(</span>positive <span class="op">=</span> <span class="fu">sum</span><span class="op">(</span><span class="va">sentiment</span> <span class="op">==</span> <span class="st">"positive"</span><span class="op">)</span>,</span>
+<span>            negative <span class="op">=</span> <span class="fu">sum</span><span class="op">(</span><span class="va">sentiment</span> <span class="op">==</span> <span class="st">"negative"</span><span class="op">)</span>,</span>
+<span>            difference <span class="op">=</span> <span class="va">positive</span> <span class="op">-</span> <span class="va">negative</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="co">#ungroup() |&gt; </span></span>
+<span>  <span class="fu">filter</span><span class="op">(</span><span class="va">section</span> <span class="op">%in%</span> <span class="fu">c</span><span class="op">(</span><span class="st">"Arts"</span>, <span class="st">"Sport"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">ggplot</span><span class="op">(</span>mapping <span class="op">=</span> <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">date</span>, y <span class="op">=</span> <span class="va">difference</span>, colour <span class="op">=</span> <span class="va">section</span>, group <span class="op">=</span> <span class="va">section</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">geom_line</span><span class="op">(</span><span class="op">)</span></span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>`summarise()` has regrouped the output.
+ℹ Summaries were computed grouped by section and date.
+ℹ Output is grouped by section.
+ℹ Use `summarise(.groups = "drop_last")` to silence this message.
+ℹ Use `summarise(.by = c(section, date))` for per-operation grouping
+  (`?dplyr::dplyr_by`) instead.</code></pre>
+</div>
+<figure><img src="../fig/sentiment-rendered-articles_bing_group_by_inner_join_graph-1.png" alt="" style="display: block; margin: auto;" class="figure mx-auto d-block"></figure><p>Looking at the graphs we can see that the wording in december in
+sports articles are quite negative compared to february. If we had a
+data set covering more years it would be interesting to see if this was
+a normal thing. For now it might be interesting to read the articles
+from december and februar and compare what they are writing about. So
+how do we get the articles</p>
+<div class="codewrapper sourceCode" id="cb12">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">interesting_articles</span> <span class="op">&lt;-</span> <span class="va">articles</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">filter</span><span class="op">(</span><span class="va">section</span> <span class="op">==</span> <span class="st">"Sport"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">filter</span><span class="op">(</span><span class="va">date</span> <span class="op">%in%</span> <span class="fu">c</span><span class="op">(</span><span class="st">"2025-12"</span>, <span class="st">"2026-02"</span><span class="op">)</span><span class="op">)</span></span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">ERROR<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="error" tabindex="0"><code>Error:
+! object 'articles' not found</code></pre>
+</div>
+<div class="codewrapper sourceCode" id="cb14">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">write_csv</span><span class="op">(</span><span class="va">interesting_articles</span>, <span class="st">"data_out/interesting_articles.csv"</span><span class="op">)</span></span></code></pre>
+</div>
+</section><div class="section level1">
+<h1 id="vi-skal-kigge-på-nedenstående">VI SKAL KIGGE PÅ NEDENSTÅENDE<a class="anchor" aria-label="anchor" href="#vi-skal-kigge-p%C3%A5-nedenst%C3%A5ende"></a>
+</h1>
 <p>Another interesting thing to look at would the 10 most positive and
 negative words used in the articles.</p>
-<div class="codewrapper sourceCode" id="cb10">
+<div class="codewrapper sourceCode" id="cb15">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -1584,26 +1643,25 @@ negative words used in the articles.</p>
 <span>  <span class="fu">geom_col</span><span class="op">(</span>show.legend <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">facet_wrap</span><span class="op">(</span><span class="op">~</span><span class="va">sentiment</span>, scales <span class="op">=</span> <span class="st">"free_y"</span><span class="op">)</span></span></code></pre>
 </div>
-<p><img src="../fig/sentiment-rendered-facet_wrap-1.png" alt="" style="display: block; margin: auto;" class="figure">
-Here we can see the positive and negative words used in the
+<figure><img src="../fig/sentiment-rendered-facet_wrap-1.png" alt="" style="display: block; margin: auto;" class="figure mx-auto d-block"></figure><p>Here we can see the positive and negative words used in the
 articles.</p>
 <p>With ´bing´ we only look at the sentiment in a binary fashion - a
 word is either positive or negative. If we try to do a similar analysis
 with AFINN, it looks different.</p>
-<div class="codewrapper sourceCode" id="cb11">
+<div class="codewrapper sourceCode" id="cb16">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">install.packages</span><span class="op">(</span><span class="st">"textdata"</span><span class="op">)</span></span>
 <span><span class="kw">library</span><span class="op">(</span><span class="va">textdata</span><span class="op">)</span></span></code></pre>
 </div>
-<div class="codewrapper sourceCode" id="cb12">
+<div class="codewrapper sourceCode" id="cb17">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw">library</span><span class="op">(</span><span class="va">textdata</span><span class="op">)</span></span></code></pre>
 </div>
-<div class="codewrapper sourceCode" id="cb13">
+<div class="codewrapper sourceCode" id="cb18">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -1624,7 +1682,7 @@ datasæt.</p>
 </div>
 </div>
 </div>
-<div class="codewrapper sourceCode" id="cb14">
+<div class="codewrapper sourceCode" id="cb19">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -1636,64 +1694,65 @@ datasæt.</p>
 </h3>
 <pre class="output" tabindex="0"><code>Joining with `by = join_by(word)`</code></pre>
 </div>
-<div class="codewrapper sourceCode" id="cb16">
+<div class="codewrapper sourceCode" id="cb21">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">articles_afinn</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu">group_by</span><span class="op">(</span><span class="va">president</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">group_by</span><span class="op">(</span><span class="va">section</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu">summarise</span><span class="op">(</span>sentiment <span class="op">=</span> <span class="fu">sum</span><span class="op">(</span><span class="va">value</span><span class="op">)</span><span class="op">)</span></span></code></pre>
 </div>
 <div class="codewrapper">
-<h3 class="code-label">ERROR<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="error" tabindex="0"><code>Error in `group_by()`:
-! Must group by variables found in `.data`.
-✖ Column `president` is not found.</code></pre>
+<pre class="output" tabindex="0"><code># A tibble: 5 × 2
+  section   sentiment
+  &lt;chr&gt;         &lt;dbl&gt;
+1 Arts            730
+2 Lifestyle     11230
+3 News          -5744
+4 Opinion       -4335
+5 Sport          8045</code></pre>
 </div>
-<div class="codewrapper sourceCode" id="cb18">
+<div class="codewrapper sourceCode" id="cb23">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">articles_afinn</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu">group_by</span><span class="op">(</span><span class="va">president</span>, <span class="va">value</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">group_by</span><span class="op">(</span><span class="va">section</span>, <span class="va">value</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu">summarise</span><span class="op">(</span>sentiment <span class="op">=</span> <span class="fu">sum</span><span class="op">(</span><span class="va">value</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu">ungroup</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">ggplot</span><span class="op">(</span>mapping <span class="op">=</span> <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">value</span>, y <span class="op">=</span> <span class="va">sentiment</span>, fill <span class="op">=</span> <span class="va">president</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">ggplot</span><span class="op">(</span>mapping <span class="op">=</span> <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">value</span>, y <span class="op">=</span> <span class="va">sentiment</span>, fill <span class="op">=</span> <span class="va">section</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">geom_col</span><span class="op">(</span>position <span class="op">=</span> <span class="st">"dodge"</span><span class="op">)</span></span></code></pre>
 </div>
 <div class="codewrapper">
-<h3 class="code-label">ERROR<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="error" tabindex="0"><code>Error in `group_by()`:
-! Must group by variables found in `.data`.
-✖ Column `president` is not found.</code></pre>
+<pre class="output" tabindex="0"><code>`summarise()` has regrouped the output.
+ℹ Summaries were computed grouped by section and value.
+ℹ Output is grouped by section.
+ℹ Use `summarise(.groups = "drop_last")` to silence this message.
+ℹ Use `summarise(.by = c(section, value))` for per-operation grouping
+  (`?dplyr::dplyr_by`) instead.</code></pre>
 </div>
-<div class="codewrapper sourceCode" id="cb20">
+<figure><img src="../fig/sentiment-rendered-afinn_president_value_geom_col-1.png" alt="" style="display: block; margin: auto;" class="figure mx-auto d-block"></figure><div class="codewrapper sourceCode" id="cb25">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">articles_afinn</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu">count</span><span class="op">(</span><span class="va">president</span>, <span class="va">word</span>, <span class="va">value</span>, sort <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">count</span><span class="op">(</span><span class="va">section</span>, <span class="va">word</span>, <span class="va">value</span>, sort <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu">ungroup</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu">group_by</span><span class="op">(</span><span class="va">president</span>, <span class="va">value</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">group_by</span><span class="op">(</span><span class="va">section</span>, <span class="va">value</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu">slice_max</span><span class="op">(</span><span class="va">n</span>, n <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu">ungroup</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu">mutate</span><span class="op">(</span>word <span class="op">=</span> <span class="fu">reorder</span><span class="op">(</span><span class="va">word</span>, <span class="va">n</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu">ggplot</span><span class="op">(</span>mapping <span class="op">=</span> <span class="fu">aes</span><span class="op">(</span><span class="va">n</span>, <span class="va">word</span>, fill <span class="op">=</span> <span class="va">president</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">ggplot</span><span class="op">(</span>mapping <span class="op">=</span> <span class="fu">aes</span><span class="op">(</span><span class="va">n</span>, <span class="va">word</span>, fill <span class="op">=</span> <span class="va">section</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">geom_col</span><span class="op">(</span>show.legend <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">facet_wrap</span><span class="op">(</span><span class="op">~</span><span class="va">value</span>, scales <span class="op">=</span> <span class="st">"free_y"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Contribution to sentiment"</span>, </span>
 <span>       y <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre>
 </div>
-<div class="codewrapper">
-<h3 class="code-label">ERROR<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="error" tabindex="0"><code>Error in `count()`:
-! Must group by variables found in `.data`.
-✖ Column `president` is not found.</code></pre>
-</div>
-<div id="keypoints1" class="callout keypoints">
+<figure><img src="../fig/sentiment-rendered-articles_afinn_ggplot_word_president-1.png" alt="" style="display: block; margin: auto;" class="figure mx-auto d-block"></figure><div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
 </div>
@@ -1713,7 +1772,7 @@ datasæt.</p>
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use.
  -->
-</section></section><section id="aio-whats-next"><p>Content from <a href="whats-next.html">Whats next?</a></p>
+</div></section><section id="aio-whats-next"><p>Content from <a href="whats-next.html">Whats next?</a></p>
 <hr>
 <p>Last updated on 2026-06-29 |
 
