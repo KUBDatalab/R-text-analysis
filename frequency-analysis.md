@@ -111,18 +111,20 @@ articles_filtered |>
 Keeping an overview of the words associated with each section can be a bit tricky. For instance, the word "time" is associated with both lifestyle and sport. This is easy to see, as the two words are right next to each other, but what if the words are further apart.
 
 
-<!-- ```{r top_ten_words_pr_president}
-articles_filtered |> 
-  count(section, word, sort = TRUE) |> 
-  group_by(section) |> 
-  slice(1:5) |> 
-  ggplot(mapping = aes(x = n, y = word, colour = section, shape = section)) +
-  geom_point() 
-``` -->
+<!-- ```{r top_ten_words_pr_president} -->
+ <!-- articles_filtered |> 
+   count(section, word, sort = TRUE) |> 
+   group_by(section) |> 
+   slice(1:5) |> 
+   ggplot(mapping = aes(x = n, y = word, colour = section, shape = section)) +
+   geom_point()  -->
+<!-- ``` -->
 
 <!-- The plot above shows the top-five words associated with the sections respectively. If a word features on multiple sections' top-five list, it only occurs once in the plot. This is why the plot doesn't contain 35 words in total. -->
 
-Another way of looking at the words compared with eachother in section could be a table where we count the words used pr sections easily comparable. In this analysis the section is the guiding principle.
+Another way of looking at the words compared with eachother in section could be a table where we count the words used pr sections easily comparable. In this analysis the section is the guiding principle. 
+
+
 
 
 ``` r
@@ -150,6 +152,45 @@ articles_filtered |>
 10 game          25   953      31       144   386
 # ℹ 68,887 more rows
 ```
+
+# Proportion
+It is well enough to count the words, but we do not know wether 3131 word about AI in the news section is alot compared to 1250 word in the opnion section if we compare to the total amount of words used in each section.
+
+So let us have a look at how it looks if we make the same query, but with proportion insted of word count.
+
+
+``` r
+articles_filtered |> 
+  count(section, word) |> 
+  group_by(section) |> 
+  mutate(proportion = n / sum(n)) |> 
+  ungroup() |> 
+  select(-n) |> 
+  arrange(desc(proportion)) |>
+  pivot_wider(
+    names_from = section,
+    values_from = proportion)
+```
+
+``` output
+# A tibble: 68,897 × 6
+   word            News   Opinion    Sport      Arts Lifestyle
+   <chr>          <dbl>     <dbl>    <dbl>     <dbl>     <dbl>
+ 1 ai         0.0125    0.00809   0.000175 0.00450   0.00128  
+ 2 technology 0.00795   0.00366   0.00143  0.00280   0.00170  
+ 3 england    0.000423  0.000265  0.00668  0.000209  0.0000984
+ 4 ball       0.0000199 0.0000712 0.00627  0.0000891 0.000146 
+ 5 1          0.000355  0.000259  0.00604  0.000325  0.000386 
+ 6 people     0.00477   0.00571   0.00122  0.00459   0.00387  
+ 7 time       0.00270   0.00357   0.00512  0.00393   0.00407  
+ 8 2          0.000271  0.000162  0.00472  0.000530  0.000587 
+ 9 game       0.0000997 0.000201  0.00465  0.00172   0.000525 
+10 australia  0.00106   0.000912  0.00417  0.000401  0.000153 
+# ℹ 68,887 more rows
+```
+
+
+# Visualization
 
 We can also visualize word frequency. In the following we will visualize what the top 10 word used in each section is
 
