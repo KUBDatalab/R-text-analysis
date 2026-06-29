@@ -37,6 +37,10 @@ articlesTechnology |> group_by(section) |> count()
  
 write_csv(articlesTechnology, "episodes/data/guardianArticles.csv")  
  
+guardianArticles <- read_csv("episodes/data/guardianArticles.csv")
+
+guardianArticles |> group_by(section) |>  count(date) |> 
+  pivot_wider(names_from = section, values_from = n)
  
 # articles_tokenized <- articlesTechnology %>%
 #   unnest_tokens(word, text) %>%
