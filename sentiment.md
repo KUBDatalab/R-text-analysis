@@ -106,18 +106,71 @@ When we have the combined dataset we can begin making a sentiment analysis. A st
 
 ``` r
 articles_bing |> 
-  group_by(president) |> 
+  group_by(section) |> 
   summarise(positive = sum(sentiment == "positive"),
             negative = sum(sentiment == "negative"),
             difference = positive - negative) 
 ```
 
-``` error
-Error in `group_by()`:
-! Must group by variables found in `.data`.
-✖ Column `president` is not found.
+``` output
+# A tibble: 5 × 4
+  section   positive negative difference
+  <chr>        <int>    <int>      <int>
+1 Arts         11844    13555      -1711
+2 Lifestyle    18337    13504       4833
+3 News         11216    14220      -3004
+4 Opinion       8452    11419      -2967
+5 Sport        11350     9770       1580
 ```
+
 This shows that more positive than negative words are associated with both presidents. It also shows that Trump is the president with the highest number of associated negative words.
+
+
+``` r
+articles_bing |> 
+  group_by(section, date) |> 
+  summarise(positive = sum(sentiment == "positive"),
+            negative = sum(sentiment == "negative"),
+            difference = positive - negative) |> 
+  #ungroup() |> 
+  filter(section %in% c("Arts", "Sport")) |> 
+  ggplot(mapping = aes(x = date, y = difference, colour = section, group = section)) +
+  geom_point() +
+  geom_line()
+```
+
+``` output
+`summarise()` has regrouped the output.
+ℹ Summaries were computed grouped by section and date.
+ℹ Output is grouped by section.
+ℹ Use `summarise(.groups = "drop_last")` to silence this message.
+ℹ Use `summarise(.by = c(section, date))` for per-operation grouping
+  (`?dplyr::dplyr_by`) instead.
+```
+
+<img src="fig/sentiment-rendered-articles_bing_group_by_inner_join_graph-1.png" alt="" style="display: block; margin: auto;" />
+
+Looking at the graphs we can see that the wording in december in sports articles are quite negative compared to february. If we had a data set covering more years it would be interesting to see if this was a normal thing. For now it might be interesting to read the articles from december and februar and compare what they are writing about. So how do we get the articles
+
+
+``` r
+interesting_articles <- articles |> 
+  filter(section == "Sport") |> 
+  filter(date %in% c("2025-12", "2026-02"))
+```
+
+``` error
+Error:
+! object 'articles' not found
+```
+
+
+``` r
+write_csv(interesting_articles, "data_out/interesting_articles.csv")
+```
+
+
+# VI SKAL KIGGE PÅ NEDENSTÅENDE
 
 Another interesting thing to look at would the 10 most positive and negative words used in the articles.
 
@@ -136,6 +189,7 @@ articles_bing |>
 ```
 
 <img src="fig/sentiment-rendered-facet_wrap-1.png" alt="" style="display: block; margin: auto;" />
+
 Here we can see the positive and negative words used in the articles.
 
 With ´bing´ we only look at the sentiment in a binary fashion - a word is either positive or negative. If we try to do a similar analysis with AFINN, it looks different.
@@ -180,14 +234,19 @@ Joining with `by = join_by(word)`
 
 ``` r
 articles_afinn |> 
-  group_by(president) |> 
+  group_by(section) |> 
   summarise(sentiment = sum(value))
 ```
 
-``` error
-Error in `group_by()`:
-! Must group by variables found in `.data`.
-✖ Column `president` is not found.
+``` output
+# A tibble: 5 × 2
+  section   sentiment
+  <chr>         <dbl>
+1 Arts            730
+2 Lifestyle     11230
+3 News          -5744
+4 Opinion       -4335
+5 Sport          8045
 ```
 
 
@@ -195,40 +254,41 @@ Error in `group_by()`:
 
 ``` r
 articles_afinn |> 
-  group_by(president, value) |> 
+  group_by(section, value) |> 
   summarise(sentiment = sum(value)) |> 
   ungroup() |>
-  ggplot(mapping = aes(x = value, y = sentiment, fill = president)) +
+  ggplot(mapping = aes(x = value, y = sentiment, fill = section)) +
   geom_col(position = "dodge")
 ```
 
-``` error
-Error in `group_by()`:
-! Must group by variables found in `.data`.
-✖ Column `president` is not found.
+``` output
+`summarise()` has regrouped the output.
+ℹ Summaries were computed grouped by section and value.
+ℹ Output is grouped by section.
+ℹ Use `summarise(.groups = "drop_last")` to silence this message.
+ℹ Use `summarise(.by = c(section, value))` for per-operation grouping
+  (`?dplyr::dplyr_by`) instead.
 ```
+
+<img src="fig/sentiment-rendered-afinn_president_value_geom_col-1.png" alt="" style="display: block; margin: auto;" />
 
 
 ``` r
 articles_afinn |> 
-  count(president, word, value, sort = TRUE) |> 
+  count(section, word, value, sort = TRUE) |> 
   ungroup() |> 
-  group_by(president, value) |> 
+  group_by(section, value) |> 
   slice_max(n, n = 3) |> 
   ungroup() |> 
   mutate(word = reorder(word, n)) |> 
-  ggplot(mapping = aes(n, word, fill = president)) +
+  ggplot(mapping = aes(n, word, fill = section)) +
   geom_col(show.legend = FALSE) +
   facet_wrap(~value, scales = "free_y") +
   labs(x = "Contribution to sentiment", 
        y = NULL)
 ```
 
-``` error
-Error in `count()`:
-! Must group by variables found in `.data`.
-✖ Column `president` is not found.
-```
+<img src="fig/sentiment-rendered-articles_afinn_ggplot_word_president-1.png" alt="" style="display: block; margin: auto;" />
 
 
 
