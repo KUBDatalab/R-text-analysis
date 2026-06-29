@@ -70,12 +70,42 @@ When we have the combined dataset we can begin making a sentiment analysis. A st
 
 ```{r articles_bing_group_by_inner_join}
 articles_bing |> 
-  group_by(president) |> 
+  group_by(section) |> 
   summarise(positive = sum(sentiment == "positive"),
             negative = sum(sentiment == "negative"),
             difference = positive - negative) 
 ```
+
 This shows that more positive than negative words are associated with both presidents. It also shows that Trump is the president with the highest number of associated negative words.
+
+```{r articles_bing_group_by_inner_join_graph}
+articles_bing |> 
+  group_by(section, date) |> 
+  summarise(positive = sum(sentiment == "positive"),
+            negative = sum(sentiment == "negative"),
+            difference = positive - negative) |> 
+  #ungroup() |> 
+  filter(section %in% c("Arts", "Sport")) |> 
+  ggplot(mapping = aes(x = date, y = difference, colour = section, group = section)) +
+  geom_point() +
+  geom_line()
+ 
+```
+
+Looking at the graphs we can see that the wording in december in sports articles are quite negative compared to february. If we had a data set covering more years it would be interesting to see if this was a normal thing. For now it might be interesting to read the articles from december and februar and compare what they are writing about. So how do we get the articles
+
+```{r}
+interesting_articles <- articles |> 
+  filter(section == "Sport") |> 
+  filter(date %in% c("2025-12", "2026-02"))
+```
+
+```{r eval = FALSE}
+write_csv(interesting_articles, "data_out/interesting_articles.csv")
+```
+
+
+# VI SKAL KIGGE PÅ NEDENSTÅENDE
 
 Another interesting thing to look at would the 10 most positive and negative words used in the articles.
 
@@ -92,6 +122,7 @@ articles_bing |>
   facet_wrap(~sentiment, scales = "free_y")
 
 ```
+
 Here we can see the positive and negative words used in the articles.
 
 With ´bing´ we only look at the sentiment in a binary fashion - a word is either positive or negative. If we try to do a similar analysis with AFINN, it looks different.
@@ -129,7 +160,7 @@ articles_afinn <- articles_filtered |>
 
 ```{r afinn_summarise}
 articles_afinn |> 
-  group_by(president) |> 
+  group_by(section) |> 
   summarise(sentiment = sum(value))
 ```
 
@@ -137,23 +168,23 @@ articles_afinn |>
 
 ```{r afinn_president_value_geom_col}
 articles_afinn |> 
-  group_by(president, value) |> 
+  group_by(section, value) |> 
   summarise(sentiment = sum(value)) |> 
   ungroup() |>
-  ggplot(mapping = aes(x = value, y = sentiment, fill = president)) +
+  ggplot(mapping = aes(x = value, y = sentiment, fill = section)) +
   geom_col(position = "dodge")
 
 ```
 
 ```{r articles_afinn_ggplot_word_president}
 articles_afinn |> 
-  count(president, word, value, sort = TRUE) |> 
+  count(section, word, value, sort = TRUE) |> 
   ungroup() |> 
-  group_by(president, value) |> 
+  group_by(section, value) |> 
   slice_max(n, n = 3) |> 
   ungroup() |> 
   mutate(word = reorder(word, n)) |> 
-  ggplot(mapping = aes(n, word, fill = president)) +
+  ggplot(mapping = aes(n, word, fill = section)) +
   geom_col(show.legend = FALSE) +
   facet_wrap(~value, scales = "free_y") +
   labs(x = "Contribution to sentiment", 
