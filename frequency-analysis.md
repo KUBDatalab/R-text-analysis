@@ -107,82 +107,117 @@ articles_filtered |>
 10 Sport     time        1050
 # ℹ 138,055 more rows
 ```
-Keeping an overview of the words associated with each section can be a bit tricky. For instance, the word "people" is associated with both presidents. This is easy to see, as the two words are right next to each other. The two occurrences of the word America, however, are further apart, although this word is also associated with both presidents. A visualisation may solve this problem.
 
+Keeping an overview of the words associated with each section can be a bit tricky. For instance, the word "time" is associated with both lifestyle and sport. This is easy to see, as the two words are right next to each other, but what if the words are further apart.
+
+
+<!-- ```{r top_ten_words_pr_president}
+articles_filtered |> 
+  count(section, word, sort = TRUE) |> 
+  group_by(section) |> 
+  slice(1:5) |> 
+  ggplot(mapping = aes(x = n, y = word, colour = section, shape = section)) +
+  geom_point() 
+``` -->
+
+<!-- The plot above shows the top-five words associated with the sections respectively. If a word features on multiple sections' top-five list, it only occurs once in the plot. This is why the plot doesn't contain 35 words in total. -->
+
+Another way of looking at the words compared with eachother in section could be a table where we count the words used pr sections easily comparable. In this analysis the section is the guiding principle.
 
 
 ``` r
 articles_filtered |> 
   count(section, word, sort = TRUE) |> 
-  group_by(section) |> 
-  slice(1:10) |> 
-  ggplot(mapping = aes(x = n, y = word, colour = section, shape = section)) +
-  geom_point() 
-```
-
-<img src="fig/frequency-analysis-rendered-top_ten_words_pr_president-1.png" alt="" style="display: block; margin: auto;" />
-The plot above shows the top-ten words associated with Obama and Trump respectively. If a word features on both presidents' top-ten list, it only occurs once in the plot. This is why the plot doesn't contain 20 words in total.
-
-Another interesting aspect to look at would be the most frequent words used in relation to each president. In this analysis the president is the guiding principle.
-
-
-``` r
-articles_filtered |> 
-  count(president, word, sort = TRUE) |> 
   pivot_wider(
-    names_from = president,
+    names_from = section,
     values_from = n
   )
 ```
 
-``` error
-Error in `count()`:
-! Must group by variables found in `.data`.
-✖ Column `president` is not found.
+``` output
+# A tibble: 68,897 × 6
+   word        News Sport Opinion Lifestyle  Arts
+   <chr>      <int> <int>   <int>     <int> <int>
+ 1 ai          3131    36    1250       351  1010
+ 2 technology  1993   294     565       466   628
+ 3 england      106  1371      41        27    47
+ 4 ball           5  1287      11        40    20
+ 5 1             89  1239      40       106    73
+ 6 people      1196   250     883      1062  1031
+ 7 time         676  1050     551      1117   883
+ 8 government  1024    19     429        65   107
+ 9 2             68   968      25       161   119
+10 game          25   953      31       144   386
+# ℹ 68,887 more rows
 ```
+
+We can also visualize word frequency. In the following we will visualize what the top 10 word used in each section is
 
 
 ``` r
 articles_filtered |> 
-  group_by(president) |> 
+  group_by(section) |> 
   count(word, sort = TRUE) |> 
   top_n(10) |> 
   ungroup() |> 
-  mutate(word = reorder_within(word, n, president)) |> 
-  ggplot(aes(n, word, fill = president)) +
+  mutate(word = reorder_within(word, n, section)) |> 
+  ggplot(aes(n, word, fill = section)) +
   geom_col() +
-  facet_wrap(~president, scales = "free") +
+  facet_wrap(~section, scales = "free") +
   scale_y_reordered() + 
   labs(x = "word occurrences")
 ```
 
-``` error
-Error in `group_by()`:
-! Must group by variables found in `.data`.
-✖ Column `president` is not found.
+``` output
+Selecting by n
 ```
-The analyses just made can easily be adjusted. For instance, if we want look at the words by `pillar_name` instead of by `president`, we simply replace `president` with `pillar_name` in the code.
 
+<img src="fig/frequency-analysis-rendered-top_ten_visusalised-1.png" alt="" style="display: block; margin: auto;" />
+
+<!-- The analyses just made can easily be adjusted. For instance, if we want look at the words by `pillar_name` instead of by `president`, we simply replace `president` with `pillar_name` in the code.
+
+
+```` r
+articles_filtered |> 
+  count(date, word, sort = TRUE) |> 
+  group_by(date) |> 
+  slice(1:10) |> 
+  ggplot(mapping = aes(x = n, y = word, colour = date, shape = date)) +
+  geom_point() 
+``` -->
+
+Interesting that numbers occurs in the Sports section. Lets have a look at where it occurs. In order to do so we have to go back to our original object `articles` where we have the full text of articles.
+````
+
+``` error
+Error in parse(text = input): attempt to use zero-length variable name
+```
 
 ``` r
-articles_filtered |> 
-  count(pillar_name, word, sort = TRUE) |> 
-  group_by(pillar_name) |> 
-  slice(1:10) |> 
-  ggplot(mapping = aes(x = n, y = word, colour = pillar_name, shape = pillar_name)) +
-  geom_point() 
+articles |> 
+  filter(section == "Sport") |> 
+  filter(str_detect(text, "\\b1\\b")) |> 
+  select(text) |> 
+  head()
 ```
 
-``` error
-Error in `count()`:
-! Must group by variables found in `.data`.
-✖ Column `pillar_name` is not found.
+``` output
+# A tibble: 6 × 1
+  text                                                                          
+  <chr>                                                                         
+1 Sonia Bompastor, the Chelsea head coach, called for goalline technology to be…
+2 When the Wimbledon organisers announced last year that electronic line-callin…
+3 Barcelona foiled by Bayern’s block Alexia Putellas said Barcelona have to “ad…
+4 The Australia fast bowler Mitchell Starc has urged the International Cricket …
+5 Semi-automated offside technology (SAOT) failed during the Carabao Cup semi-f…
+6 Renée Slegers said teams in the Women’s Super League “need just decisions” an…
 ```
 
+<!-- SNAK MED CHRISTIAN ANG at få ordet i kontekst, så 10 ord før og 10 ord efter -->
 
-<!-- ```{r saving_data, include = FALSE}
-write_csv(articles_filtered, "episodes/data/articles_filtered.csv")
-``` -->
+
+
+
 
 
 ::::::::::::::::::::::::::::::::::::: keypoints 
