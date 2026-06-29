@@ -64,20 +64,22 @@ articles_filtered |>
 Keeping an overview of the words associated with each section can be a bit tricky. For instance, the word "time" is associated with both lifestyle and sport. This is easy to see, as the two words are right next to each other, but what if the words are further apart.
 
 
-<!-- ```{r top_ten_words_pr_president}
-articles_filtered |> 
-  count(section, word, sort = TRUE) |> 
-  group_by(section) |> 
-  slice(1:5) |> 
-  ggplot(mapping = aes(x = n, y = word, colour = section, shape = section)) +
-  geom_point() 
-``` -->
+<!-- ```{r top_ten_words_pr_president} -->
+ <!-- articles_filtered |> 
+   count(section, word, sort = TRUE) |> 
+   group_by(section) |> 
+   slice(1:5) |> 
+   ggplot(mapping = aes(x = n, y = word, colour = section, shape = section)) +
+   geom_point()  -->
+<!-- ``` -->
 
 <!-- The plot above shows the top-five words associated with the sections respectively. If a word features on multiple sections' top-five list, it only occurs once in the plot. This is why the plot doesn't contain 35 words in total. -->
 
-Another way of looking at the words compared with eachother in section could be a table where we count the words used pr sections easily comparable. In this analysis the section is the guiding principle.
+Another way of looking at the words compared with eachother in section could be a table where we count the words used pr sections easily comparable. In this analysis the section is the guiding principle. 
 
-```{r top_ten_pivoted}
+
+
+```{r}
 articles_filtered |> 
   count(section, word, sort = TRUE) |> 
   pivot_wider(
@@ -85,6 +87,27 @@ articles_filtered |>
     values_from = n
   )
 ```
+
+# Proportion
+It is well enough to count the words, but we do not know wether 3131 word about AI in the news section is alot compared to 1250 word in the opnion section if we compare to the total amount of words used in each section.
+
+So let us have a look at how it looks if we make the same query, but with proportion insted of word count.
+
+```{r proportions}
+articles_filtered |> 
+  count(section, word) |> 
+  group_by(section) |> 
+  mutate(proportion = n / sum(n)) |> 
+  ungroup() |> 
+  select(-n) |> 
+  arrange(desc(proportion)) |>
+  pivot_wider(
+    names_from = section,
+    values_from = proportion)
+```
+
+
+# Visualization
 
 We can also visualize word frequency. In the following we will visualize what the top 10 word used in each section is
 
