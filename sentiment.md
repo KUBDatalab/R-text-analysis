@@ -159,40 +159,34 @@ interesting_articles <- articles |>
   filter(date %in% c("2025-12", "2026-02"))
 ```
 
-``` error
-Error:
-! object 'articles' not found
-```
-
 
 ``` r
 write_csv(interesting_articles, "data_out/interesting_articles.csv")
 ```
 
 
-# VI SKAL KIGGE PÅ NEDENSTÅENDE
+<!-- Another interesting thing to look at would the 10 most positive and negative words used in the articles. -->
 
-Another interesting thing to look at would the 10 most positive and negative words used in the articles.
+<!-- ```{r facet_wrap} -->
+<!-- # articles_bing |> 
+  # count(word, sentiment, sort = TRUE) |> 
+  # ungroup() |> 
+  # group_by(sentiment) |> 
+  # slice_max(n, n = 10) |> 
+  # ungroup() |> 
+  # mutate(word = reorder(word, n)) |> 
+  # ggplot(mapping = aes(n, word, fill = sentiment)) +
+  # geom_col(show.legend = FALSE) +
+  # facet_wrap(~sentiment, scales = "free_y") -->
 
+<!-- ``` -->
 
-``` r
-articles_bing |> 
-  count(word, sentiment, sort = TRUE) |> 
-  ungroup() |> 
-  group_by(sentiment) |> 
-  slice_max(n, n = 10) |> 
-  ungroup() |> 
-  mutate(word = reorder(word, n)) |> 
-  ggplot(mapping = aes(n, word, fill = sentiment)) +
-  geom_col(show.legend = FALSE) +
-  facet_wrap(~sentiment, scales = "free_y")
-```
+<!-- Here we can see the positive and negative words used in the articles. -->
 
-<img src="fig/sentiment-rendered-facet_wrap-1.png" alt="" style="display: block; margin: auto;" />
+With `bing` we only look at the sentiment in a binary fashion - a word is either positive or negative. If we try to do a similar analysis 
+with `AFINN`, it looks different. `AFINN` is a sentiment lexicon. It consists of a list of words that are assigned sentiment scores ranging from -5 (very negative) to +5 (very positive).
 
-Here we can see the positive and negative words used in the articles.
-
-With ´bing´ we only look at the sentiment in a binary fashion - a word is either positive or negative. If we try to do a similar analysis with AFINN, it looks different.
+`AFINN` is part of the package `textdata`, so we need to install the package and run library in order to be able to use it in this script.
 
 
 ``` r
@@ -200,26 +194,40 @@ install.packages("textdata")
 library(textdata)
 ```
 
-
-``` r
-library(textdata)
-```
-
-
+In order to use the `AFINN`-lexicon, we have to save it.
 
 
 ``` r
 afinn <- get_sentiments("afinn")
 ```
 
+Let's have a look at it.
 
+<!-- ```{r indlaes_afinn, echo = FALSE, message = FALSE} -->
+<!-- afinn <- read_csv("data/AFINN.CSV") -->
+<!-- ``` -->
+
+
+``` r
+afinn
+```
+
+``` error
+Error:
+! object 'afinn' not found
+```
+
+<!-- ```{r indlaes_afinn, echo = FALSE, message = FALSE} -->
+<!-- afinn <- read_csv("data/AFINN.CSV") -->
+<!-- ``` -->
 
 :::: instructor
 Bemærk at vi ikke på github kan downloade afinn. Derfor 
 har vi downloaded afinn datasættet til en csv-fil pr 21. november 2025.
 Med andre ord er der risiko for at siden kører med et uopdateret
-datasæt.
+datasæt. - TROR IKKE VI BEHØVER DET MERE - SNAK MED CHRISTIAN
 ::::
+We now need to combine the sentiment to the words from our articles. We do this by performing an inner_join.
 
 
 ``` r
@@ -227,33 +235,31 @@ articles_afinn <- articles_filtered |>
   inner_join(afinn) 
 ```
 
-``` output
-Joining with `by = join_by(word)`
+``` error
+Error:
+! object 'afinn' not found
 ```
+
+Since the `AFINN` lexicon adds negative and positive numbers to the words (instead of strings as Bing does) we can easily calculate the difference as we did with `bing`. In order to see wether a section is dominated by positive or negative words.
 
 
 ``` r
 articles_afinn |> 
   group_by(section) |> 
-  summarise(sentiment = sum(value))
+  summarise(different = sum(value))
 ```
 
-``` output
-# A tibble: 5 × 2
-  section   sentiment
-  <chr>         <dbl>
-1 Arts            730
-2 Lifestyle     11230
-3 News          -5744
-4 Opinion       -4335
-5 Sport          8045
+``` error
+Error:
+! object 'articles_afinn' not found
 ```
 
-
+It could be interesting to see how the different levels of negative and positive words are used in the different sections. We can do this by visualising the 
 
 
 ``` r
 articles_afinn |> 
+  filter(section %in% c("News", "Sport")) |> 
   group_by(section, value) |> 
   summarise(sentiment = sum(value)) |> 
   ungroup() |>
@@ -261,20 +267,15 @@ articles_afinn |>
   geom_col(position = "dodge")
 ```
 
-``` output
-`summarise()` has regrouped the output.
-ℹ Summaries were computed grouped by section and value.
-ℹ Output is grouped by section.
-ℹ Use `summarise(.groups = "drop_last")` to silence this message.
-ℹ Use `summarise(.by = c(section, value))` for per-operation grouping
-  (`?dplyr::dplyr_by`) instead.
+``` error
+Error:
+! object 'articles_afinn' not found
 ```
 
-<img src="fig/sentiment-rendered-afinn_president_value_geom_col-1.png" alt="" style="display: block; margin: auto;" />
 
 
-``` r
-articles_afinn |> 
+<!-- ```{r articles_afinn_ggplot_word_president} -->
+<!-- articles_afinn |> 
   count(section, word, value, sort = TRUE) |> 
   ungroup() |> 
   group_by(section, value) |> 
@@ -285,11 +286,10 @@ articles_afinn |>
   geom_col(show.legend = FALSE) +
   facet_wrap(~value, scales = "free_y") +
   labs(x = "Contribution to sentiment", 
-       y = NULL)
-```
+       y = NULL) -->
+<!-- ``` -->
 
-<img src="fig/sentiment-rendered-articles_afinn_ggplot_word_president-1.png" alt="" style="display: block; margin: auto;" />
-
+So far we have created sentiment analysis looking at words as individual units, and not considered how they are related to the other words in a sentence. However what happens if a word that is concidered positive is negated by the word in front eg. "do not love"? We only catch it as positive. It is possible to make analysis where you look a more than one word.
 
 
 
