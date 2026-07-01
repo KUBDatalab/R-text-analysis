@@ -215,46 +215,46 @@ Selecting by n
 
 <img src="fig/frequency-analysis-rendered-top_ten_visusalised-1.png" alt="" style="display: block; margin: auto;" />
 
-<!-- The analyses just made can easily be adjusted. For instance, if we want look at the words by `pillar_name` instead of by `president`, we simply replace `president` with `pillar_name` in the code.
+<!-- The analyses just made can easily be adjusted. For instance, if we want look at the words by `pillar_name` instead of by `president`, we simply replace `president` with `pillar_name` in the code. -->
 
-
-```` r
-articles_filtered |> 
+<!-- ```{r vis_per_pillar} -->
+<!-- articles_filtered |> 
   count(date, word, sort = TRUE) |> 
   group_by(date) |> 
   slice(1:10) |> 
   ggplot(mapping = aes(x = n, y = word, colour = date, shape = date)) +
-  geom_point() 
-``` -->
+  geom_point()  -->
+<!-- ``` -->
 
-Interesting that numbers occurs in the Sports section. Lets have a look at where it occurs. In order to do so we have to go back to our original object `articles` where we have the full text of articles.
-````
 
-``` error
-Error in parse(text = input): attempt to use zero-length variable name
+Interesting that numbers occurs in the Sports section. Lets have a look at where it occurs. In order to do so we have to go back to our original object `articles` where we have the full text of articles. It would be nice to see the context in wich for instance 1 occurs.
+
+In order to do this we need to use a `package` named `quanteda`, so lets install the package, and load it in to memory.
+
+
+``` r
+install.packages("quanteda")
+library(quanteda)
 ```
+
+In order to get the context we will use the function `kwic`
 
 ``` r
 articles |> 
   filter(section == "Sport") |> 
-  filter(str_detect(text, "\\b1\\b")) |> 
-  select(text) |> 
-  head()
+  # filter(str_detect(text, "\\b1\\b")) |> 
+  # slice(1) |> 
+  pull(text) |> 
+  tokens() |>
+  kwic(pattern = "1", window = 10)
 ```
 
-``` output
-# A tibble: 6 × 1
-  text                                                                          
-  <chr>                                                                         
-1 Sonia Bompastor, the Chelsea head coach, called for goalline technology to be…
-2 When the Wimbledon organisers announced last year that electronic line-callin…
-3 Barcelona foiled by Bayern’s block Alexia Putellas said Barcelona have to “ad…
-4 The Australia fast bowler Mitchell Starc has urged the International Cricket …
-5 Semi-automated offside technology (SAOT) failed during the Carabao Cup semi-f…
-6 Renée Slegers said teams in the Women’s Super League “need just decisions” an…
+``` error
+Error in `kwic()`:
+! could not find function "kwic"
 ```
 
-<!-- SNAK MED CHRISTIAN ANG at få ordet i kontekst, så 10 ord før og 10 ord efter -->
+So what we are doing is looking for at keyword in context, and that is exactly what the function `kwic` does. It locates the string we write in the argument `pattern` and takes the amout of words before and after the keyword given in the argument `window`.
 
 
 

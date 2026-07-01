@@ -201,6 +201,20 @@ In order to use the `AFINN`-lexicon, we have to save it.
 afinn <- get_sentiments("afinn")
 ```
 
+``` output
+Do you want to download:
+ Name: AFINN-111 
+ URL: http://www2.imm.dtu.dk/pubdb/views/publication_details.php?id=6010 
+ License: Open Database License (ODbL) v1.0 
+ Size: 78 KB (cleaned 59 KB) 
+ Download mechanism: https 
+```
+
+``` error
+Error in `menu()`:
+! menu() cannot be used non-interactively
+```
+
 Let's have a look at it.
 
 <!-- ```{r indlaes_afinn, echo = FALSE, message = FALSE} -->
