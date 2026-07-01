@@ -309,7 +309,7 @@
       </div>
     </nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Word frequency analysis</h1>
-        <p>Last updated on 2026-06-30 |
+        <p>Last updated on 2026-07-01 |
 
         <a href="https://github.com/KUBDatalab/R-text-analysis/edit/main/episodes/frequency-analysis.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -547,49 +547,51 @@ visualize what the top 10 word used in each section is</p>
 </h3>
 <pre class="output" tabindex="0"><code>Selecting by n</code></pre>
 </div>
-<figure><img src="fig/frequency-analysis-rendered-top_ten_visusalised-1.png" alt="" style="display: block; margin: auto;" class="figure mx-auto d-block"></figure><!-- The analyses just made can easily be adjusted. For instance, if we want look at the words by `pillar_name` instead of by `president`, we simply replace `president` with `pillar_name` in the code.
-
-
-```` r
-articles_filtered |>
+<figure><img src="fig/frequency-analysis-rendered-top_ten_visusalised-1.png" alt="" style="display: block; margin: auto;" class="figure mx-auto d-block"></figure><!-- The analyses just made can easily be adjusted. For instance, if we want look at the words by `pillar_name` instead of by `president`, we simply replace `president` with `pillar_name` in the code. --><!-- ```{r vis_per_pillar} --><!-- articles_filtered |>
   count(date, word, sort = TRUE) |>
   group_by(date) |>
   slice(1:10) |>
   ggplot(mapping = aes(x = n, y = word, colour = date, shape = date)) +
-  geom_point()
-``` --><p>Interesting that numbers occurs in the Sports section. Lets have a
+  geom_point()  --><!-- ``` --><p>Interesting that numbers occurs in the Sports section. Lets have a
 look at where it occurs. In order to do so we have to go back to our
 original object <code>articles</code> where we have the full text of
-articles. ````</p>
-<div class="codewrapper">
-<h3 class="code-label">ERROR<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+articles. It would be nice to see the context in wich for instance 1
+occurs.</p>
+<p>In order to do this we need to use a <code>package</code> named
+<code>quanteda</code>, so lets install the package, and load it in to
+memory.</p>
+<div class="codewrapper sourceCode" id="cb13">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="error" tabindex="0"><code>Error in parse(text = input): attempt to use zero-length variable name</code></pre>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">install.packages</span><span class="op">(</span><span class="st">"quanteda"</span><span class="op">)</span></span>
+<span><span class="kw">library</span><span class="op">(</span><span class="va">quanteda</span><span class="op">)</span></span></code></pre>
 </div>
+<p>In order to get the context we will use the function
+<code>kwic</code></p>
 <div class="codewrapper sourceCode" id="cb14">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">articles</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu">filter</span><span class="op">(</span><span class="va">section</span> <span class="op">==</span> <span class="st">"Sport"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu">filter</span><span class="op">(</span><span class="fu">str_detect</span><span class="op">(</span><span class="va">text</span>, <span class="st">"\\b1\\b"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu">select</span><span class="op">(</span><span class="va">text</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu">head</span><span class="op">(</span><span class="op">)</span></span></code></pre>
+<span>  <span class="co"># filter(str_detect(text, "\\b1\\b")) |&gt; </span></span>
+<span>  <span class="co"># slice(1) |&gt; </span></span>
+<span>  <span class="fu">pull</span><span class="op">(</span><span class="va">text</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">tokens</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">kwic</span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">"1"</span>, window <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></code></pre>
 </div>
 <div class="codewrapper">
-<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+<h3 class="code-label">ERROR<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="output" tabindex="0"><code># A tibble: 6 × 1
-  text
-  &lt;chr&gt;
-1 Sonia Bompastor, the Chelsea head coach, called for goalline technology to be…
-2 When the Wimbledon organisers announced last year that electronic line-callin…
-3 Barcelona foiled by Bayern’s block Alexia Putellas said Barcelona have to “ad…
-4 The Australia fast bowler Mitchell Starc has urged the International Cricket …
-5 Semi-automated offside technology (SAOT) failed during the Carabao Cup semi-f…
-6 Renée Slegers said teams in the Women’s Super League “need just decisions” an…</code></pre>
+<pre class="error" tabindex="0"><code>Error in `kwic()`:
+! could not find function "kwic"</code></pre>
 </div>
-<!-- SNAK MED CHRISTIAN ANG at få ordet i kontekst, så 10 ord før og 10 ord efter -->
+<p>So what we are doing is looking for at keyword in context, and that
+is exactly what the function <code>kwic</code> does. It locates the
+string we write in the argument <code>pattern</code> and takes the amout
+of words before and after the keyword given in the argument
+<code>window</code>.</p>
 <div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
@@ -670,8 +672,8 @@ any links that you are not going to use.
   "url": "https://KUBDatalab.github.io/R-text-analysis/frequency-analysis.html",
   "identifier": "https://KUBDatalab.github.io/R-text-analysis/frequency-analysis.html",
   "dateCreated": "2024-05-01",
-  "dateModified": "2026-06-30",
-  "datePublished": "2026-06-30"
+  "dateModified": "2026-07-01",
+  "datePublished": "2026-07-01"
 }
 
   </script><script>

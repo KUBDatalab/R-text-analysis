@@ -309,7 +309,7 @@
       </div>
     </nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Sentiment analysis</h1>
-        <p>Last updated on 2026-06-30 |
+        <p>Last updated on 2026-07-01 |
 
         <a href="https://github.com/KUBDatalab/R-text-analysis/edit/main/episodes/sentiment.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -552,11 +552,27 @@ it.</p>
 <pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">afinn</span> <span class="op">&lt;-</span> <span class="fu">get_sentiments</span><span class="op">(</span><span class="st">"afinn"</span><span class="op">)</span></span></code></pre>
 </div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>Do you want to download:
+ Name: AFINN-111
+ URL: http://www2.imm.dtu.dk/pubdb/views/publication_details.php?id=6010
+ License: Open Database License (ODbL) v1.0
+ Size: 78 KB (cleaned 59 KB)
+ Download mechanism: https </code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">ERROR<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="error" tabindex="0"><code>Error in `menu()`:
+! menu() cannot be used non-interactively</code></pre>
+</div>
 <p>Let’s have a look at it.</p>
 <!-- ```{r indlaes_afinn, echo = FALSE, message = FALSE} -->
 <!-- afinn <- read_csv("data/AFINN.CSV") -->
 <!-- ``` -->
-<div class="codewrapper sourceCode" id="cb16">
+<div class="codewrapper sourceCode" id="cb18">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -588,7 +604,7 @@ TROR IKKE VI BEHØVER DET MERE - SNAK MED CHRISTIAN</p>
 </div>
 <p>We now need to combine the sentiment to the words from our articles.
 We do this by performing an inner_join.</p>
-<div class="codewrapper sourceCode" id="cb18">
+<div class="codewrapper sourceCode" id="cb20">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -605,7 +621,7 @@ We do this by performing an inner_join.</p>
 numbers to the words (instead of strings as Bing does) we can easily
 calculate the difference as we did with <code>bing</code>. In order to
 see wether a section is dominated by positive or negative words.</p>
-<div class="codewrapper sourceCode" id="cb20">
+<div class="codewrapper sourceCode" id="cb22">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -622,7 +638,7 @@ see wether a section is dominated by positive or negative words.</p>
 <p>It could be interesting to see how the different levels of negative
 and positive words are used in the different sections. We can do this by
 visualising the</p>
-<div class="codewrapper sourceCode" id="cb22">
+<div class="codewrapper sourceCode" id="cb24">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -738,8 +754,8 @@ any links that you are not going to use.
   "url": "https://KUBDatalab.github.io/R-text-analysis/instructor/sentiment.html",
   "identifier": "https://KUBDatalab.github.io/R-text-analysis/instructor/sentiment.html",
   "dateCreated": "2024-05-01",
-  "dateModified": "2026-06-30",
-  "datePublished": "2026-06-30"
+  "dateModified": "2026-07-01",
+  "datePublished": "2026-07-01"
 }
 
   </script><script>
