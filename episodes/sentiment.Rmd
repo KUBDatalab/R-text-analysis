@@ -143,17 +143,14 @@ afinn <- get_sentiments("afinn")
 
 Let's have a look at it.
 
-<!-- ```{r indlaes_afinn, echo = FALSE, message = FALSE} -->
-<!-- afinn <- read_csv("data/AFINN.CSV") -->
-<!-- ``` -->
+```{r indlaes_afinn, echo = FALSE, message = FALSE}
+afinn <- read_csv("data/AFINN.CSV")
+```
 
-```{r}
+```{r vis_afinn}
 afinn
 ```
 
-<!-- ```{r indlaes_afinn, echo = FALSE, message = FALSE} -->
-<!-- afinn <- read_csv("data/AFINN.CSV") -->
-<!-- ``` -->
 
 :::: instructor
 Bemærk at vi ikke på github kan downloade afinn. Derfor 
@@ -176,18 +173,49 @@ articles_afinn |>
   summarise(different = sum(value))
 ```
 
-It could be interesting to see how the different levels of negative and positive words are used in the different sections. We can do this by visualising the 
+It could be interesting to see how the different levels of negative and positive words are used in the different sections. 
 
-```{r afinn_president_value_geom_col}
+```{r}
 articles_afinn |> 
+  #group_by(section) |> 
+  count(section, value) |> 
+  pivot_wider(names_from = value, values_from = n)
+```
+
+
+```{r}
+articles_afinn |> 
+  count(section, value) |> 
+  group_by(section) |>
+  mutate(proportion = n / sum(n)) |> 
+  ungroup() |> 
+  select(-n) |> 
+  arrange(desc(proportion)) |> 
+  pivot_wider(names_from = value, values_from = proportion)
+```
+
+```{r}
+articles_afinn |> 
+  count(section, value) |> 
+  group_by(section) |>
+  mutate(proportion = n / sum(n)) |> 
+  ungroup() |> 
+  select(-n) |> 
+  filter(section %in% c("Sport", "Opinion"))  |> 
+  ggplot(mapping = aes(x = value, y = proportion, fill = section)) +
+  geom_col(position = "dodge")
+```
+
+<!-- ```{r afinn_president_value_geom_col} -->
+<!-- articles_afinn |> 
   filter(section %in% c("News", "Sport")) |> 
   group_by(section, value) |> 
   summarise(sentiment = sum(value)) |> 
   ungroup() |>
   ggplot(mapping = aes(x = value, y = sentiment, fill = section)) +
-  geom_col(position = "dodge")
+  geom_col(position = "dodge") -->
 
-```
+<!-- ``` -->
 
 
 
@@ -206,7 +234,7 @@ articles_afinn |>
        y = NULL) -->
 <!-- ``` -->
 
-So far we have created sentiment analysis looking at words as individual units, and not considered how they are related to the other words in a sentence. However what happens if a word that is concidered positive is negated by the word in front eg. "do not love"? We only catch it as positive. It is possible to make analysis where you look a more than one word.
+<!-- So far we have created sentiment analysis looking at words as individual units, and not considered how they are related to the other words in a sentence. However what happens if a word that is concidered positive is negated by the word in front eg. "do not love"? We only catch it as positive. It is possible to make analysis where you look a more than one word. -->
 
 
 
