@@ -126,28 +126,40 @@ articles_filtered |>
 
 ```
 
-<!-- The analyses just made can easily be adjusted. For instance, if we want look at the words by `pillar_name` instead of by `president`, we simply replace `president` with `pillar_name` in the code.
+<!-- The analyses just made can easily be adjusted. For instance, if we want look at the words by `pillar_name` instead of by `president`, we simply replace `president` with `pillar_name` in the code. -->
 
-```{r vis_per_pillar}
-articles_filtered |> 
+<!-- ```{r vis_per_pillar} -->
+<!-- articles_filtered |> 
   count(date, word, sort = TRUE) |> 
   group_by(date) |> 
   slice(1:10) |> 
   ggplot(mapping = aes(x = n, y = word, colour = date, shape = date)) +
-  geom_point() 
-``` -->
+  geom_point()  -->
+<!-- ``` -->
 
-Interesting that numbers occurs in the Sports section. Lets have a look at where it occurs. In order to do so we have to go back to our original object `articles` where we have the full text of articles.
 
+Interesting that numbers occurs in the Sports section. Lets have a look at where it occurs. In order to do so we have to go back to our original object `articles` where we have the full text of articles. It would be nice to see the context in wich for instance 1 occurs.
+
+In order to do this we need to use a `package` named `quanteda`, so lets install the package, and load it in to memory.
+
+```{r, eval = FALSE}
+install.packages("quanteda")
+library(quanteda)
+```
+
+In order to get the context we will use the function `kwic`
 ```{r}
 articles |> 
   filter(section == "Sport") |> 
-  filter(str_detect(text, "\\b1\\b")) |> 
-  select(text) |> 
-  head()
+  # filter(str_detect(text, "\\b1\\b")) |> 
+  # slice(1) |> 
+  pull(text) |> 
+  tokens() |>
+  kwic(pattern = "1", window = 10)
+
 ```
 
-<!-- SNAK MED CHRISTIAN ANG at få ordet i kontekst, så 10 ord før og 10 ord efter -->
+So what we are doing is looking for at keyword in context, and that is exactly what the function `kwic` does. It locates the string we write in the argument `pattern` and takes the amout of words before and after the keyword given in the argument `window`.
 
 
 

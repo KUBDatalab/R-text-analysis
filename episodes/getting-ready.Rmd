@@ -30,7 +30,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ## Getting started
 When performing text analysis in R, the built-in functions in R are not sufficient. It is therefore necessary to install some additional packages. In this course we will be using the packages `tidyverse` and `tidytext`.
 
-```{r library, include = FALSE, message = F, warning = F}
+```{r library, include = FALSE, message = FALSE, warning = FALSE}
 library(tidyverse)
 library(tidytext)
 library(tm)

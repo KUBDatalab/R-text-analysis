@@ -29,6 +29,7 @@ knitr::opts_chunk$set(warning = FALSE)
 library(tidyverse)
 library(tidytext)
 library(tm)
+library(textdata)
 
 articles_filtered <- read_csv("data/articles_filtered.csv", na = c("NA", "NULL", ""))
 articles <- read_csv("data/guardianArticles.csv", na = c("NA", "NULL", ""))
@@ -136,7 +137,7 @@ library(textdata)
 
 In order to use the `AFINN`-lexicon, we have to save it.
 
-```{r get_sentiment_afinn, eval = FALSE}
+```{r get_sentiment_afinn}
 afinn <- get_sentiments("afinn")
 ```
 
