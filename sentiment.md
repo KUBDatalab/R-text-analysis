@@ -217,23 +217,30 @@ Error in `menu()`:
 
 Let's have a look at it.
 
-<!-- ```{r indlaes_afinn, echo = FALSE, message = FALSE} -->
-<!-- afinn <- read_csv("data/AFINN.CSV") -->
-<!-- ``` -->
+
 
 
 ``` r
 afinn
 ```
 
-``` error
-Error:
-! object 'afinn' not found
+``` output
+# A tibble: 2,477 × 2
+   word       value
+   <chr>      <dbl>
+ 1 abandon       -2
+ 2 abandoned     -2
+ 3 abandons      -2
+ 4 abducted      -2
+ 5 abduction     -2
+ 6 abductions    -2
+ 7 abhor         -3
+ 8 abhorred      -3
+ 9 abhorrent     -3
+10 abhors        -3
+# ℹ 2,467 more rows
 ```
 
-<!-- ```{r indlaes_afinn, echo = FALSE, message = FALSE} -->
-<!-- afinn <- read_csv("data/AFINN.CSV") -->
-<!-- ``` -->
 
 :::: instructor
 Bemærk at vi ikke på github kan downloade afinn. Derfor 
@@ -249,9 +256,8 @@ articles_afinn <- articles_filtered |>
   inner_join(afinn) 
 ```
 
-``` error
-Error:
-! object 'afinn' not found
+``` output
+Joining with `by = join_by(word)`
 ```
 
 Since the `AFINN` lexicon adds negative and positive numbers to the words (instead of strings as Bing does) we can easily calculate the difference as we did with `bing`. In order to see wether a section is dominated by positive or negative words.
@@ -263,28 +269,87 @@ articles_afinn |>
   summarise(different = sum(value))
 ```
 
-``` error
-Error:
-! object 'articles_afinn' not found
+``` output
+# A tibble: 5 × 2
+  section   different
+  <chr>         <dbl>
+1 Arts            730
+2 Lifestyle     11230
+3 News          -5744
+4 Opinion       -4335
+5 Sport          8045
 ```
 
-It could be interesting to see how the different levels of negative and positive words are used in the different sections. We can do this by visualising the 
+It could be interesting to see how the different levels of negative and positive words are used in the different sections. 
 
 
 ``` r
 articles_afinn |> 
+  #group_by(section) |> 
+  count(section, value) |> 
+  pivot_wider(names_from = value, values_from = n)
+```
+
+``` output
+# A tibble: 5 × 11
+  section    `-5`  `-4`  `-3`  `-2`  `-1`   `1`   `2`   `3`   `4`   `5`
+  <chr>     <int> <int> <int> <int> <int> <int> <int> <int> <int> <int>
+1 Arts         14   203  2122  4807  2718  3189  4287  2037   574    28
+2 Lifestyle     3   130  1444  4139  3560  5126  6468  2683   416    32
+3 News          1    94  2283  6081  3860  4917  4922   699   155     6
+4 Opinion       7    72  1802  4549  2496  2963  3610   721   153     6
+5 Sport         9    52  1123  3563  2598  2871  3859  1894  1195    68
+```
+
+
+
+``` r
+articles_afinn |> 
+  count(section, value) |> 
+  group_by(section) |>
+  mutate(proportion = n / sum(n)) |> 
+  ungroup() |> 
+  select(-n) |> 
+  arrange(desc(proportion)) |> 
+  pivot_wider(names_from = value, values_from = proportion)
+```
+
+``` output
+# A tibble: 5 × 11
+  section   `-2`   `2`   `1`  `-1`    `3`   `-3`     `4`    `-4`     `5`    `-5`
+  <chr>    <dbl> <dbl> <dbl> <dbl>  <dbl>  <dbl>   <dbl>   <dbl>   <dbl>   <dbl>
+1 Opinion  0.278 0.220 0.181 0.152 0.0440 0.110  0.00934 0.00440 3.66e-4 4.27e-4
+2 Lifesty… 0.172 0.269 0.214 0.148 0.112  0.0602 0.0173  0.00542 1.33e-3 1.25e-4
+3 News     0.264 0.214 0.214 0.168 0.0304 0.0992 0.00673 0.00408 2.61e-4 4.34e-5
+4 Arts     0.241 0.215 0.160 0.136 0.102  0.106  0.0287  0.0102  1.40e-3 7.01e-4
+5 Sport    0.207 0.224 0.167 0.151 0.110  0.0652 0.0693  0.00302 3.95e-3 5.22e-4
+```
+
+
+``` r
+articles_afinn |> 
+  count(section, value) |> 
+  group_by(section) |>
+  mutate(proportion = n / sum(n)) |> 
+  ungroup() |> 
+  select(-n) |> 
+  filter(section %in% c("Sport", "Opinion"))  |> 
+  ggplot(mapping = aes(x = value, y = proportion, fill = section)) +
+  geom_col(position = "dodge")
+```
+
+<img src="fig/sentiment-rendered-unnamed-chunk-5-1.png" alt="" style="display: block; margin: auto;" />
+
+<!-- ```{r afinn_president_value_geom_col} -->
+<!-- articles_afinn |> 
   filter(section %in% c("News", "Sport")) |> 
   group_by(section, value) |> 
   summarise(sentiment = sum(value)) |> 
   ungroup() |>
   ggplot(mapping = aes(x = value, y = sentiment, fill = section)) +
-  geom_col(position = "dodge")
-```
+  geom_col(position = "dodge") -->
 
-``` error
-Error:
-! object 'articles_afinn' not found
-```
+<!-- ``` -->
 
 
 
@@ -303,7 +368,7 @@ Error:
        y = NULL) -->
 <!-- ``` -->
 
-So far we have created sentiment analysis looking at words as individual units, and not considered how they are related to the other words in a sentence. However what happens if a word that is concidered positive is negated by the word in front eg. "do not love"? We only catch it as positive. It is possible to make analysis where you look a more than one word.
+<!-- So far we have created sentiment analysis looking at words as individual units, and not considered how they are related to the other words in a sentence. However what happens if a word that is concidered positive is negated by the word in front eg. "do not love"? We only catch it as positive. It is possible to make analysis where you look a more than one word. -->
 
 
 
