@@ -2,7 +2,7 @@ name: Kopier fil til gh-pages
 
 on:
   workflow_run:
-    workflows: ["01 Build and Deploy Site"]
+    workflows: ["01 Maintain: Build and Deploy Site"]
     types:
       - completed
 
