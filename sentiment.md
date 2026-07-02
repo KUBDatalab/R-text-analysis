@@ -368,7 +368,214 @@ articles_afinn |>
        y = NULL) -->
 <!-- ``` -->
 
-<!-- So far we have created sentiment analysis looking at words as individual units, and not considered how they are related to the other words in a sentence. However what happens if a word that is concidered positive is negated by the word in front eg. "do not love"? We only catch it as positive. It is possible to make analysis where you look a more than one word. -->
+# n-grams and correlations
+
+So far we have been looking at words as individual units, and not considered how they are related to the other words around it. It is possible to make analysis where you look at the relationsships between word in our text.
+
+Instead of using the `unnest_tokens` function to by word, as we have done so far, we will tokenize our text in to sequences of words called n-grams. This gives us the possibility to see how often a word is followed by another word, and hereby gives us the chance to look at the relationsship between words.
+
+We no longer wants to use `articles_filteres` since this is tokenized by word. We have a `dataframe` that contains the articles text in one cell, so we will go back to our orginal object `articles` that contain all the articles.
+
+So lets tokenize to 2-words.
+
+ 
+ ``` r
+ articles_bigrams <- articles |>
+  unnest_tokens(bigram, text, token = "ngrams", n = 2) |> 
+  filter(!is.na(bigram))
+ ```
+
+
+``` r
+articles_bigrams
+```
+
+``` output
+# A tibble: 2,403,402 × 7
+      id date    section region author                          wordcount bigram
+   <dbl> <chr>   <chr>   <chr>  <chr>                               <dbl> <chr> 
+ 1     1 2026-05 News    UK     Jessica Murray and Robert Booth      1328 brita…
+ 2     1 2026-05 News    UK     Jessica Murray and Robert Booth      1328 biome…
+ 3     1 2026-05 News    UK     Jessica Murray and Robert Booth      1328 watch…
+ 4     1 2026-05 News    UK     Jessica Murray and Robert Booth      1328 have …
+ 5     1 2026-05 News    UK     Jessica Murray and Robert Booth      1328 warne…
+ 6     1 2026-05 News    UK     Jessica Murray and Robert Booth      1328 that …
+ 7     1 2026-05 News    UK     Jessica Murray and Robert Booth      1328 natio…
+ 8     1 2026-05 News    UK     Jessica Murray and Robert Booth      1328 overs…
+ 9     1 2026-05 News    UK     Jessica Murray and Robert Booth      1328 of ai 
+10     1 2026-05 News    UK     Jessica Murray and Robert Booth      1328 ai po…
+# ℹ 2,403,392 more rows
+```
+
+It looks much like the result of a tokenisation by word, but the added column is now called bigram and contains two words
+
+We can now count how many times word pair occurs.
+
+
+``` r
+articles_bigrams |> 
+  count(bigram, sort = TRUE)
+```
+
+``` output
+# A tibble: 923,094 × 2
+   bigram       n
+   <chr>    <int>
+ 1 of the   11380
+ 2 in the   10393
+ 3 to the    5100
+ 4 on the    4680
+ 5 and the   3755
+ 6 at the    3717
+ 7 to be     3575
+ 8 for the   3464
+ 9 in a      3211
+10 with the  2909
+# ℹ 923,084 more rows
+```
+
+Here we can see that the birams that tops the list are pairs of quite common words, much of these words are the once we earlier called stopwords. It would be nice to remove the pair where one of the words are a stopword.
+
+In order to be able to remove these pairs so we have to put each word in it own column. We can do this by using the function `separate`.
+
+First we will separate the pair into two columns by separating the pair around the space between them.
+
+
+``` r
+bigrams_separated <- articles_bigrams |> 
+  separate(bigram, c("word1", "word2"), sep = " ")
+
+bigrams_separated
+```
+
+``` output
+# A tibble: 2,403,402 × 8
+      id date    section region author                     wordcount word1 word2
+   <dbl> <chr>   <chr>   <chr>  <chr>                          <dbl> <chr> <chr>
+ 1     1 2026-05 News    UK     Jessica Murray and Robert…      1328 brit… biom…
+ 2     1 2026-05 News    UK     Jessica Murray and Robert…      1328 biom… watc…
+ 3     1 2026-05 News    UK     Jessica Murray and Robert…      1328 watc… have 
+ 4     1 2026-05 News    UK     Jessica Murray and Robert…      1328 have  warn…
+ 5     1 2026-05 News    UK     Jessica Murray and Robert…      1328 warn… that 
+ 6     1 2026-05 News    UK     Jessica Murray and Robert…      1328 that  nati…
+ 7     1 2026-05 News    UK     Jessica Murray and Robert…      1328 nati… over…
+ 8     1 2026-05 News    UK     Jessica Murray and Robert…      1328 over… of   
+ 9     1 2026-05 News    UK     Jessica Murray and Robert…      1328 of    ai   
+10     1 2026-05 News    UK     Jessica Murray and Robert…      1328 ai    powe…
+# ℹ 2,403,392 more rows
+```
+
+After that we will remove the rows that contain a stopword in either of the two new columns.
+
+
+``` r
+bigrams_filtered <- bigrams_separated |> 
+  filter(!word1 %in% stop_words$word) |> 
+  filter(!word2 %in% stop_words$word)
+
+bigrams_filtered
+```
+
+``` output
+# A tibble: 479,613 × 8
+      id date    section region author                     wordcount word1 word2
+   <dbl> <chr>   <chr>   <chr>  <chr>                          <dbl> <chr> <chr>
+ 1     1 2026-05 News    UK     Jessica Murray and Robert…      1328 brit… biom…
+ 2     1 2026-05 News    UK     Jessica Murray and Robert…      1328 biom… watc…
+ 3     1 2026-05 News    UK     Jessica Murray and Robert…      1328 nati… over…
+ 4     1 2026-05 News    UK     Jessica Murray and Robert…      1328 ai    powe…
+ 5     1 2026-05 News    UK     Jessica Murray and Robert…      1328 catch crim…
+ 6     1 2026-05 News    UK     Jessica Murray and Robert…      1328 tech… rapid
+ 7     1 2026-05 News    UK     Jessica Murray and Robert…      1328 rapid grow…
+ 8     1 2026-05 News    UK     Jessica Murray and Robert…      1328 metr… poli…
+ 9     1 2026-05 News    UK     Jessica Murray and Robert…      1328 past  12   
+10     1 2026-05 News    UK     Jessica Murray and Robert…      1328 12    mont…
+# ℹ 479,603 more rows
+```
+
+Now we can make a new count of word pair.
+
+``` r
+bigram_counts <- bigrams_filtered |> 
+  count(word1, word2, sort = TRUE)
+
+bigram_counts
+```
+
+``` output
+# A tibble: 347,703 × 3
+   word1      word2            n
+   <chr>      <chr>        <int>
+ 1 social     media          760
+ 2 artificial intelligence   392
+ 3 world      cup            293
+ 4 chief      executive      256
+ 5 donald     trump          243
+ 6 tech       companies      235
+ 7 south      africa         230
+ 8 premier    league         207
+ 9 final      cut            198
+10 facial     recognition    191
+# ℹ 347,693 more rows
+```
+
+Now we get some more meaning full word pairs.
+
+If we want to combine the colums again to have the words pairs (without stopwords) in one column, it can easily be done by using the function `unite`
+
+
+``` r
+bigrams_united <- bigrams_filtered |> 
+  unite(bigram, word1, word2, sep = " ")
+
+bigrams_united
+```
+
+``` output
+# A tibble: 479,613 × 7
+      id date    section region author                          wordcount bigram
+   <dbl> <chr>   <chr>   <chr>  <chr>                               <dbl> <chr> 
+ 1     1 2026-05 News    UK     Jessica Murray and Robert Booth      1328 brita…
+ 2     1 2026-05 News    UK     Jessica Murray and Robert Booth      1328 biome…
+ 3     1 2026-05 News    UK     Jessica Murray and Robert Booth      1328 natio…
+ 4     1 2026-05 News    UK     Jessica Murray and Robert Booth      1328 ai po…
+ 5     1 2026-05 News    UK     Jessica Murray and Robert Booth      1328 catch…
+ 6     1 2026-05 News    UK     Jessica Murray and Robert Booth      1328 techn…
+ 7     1 2026-05 News    UK     Jessica Murray and Robert Booth      1328 rapid…
+ 8     1 2026-05 News    UK     Jessica Murray and Robert Booth      1328 metro…
+ 9     1 2026-05 News    UK     Jessica Murray and Robert Booth      1328 past …
+10     1 2026-05 News    UK     Jessica Murray and Robert Booth      1328 12 mo…
+# ℹ 479,603 more rows
+```
+
+We could have a look at how different word pairs, are used in different sections.
+
+
+``` r
+bigrams_united |> 
+  count(section, bigram, sort = TRUE) |> 
+  pivot_wider(
+    names_from = section,
+    values_from = n)
+```
+
+``` output
+# A tibble: 347,703 × 6
+   bigram                   News Sport Lifestyle Opinion  Arts
+   <chr>                   <int> <int>     <int>   <int> <int>
+ 1 social media              284    36       128     174   138
+ 2 world cup                   2   284        NA      NA     7
+ 3 artificial intelligence   262     5        12      64    49
+ 4 south africa                8   209         2       3     8
+ 5 premier league              1   203         2      NA     1
+ 6 final cut                  NA    NA       197      NA     1
+ 7 chief executive           186    23        17       9    21
+ 8 john lewis                  3    NA       169       1    10
+ 9 facial recognition        159    NA         1      26     5
+10 tech companies            155    NA         5      57    18
+# ℹ 347,693 more rows
+```
+
 
 
 
@@ -378,5 +585,6 @@ articles_afinn |>
 - There are different lexicons
 - It is possible to add sentiments to words
 - It is possible to visualise the sentiments
+- It is possible to look at relationsship between words
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
